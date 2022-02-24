@@ -17,6 +17,15 @@ BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
+struct _tagArea
+{
+	bool bStart;
+	POINT ptStart;
+	POINT ptEnd;
+};
+
+_tagArea g_tArea;
+
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
                      _In_ LPWSTR    lpCmdLine,
@@ -157,9 +166,52 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			LineTo(hdc, 600, 500);
 			LineTo(hdc, 100, 300);
 
+			TCHAR strMouse[64] = {};
+			wsprintf(strMouse, TEXT("Start = x : %d y : %d"), g_tArea.ptStart.x, g_tArea.ptStart.y);
+			TextOut(hdc, 600, 30, strMouse, lstrlen(strMouse));
+
+			if (g_tArea.bStart)
+			{
+				Rectangle(hdc, g_tArea.ptStart.x, g_tArea.ptStart.y, g_tArea.ptEnd.x, g_tArea.ptEnd.y);
+
+			}
+
             EndPaint(hWnd, &ps);
         }
         break;
+
+	case WM_LBUTTONDOWN:
+		if (!g_tArea.bStart)
+		{
+			g_tArea.bStart = true;
+			g_tArea.ptStart.x = lParam & 0x0000ffff;
+			g_tArea.ptStart.y = lParam >> 16;
+
+			g_tArea.ptEnd = g_tArea.ptStart;
+
+			InvalidateRect(hWnd, NULL, TRUE);
+		}
+		break;
+	case WM_MOUSEMOVE:
+		if (g_tArea.bStart)
+		{
+			g_tArea.ptEnd.x = lParam & 0x0000ffff;
+			g_tArea.ptEnd.y = lParam >> 16;
+
+			InvalidateRect(hWnd, NULL, TRUE);
+		}
+		break;
+
+	case WM_LBUTTONUP:
+		if (g_tArea.bStart)
+		{
+			g_tArea.bStart = false;
+			g_tArea.ptStart.x = lParam & 0x0000ffff;
+			g_tArea.ptStart.y = lParam >> 16;
+
+			InvalidateRect(hWnd, NULL, TRUE);
+		}
+		break;
 	case WM_KEYDOWN:
 		switch (wParam)
 		{
@@ -167,7 +219,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			DestroyWindow(hWnd);
 			break;
 		}
-
+	
 	case WM_DESTROY:
         PostQuitMessage(0);
         break;
