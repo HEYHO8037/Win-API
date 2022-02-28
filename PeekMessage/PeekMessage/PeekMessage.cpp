@@ -3,8 +3,43 @@
 
 #include "stdafx.h"
 #include "PeekMessage.h"
+#include <list>
+#include <random>
+#include <cmath>
+
+using namespace std;
 
 #define MAX_LOADSTRING 100
+
+typedef struct _tagSphere
+{
+	float x, y;
+	float r;
+}SPHERE, *PSPHERE;
+
+typedef struct _tagRectangle
+{
+	float l, t, r, b;
+}RECTANGLE, *PRECTANGLE;
+
+typedef struct _tagMonster
+{
+	RECTANGLE tRC;
+	float fSpeed;
+	float fTime;
+	float fLimitTime;
+	int iDir;
+}MONSTER, *PMONSTER;
+
+typedef struct _tagBullet
+{
+	RECTANGLE rc;
+	float fDist;
+	float fLimitDist;
+	float fLimitTime;
+}BULLET, *PBULLET;
+
+
 
 // 전역 변수:
 HINSTANCE hInst;                                // 현재 인스턴스입니다.
@@ -13,7 +48,24 @@ WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
 HWND g_hWnd;
 HDC g_hDC;
 bool g_bLoop = true;
-RECT g_tPlayerRect = { 100,100, 200,200 };
+RECTANGLE g_tPlayerRect = { 100,100, 200,200 };
+MONSTER g_tMonster;
+
+LARGE_INTEGER g_tSecond;
+LARGE_INTEGER g_tTime;
+float g_fDeltaTime;
+bool bEnemyCheck = false;
+
+list<BULLET> g_PlayerBulletList;
+list<BULLET> g_EnemyBulletList;
+
+enum MOVE_DIR
+{
+	MD_BACK = -1,
+	MD_NONE,
+	MD_FRONT = 1
+};
+
 
 // 이 코드 모듈에 들어 있는 함수의 정방향 선언입니다.
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -46,9 +98,22 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 	g_hDC = GetDC(g_hWnd);
 
+	//몬스터 초기화
+	g_tMonster.tRC.l = 800.f - 100.f;
+	g_tMonster.tRC.t = 0.f;
+	g_tMonster.tRC.r = 800.f;
+	g_tMonster.tRC.b = 100.f;
+	g_tMonster.fSpeed = 300.f;
+	g_tMonster.fTime = 0.0f;
+	g_tMonster.fLimitTime = 2.0f;
+	g_tMonster.iDir = MD_NONE;
+
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_PEEKMESSAGE));
 
     MSG msg;
+
+	QueryPerformanceFrequency(&g_tSecond);
+	QueryPerformanceCounter(&g_tTime);
 
     // 기본 메시지 루프입니다.
     while (g_bLoop)
@@ -212,54 +277,209 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 
 void Run()
 {
+	LARGE_INTEGER tTime;
+
+	
+	QueryPerformanceCounter(&tTime);
+	g_fDeltaTime = (tTime.QuadPart - g_tTime.QuadPart) / (float)g_tSecond.QuadPart;
+	g_tTime = tTime;
+
+	//타임 스케일을 통하여 전체적인 게임 속도를 조정할수 있다.
+	static float fTimeScale = 1.f;
+
+	if (GetAsyncKeyState(VK_F1) & 0x8000)
+	{
+		fTimeScale -= g_fDeltaTime;
+		if (fTimeScale < 0.f)
+		{
+			fTimeScale = 0.f;
+		}
+	}
+
+	if (GetAsyncKeyState(VK_F2) & 0x8000)
+	{
+		fTimeScale += g_fDeltaTime;
+		if (fTimeScale > 1.f)
+		{
+			fTimeScale = 1.f;
+		}
+	}
+	
+	//플레이어 초당 이동속도 500
+	float fSpeed = 500 * g_fDeltaTime * fTimeScale;
+
 	if (GetAsyncKeyState('D') & 0x8000)
 	{
-		g_tPlayerRect.left += 1;
-		g_tPlayerRect.right += 1;
+		g_tPlayerRect.l += fSpeed;
+		g_tPlayerRect.r += fSpeed;
 	}
 	if (GetAsyncKeyState('A') & 0x8000)
 	{
-		g_tPlayerRect.left -= 1;
-		g_tPlayerRect.right -= 1;
+		g_tPlayerRect.l -= fSpeed;
+		g_tPlayerRect.r -= fSpeed;
 	}
 	if (GetAsyncKeyState('W') & 0x8000)
 	{
-		g_tPlayerRect.top -= 1;
-		g_tPlayerRect.bottom -= 1;
+		g_tPlayerRect.t -= fSpeed;
+		g_tPlayerRect.b -= fSpeed;
 	}
 	if (GetAsyncKeyState('S') & 0x8000)
 	{
-		g_tPlayerRect.top += 1;
-		g_tPlayerRect.bottom += 1;
+		g_tPlayerRect.t += fSpeed;
+		g_tPlayerRect.b += fSpeed;
 	}
+
+	if (GetAsyncKeyState(VK_SPACE) & 0x8000)
+	{
+		BULLET rcBullet;
+		rcBullet.rc.r = g_tPlayerRect.r;
+		rcBullet.rc.l = g_tPlayerRect.r + 50.0;
+		rcBullet.rc.t = (g_tPlayerRect.t + g_tPlayerRect.b) / 2.0 - 25.0;
+		rcBullet.rc.b = g_tPlayerRect.t + 50.0;
+		rcBullet.fDist = 0.f;
+		rcBullet.fLimitDist = 800.0f;
+
+		g_PlayerBulletList.push_back(rcBullet);
+	}
+	
+	list<BULLET>::iterator iter;
+	list<BULLET>::iterator iterEnd = g_PlayerBulletList.end();
+
+	g_tMonster.tRC.t += g_tMonster.fSpeed * g_fDeltaTime * g_tMonster.iDir;
+	g_tMonster.tRC.b += g_tMonster.fSpeed * g_fDeltaTime * g_tMonster.iDir;
+
+	if (g_tMonster.tRC.b >= 600)
+	{
+		g_tMonster.iDir = MD_BACK;
+		g_tMonster.tRC.b = 600;
+		g_tMonster.tRC.t = 500;
+	}
+	else if (g_tMonster.tRC.t <= 0)
+	{
+		g_tMonster.iDir = MD_FRONT;
+		g_tMonster.tRC.b = 100;
+		g_tMonster.tRC.t = 0;
+	}
+
+	fSpeed = 600.f * g_fDeltaTime * fTimeScale;
+
+	for (iter = g_PlayerBulletList.begin(); iter != iterEnd;)
+	{
+		(*iter).rc.l += fSpeed;
+		(*iter).rc.r += fSpeed;
+
+		if ((*iter).fDist >= (*iter).fLimitDist)
+		{
+			iter = g_PlayerBulletList.erase(iter);
+			iterEnd = g_PlayerBulletList.end();
+		}
+		else if (800 <= (*iter).rc.l)
+		{
+			iter = g_PlayerBulletList.erase(iter);
+			iterEnd = g_PlayerBulletList.end();
+		}
+		else
+		{
+			++iter;
+		}
+	}
+
+	for (iter = g_PlayerBulletList.begin(); iter != iterEnd; ++iter)
+	{
+		Rectangle(g_hDC, (*iter).rc.l, (*iter).rc.t, (*iter).rc.r, (*iter).rc.b);
+	}
+
+	fSpeed = 500.f * g_fDeltaTime * fTimeScale;
 	
 	
 	CheckSide();
 
-	Rectangle(g_hDC, g_tPlayerRect.left, g_tPlayerRect.top, g_tPlayerRect.right, g_tPlayerRect.bottom);
+	g_tMonster.fTime += g_fDeltaTime;
+
+	if (g_tMonster.fTime >= g_tMonster.fLimitTime)
+	{
+		g_tMonster.fTime -= g_tMonster.fLimitTime;
+
+		BULLET tBullet = {};
+		tBullet.rc.r = g_tMonster.tRC.l;
+		tBullet.rc.l = g_tMonster.tRC.l - 50.0;
+		tBullet.rc.t = (g_tMonster.tRC.t + g_tMonster.tRC.b) / 2.f - 25.f;
+		tBullet.rc.b = g_tMonster.tRC.t + 50.0;
+		tBullet.fDist = 0.f;
+		tBullet.fLimitDist = 800.0f;
+
+		g_EnemyBulletList.push_back(tBullet);
+	}
+
+
+	iterEnd = g_EnemyBulletList.end();
+
+	for (iter = g_EnemyBulletList.begin(); iter != iterEnd;)
+	{
+		(*iter).rc.l -= fSpeed;
+		(*iter).rc.r -= fSpeed;
+
+		if ((*iter).fDist >= (*iter).fLimitDist)
+		{
+			iter = g_EnemyBulletList.erase(iter);
+			iterEnd = g_EnemyBulletList.end();
+		}
+		else if (0 >= (*iter).rc.r)
+		{
+			iter = g_EnemyBulletList.erase(iter);
+			iterEnd = g_EnemyBulletList.end();
+		}
+		else if (g_tPlayerRect.l <= (*iter).rc.r && (*iter).rc.l <= g_tPlayerRect.r &&
+			g_tPlayerRect.t <= (*iter).rc.b && (*iter).rc.t <= g_tPlayerRect.b)
+		{
+			iter = g_EnemyBulletList.erase(iter);
+			iterEnd = g_EnemyBulletList.end();
+		}
+		else
+		{
+			++iter;
+		}
+	}
+
+	for (iter = g_EnemyBulletList.begin(); iter != iterEnd; ++iter)
+	{
+		Rectangle(g_hDC, (*iter).rc.l, (*iter).rc.t, (*iter).rc.r, (*iter).rc.b);
+	}
+
+
+	
+
+
+	Rectangle(g_hDC, g_tMonster.tRC.l, g_tMonster.tRC.t, g_tMonster.tRC.r, g_tMonster.tRC.b);
+	Rectangle(g_hDC, g_tPlayerRect.l , g_tPlayerRect.t, g_tPlayerRect.r, g_tPlayerRect.b);
 }
 
 void CheckSide()
 {
-	if (g_tPlayerRect.top <= 0)
+	RECT rcWindow;
+	GetClientRect(g_hWnd, &rcWindow);
+
+	//플레이어 충돌 처리
+	if (g_tPlayerRect.t <= 0)
 	{
-		g_tPlayerRect.top += 1;
-		g_tPlayerRect.bottom += 1;
+		g_tPlayerRect.t = 0;
+		g_tPlayerRect.b = 100;
 	}
-	else if (g_tPlayerRect.bottom >= 600)
+	else if (g_tPlayerRect.b >= rcWindow.bottom)
 	{
-		g_tPlayerRect.top -= 1;
-		g_tPlayerRect.bottom -= 1;
+		g_tPlayerRect.t = rcWindow.bottom - 100;
+		g_tPlayerRect.b  = rcWindow.bottom;
 	}
 
-	if (g_tPlayerRect.left <= 0)
+	if (g_tPlayerRect.l <= 0)
 	{
-		g_tPlayerRect.left += 1;
-		g_tPlayerRect.right += 1;
+		g_tPlayerRect.l = 0;
+		g_tPlayerRect.r = 100;
 	}
-	else if (g_tPlayerRect.right >= 800)
+	else if (g_tPlayerRect.r >= rcWindow.right)
 	{
-		g_tPlayerRect.left -= 1;
-		g_tPlayerRect.right -= 1;
+		g_tPlayerRect.l = rcWindow.right - 100;
+		g_tPlayerRect.r = rcWindow.right;
 	}
+
 }
