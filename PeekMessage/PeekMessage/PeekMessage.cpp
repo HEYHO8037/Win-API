@@ -10,6 +10,7 @@
 using namespace std;
 
 #define MAX_LOADSTRING 100
+#define PI 3.141592f
 
 typedef struct _tagSphere
 {
@@ -48,8 +49,11 @@ WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
 HWND g_hWnd;
 HDC g_hDC;
 bool g_bLoop = true;
-RECTANGLE g_tPlayerRect = { 100,100, 200,200 };
+SPHERE g_tPlayerRect = { 50.f, 50.f, 50.f };
 MONSTER g_tMonster;
+POINT g_tGunPos;
+float g_fPlayerAngle;
+float g_fGunLength = 70.f;
 
 LARGE_INTEGER g_tSecond;
 LARGE_INTEGER g_tTime;
@@ -106,6 +110,12 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	g_tMonster.fTime = 0.0f;
 	g_tMonster.fLimitTime = 2.0f;
 	g_tMonster.iDir = MD_NONE;
+
+	//총구 설정
+	g_tGunPos.x = g_tPlayerRect.x + cosf(g_fPlayerAngle) * g_fGunLength;
+	g_tGunPos.y = g_tPlayerRect.y + sinf(g_fPlayerAngle) * g_fGunLength;
+
+
 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_PEEKMESSAGE));
 
@@ -309,30 +319,32 @@ void Run()
 
 	if (GetAsyncKeyState('D') & 0x8000)
 	{
-		g_tPlayerRect.l += fSpeed;
-		g_tPlayerRect.r += fSpeed;
+		g_fPlayerAngle += PI * g_fDeltaTime * fTimeScale;
 	}
 	if (GetAsyncKeyState('A') & 0x8000)
 	{
-		g_tPlayerRect.l -= fSpeed;
-		g_tPlayerRect.r -= fSpeed;
+		g_fPlayerAngle -= PI * g_fDeltaTime * fTimeScale;
 	}
 	if (GetAsyncKeyState('W') & 0x8000)
 	{
-		g_tPlayerRect.t -= fSpeed;
-		g_tPlayerRect.b -= fSpeed;
+		g_tPlayerRect.x += fSpeed * cosf(g_fPlayerAngle);
+		g_tPlayerRect.y += fSpeed * sinf(g_fPlayerAngle);
 	}
 	if (GetAsyncKeyState('S') & 0x8000)
 	{
-		g_tPlayerRect.t += fSpeed;
-		g_tPlayerRect.b += fSpeed;
+		g_tPlayerRect.x -= fSpeed * cosf(g_fPlayerAngle);
+		g_tPlayerRect.y -= fSpeed * sinf(g_fPlayerAngle);
 	}
+
+	//총구위치 구하기
+	g_tGunPos.x = g_tPlayerRect.x + cosf(g_fPlayerAngle) * g_fGunLength;
+	g_tGunPos.y = g_tPlayerRect.y + sinf(g_fPlayerAngle) * g_fGunLength;
 
 	if (GetAsyncKeyState(VK_SPACE) & 0x8000)
 	{
 		BULLET rcBullet;
-		rcBullet.rc.x = g_tPlayerRect.r + 50.f;
-		rcBullet.rc.y = g_tPlayerRect.t + 50.f;
+		rcBullet.rc.x = g_tPlayerRect.x + 50.f;
+		rcBullet.rc.y = g_tPlayerRect.y + 50.f;
 		rcBullet.rc.r = 25.f;
 		rcBullet.fDist = 0.f;
 		rcBullet.fLimitDist = 800.0f;
@@ -347,11 +359,11 @@ void Run()
 
 		ScreenToClient(g_hWnd, &ptMouse);
 
-		if (g_tPlayerRect.l <= ptMouse.x && g_tPlayerRect.r >= ptMouse.x
+		/*if (g_tPlayerRect.l <= ptMouse.x && g_tPlayerRect.r >= ptMouse.x
 			&& g_tPlayerRect.t <= ptMouse.y && g_tPlayerRect.b >= ptMouse.y)
 		{
 			MessageBox(NULL, L"플레이어 클릭", L"마우스 클릭", MB_OK);
-		}
+		}*/
 
 		float fMX = g_tMonster.tSphere.x - ptMouse.x;
 		float fMY = g_tMonster.tSphere.y - ptMouse.y;
@@ -367,7 +379,6 @@ void Run()
 	list<BULLET>::iterator iterEnd = g_PlayerBulletList.end();
 
 	g_tMonster.tSphere.y += g_tMonster.fSpeed * g_fDeltaTime * g_tMonster.iDir;
-	//g_tMonster.tRC.b += g_tMonster.fSpeed * g_fDeltaTime * g_tMonster.iDir;
 
 	if (g_tMonster.tSphere.y + g_tMonster.tSphere.r >= 600)
 	{
@@ -481,7 +492,10 @@ void Run()
 	}
 
 	Ellipse(g_hDC, g_tMonster.tSphere.x-g_tMonster.tSphere.r, g_tMonster.tSphere.y - g_tMonster.tSphere.r, g_tMonster.tSphere.x + g_tMonster.tSphere.r, g_tMonster.tSphere.y + g_tMonster.tSphere.r);
-	Rectangle(g_hDC, g_tPlayerRect.l , g_tPlayerRect.t, g_tPlayerRect.r, g_tPlayerRect.b);
+	Ellipse(g_hDC, g_tPlayerRect.x - g_tPlayerRect.r , g_tPlayerRect.y - g_tPlayerRect.r, g_tPlayerRect.x + g_tPlayerRect.r, g_tPlayerRect.y + g_tPlayerRect.r);
+	MoveToEx(g_hDC, g_tGunPos.x, g_tGunPos.y, NULL);
+	LineTo(g_hDC, g_tGunPos.x, g_tGunPos.y);
+
 }
 
 void CheckSide()
@@ -490,7 +504,7 @@ void CheckSide()
 	GetClientRect(g_hWnd, &rcWindow);
 
 	//플레이어 충돌 처리
-	if (g_tPlayerRect.t <= 0)
+	/*if (g_tPlayerRect.t <= 0)
 	{
 		g_tPlayerRect.t = 0;
 		g_tPlayerRect.b = 100;
@@ -510,6 +524,6 @@ void CheckSide()
 	{
 		g_tPlayerRect.l = rcWindow.right - 100;
 		g_tPlayerRect.r = rcWindow.right;
-	}
+	}*/
 
 }
