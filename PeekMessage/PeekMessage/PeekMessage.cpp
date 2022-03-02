@@ -24,7 +24,7 @@ typedef struct _tagRectangle
 
 typedef struct _tagMonster
 {
-	RECTANGLE tRC;
+	SPHERE tSphere;
 	float fSpeed;
 	float fTime;
 	float fLimitTime;
@@ -33,7 +33,7 @@ typedef struct _tagMonster
 
 typedef struct _tagBullet
 {
-	RECTANGLE rc;
+	SPHERE rc;
 	float fDist;
 	float fLimitDist;
 	float fLimitTime;
@@ -99,10 +99,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	g_hDC = GetDC(g_hWnd);
 
 	//몬스터 초기화
-	g_tMonster.tRC.l = 800.f - 100.f;
-	g_tMonster.tRC.t = 0.f;
-	g_tMonster.tRC.r = 800.f;
-	g_tMonster.tRC.b = 100.f;
+	g_tMonster.tSphere.x = 800.f - 50.f;
+	g_tMonster.tSphere.y = 50.f;
+	g_tMonster.tSphere.r = 50.f;
 	g_tMonster.fSpeed = 300.f;
 	g_tMonster.fTime = 0.0f;
 	g_tMonster.fLimitTime = 2.0f;
@@ -332,48 +331,78 @@ void Run()
 	if (GetAsyncKeyState(VK_SPACE) & 0x8000)
 	{
 		BULLET rcBullet;
-		rcBullet.rc.r = g_tPlayerRect.r;
-		rcBullet.rc.l = g_tPlayerRect.r + 50.0;
-		rcBullet.rc.t = (g_tPlayerRect.t + g_tPlayerRect.b) / 2.0 - 25.0;
-		rcBullet.rc.b = g_tPlayerRect.t + 50.0;
+		rcBullet.rc.x = g_tPlayerRect.r + 50.f;
+		rcBullet.rc.y = g_tPlayerRect.t + 50.f;
+		rcBullet.rc.r = 25.f;
 		rcBullet.fDist = 0.f;
 		rcBullet.fLimitDist = 800.0f;
 
 		g_PlayerBulletList.push_back(rcBullet);
 	}
+	if (GetAsyncKeyState(VK_LBUTTON) & 0x8000)
+	{
+		POINT ptMouse;
+
+		GetCursorPos(&ptMouse);
+
+		ScreenToClient(g_hWnd, &ptMouse);
+
+		if (g_tPlayerRect.l <= ptMouse.x && g_tPlayerRect.r >= ptMouse.x
+			&& g_tPlayerRect.t <= ptMouse.y && g_tPlayerRect.b >= ptMouse.y)
+		{
+			MessageBox(NULL, L"플레이어 클릭", L"마우스 클릭", MB_OK);
+		}
+
+		float fMX = g_tMonster.tSphere.x - ptMouse.x;
+		float fMY = g_tMonster.tSphere.y - ptMouse.y;
+		float fMDist = sqrtf(fMX * fMX + fMY * fMY);
+
+		if (g_tMonster.tSphere.r >= fMDist)
+		{
+			MessageBox(NULL, L"몬스터 클릭", L"마우스 클릭", MB_OK);
+		}
+	}
 	
 	list<BULLET>::iterator iter;
 	list<BULLET>::iterator iterEnd = g_PlayerBulletList.end();
 
-	g_tMonster.tRC.t += g_tMonster.fSpeed * g_fDeltaTime * g_tMonster.iDir;
-	g_tMonster.tRC.b += g_tMonster.fSpeed * g_fDeltaTime * g_tMonster.iDir;
+	g_tMonster.tSphere.y += g_tMonster.fSpeed * g_fDeltaTime * g_tMonster.iDir;
+	//g_tMonster.tRC.b += g_tMonster.fSpeed * g_fDeltaTime * g_tMonster.iDir;
 
-	if (g_tMonster.tRC.b >= 600)
+	if (g_tMonster.tSphere.y + g_tMonster.tSphere.r >= 600)
 	{
 		g_tMonster.iDir = MD_BACK;
-		g_tMonster.tRC.b = 600;
-		g_tMonster.tRC.t = 500;
+		g_tMonster.tSphere.y = 550;
 	}
-	else if (g_tMonster.tRC.t <= 0)
+	else if (g_tMonster.tSphere.y - g_tMonster.tSphere.r <= 0)
 	{
 		g_tMonster.iDir = MD_FRONT;
-		g_tMonster.tRC.b = 100;
-		g_tMonster.tRC.t = 0;
+		g_tMonster.tSphere.y = 50;
 	}
 
 	fSpeed = 600.f * g_fDeltaTime * fTimeScale;
 
 	for (iter = g_PlayerBulletList.begin(); iter != iterEnd;)
 	{
-		(*iter).rc.l += fSpeed;
-		(*iter).rc.r += fSpeed;
+		(*iter).rc.x += fSpeed;
+		(*iter).fDist += fSpeed;
 
-		if ((*iter).fDist >= (*iter).fLimitDist)
+		float fX = (*iter).rc.x - g_tMonster.tSphere.x;
+		float fY = (*iter).rc.y - g_tMonster.tSphere.y;
+
+		float fDist = sqrtf(fX*fX + fY*fY);
+
+		if (fDist <= (*iter).rc.r + g_tMonster.tSphere.r)
 		{
 			iter = g_PlayerBulletList.erase(iter);
 			iterEnd = g_PlayerBulletList.end();
 		}
-		else if (800 <= (*iter).rc.l)
+		else if ((*iter).fDist >= (*iter).fLimitDist)
+		{
+			iter = g_PlayerBulletList.erase(iter);
+			iterEnd = g_PlayerBulletList.end();
+		}
+		else if (800 <= (*iter).rc.x - (*iter).rc.r)
 		{
 			iter = g_PlayerBulletList.erase(iter);
 			iterEnd = g_PlayerBulletList.end();
@@ -386,7 +415,10 @@ void Run()
 
 	for (iter = g_PlayerBulletList.begin(); iter != iterEnd; ++iter)
 	{
-		Rectangle(g_hDC, (*iter).rc.l, (*iter).rc.t, (*iter).rc.r, (*iter).rc.b);
+		Ellipse(g_hDC, (*iter).rc.x - (*iter).rc.r,
+			(*iter).rc.y - (*iter).rc.r,
+			(*iter).rc.x + (*iter).rc.r,
+			(*iter).rc.y + (*iter).rc.r);
 	}
 
 	fSpeed = 500.f * g_fDeltaTime * fTimeScale;
@@ -401,10 +433,9 @@ void Run()
 		g_tMonster.fTime -= g_tMonster.fLimitTime;
 
 		BULLET tBullet = {};
-		tBullet.rc.r = g_tMonster.tRC.l;
-		tBullet.rc.l = g_tMonster.tRC.l - 50.0;
-		tBullet.rc.t = (g_tMonster.tRC.t + g_tMonster.tRC.b) / 2.f - 25.f;
-		tBullet.rc.b = g_tMonster.tRC.t + 50.0;
+		tBullet.rc.x = g_tMonster.tSphere.x - g_tMonster.tSphere.r - 25.f;
+		tBullet.rc.y = g_tMonster.tSphere.y;
+		tBullet.rc.r = 25.f;
 		tBullet.fDist = 0.f;
 		tBullet.fLimitDist = 800.0f;
 
@@ -416,25 +447,25 @@ void Run()
 
 	for (iter = g_EnemyBulletList.begin(); iter != iterEnd;)
 	{
-		(*iter).rc.l -= fSpeed;
-		(*iter).rc.r -= fSpeed;
+		(*iter).rc.x -= fSpeed;
+		(*iter).fDist += fSpeed;
 
 		if ((*iter).fDist >= (*iter).fLimitDist)
 		{
 			iter = g_EnemyBulletList.erase(iter);
 			iterEnd = g_EnemyBulletList.end();
 		}
-		else if (0 >= (*iter).rc.r)
+		else if (0 >= (*iter).rc.x + (*iter).rc.r)
 		{
 			iter = g_EnemyBulletList.erase(iter);
 			iterEnd = g_EnemyBulletList.end();
 		}
-		else if (g_tPlayerRect.l <= (*iter).rc.r && (*iter).rc.l <= g_tPlayerRect.r &&
-			g_tPlayerRect.t <= (*iter).rc.b && (*iter).rc.t <= g_tPlayerRect.b)
-		{
-			iter = g_EnemyBulletList.erase(iter);
-			iterEnd = g_EnemyBulletList.end();
-		}
+		//else if (g_tPlayerRect.l <= (*iter).rc.r && (*iter).rc.l <= g_tPlayerRect.r &&
+		//	g_tPlayerRect.t <= (*iter).rc.b && (*iter).rc.t <= g_tPlayerRect.b)
+		//{
+		//	iter = g_EnemyBulletList.erase(iter);
+		//	iterEnd = g_EnemyBulletList.end();
+		//}
 		else
 		{
 			++iter;
@@ -443,14 +474,13 @@ void Run()
 
 	for (iter = g_EnemyBulletList.begin(); iter != iterEnd; ++iter)
 	{
-		Rectangle(g_hDC, (*iter).rc.l, (*iter).rc.t, (*iter).rc.r, (*iter).rc.b);
+		Ellipse(g_hDC, (*iter).rc.x - (*iter).rc.r, 
+			(*iter).rc.y - (*iter).rc.r, 
+			(*iter).rc.x + (*iter).rc.r,
+			(*iter).rc.y + (*iter).rc.r);
 	}
 
-
-	
-
-
-	Rectangle(g_hDC, g_tMonster.tRC.l, g_tMonster.tRC.t, g_tMonster.tRC.r, g_tMonster.tRC.b);
+	Ellipse(g_hDC, g_tMonster.tSphere.x-g_tMonster.tSphere.r, g_tMonster.tSphere.y - g_tMonster.tSphere.r, g_tMonster.tSphere.x + g_tMonster.tSphere.r, g_tMonster.tSphere.y + g_tMonster.tSphere.r);
 	Rectangle(g_hDC, g_tPlayerRect.l , g_tPlayerRect.t, g_tPlayerRect.r, g_tPlayerRect.b);
 }
 
