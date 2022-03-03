@@ -38,6 +38,7 @@ typedef struct _tagBullet
 	float fDist;
 	float fLimitDist;
 	float fLimitTime;
+	float fAngle;
 }BULLET, *PBULLET;
 
 
@@ -335,6 +336,26 @@ void Run()
 		g_tPlayerRect.x -= fSpeed * cosf(g_fPlayerAngle);
 		g_tPlayerRect.y -= fSpeed * sinf(g_fPlayerAngle);
 	}
+	if (GetAsyncKeyState('1') & 0x8000)
+	{
+		float fAngle = PI / 12.f;
+
+		for (int i = 0; 3 > i; ++i)
+		{
+			BULLET rcBullet;
+			rcBullet.rc.x = g_tGunPos.x + cosf(fAngle) * 25.f;
+			rcBullet.rc.y = g_tGunPos.y + sinf(fAngle) * 25.f;
+			rcBullet.rc.r = 25.f;
+			rcBullet.fDist = 0.f;
+			rcBullet.fLimitDist = 800.0f;
+			rcBullet.fAngle = fAngle;
+
+			g_PlayerBulletList.push_back(rcBullet);
+
+			fAngle += PI / 12.f;
+		}
+	}
+
 
 	//총구위치 구하기
 	g_tGunPos.x = g_tPlayerRect.x + cosf(g_fPlayerAngle) * g_fGunLength;
@@ -343,11 +364,12 @@ void Run()
 	if (GetAsyncKeyState(VK_SPACE) & 0x8000)
 	{
 		BULLET rcBullet;
-		rcBullet.rc.x = g_tPlayerRect.x + 50.f;
-		rcBullet.rc.y = g_tPlayerRect.y + 50.f;
+		rcBullet.rc.x = g_tGunPos.x + cosf(g_fPlayerAngle) * 25.f;
+		rcBullet.rc.y = g_tGunPos.y + sinf(g_fPlayerAngle) * 25.f;
 		rcBullet.rc.r = 25.f;
 		rcBullet.fDist = 0.f;
 		rcBullet.fLimitDist = 800.0f;
+		rcBullet.fAngle = g_fPlayerAngle;
 
 		g_PlayerBulletList.push_back(rcBullet);
 	}
@@ -395,7 +417,8 @@ void Run()
 
 	for (iter = g_PlayerBulletList.begin(); iter != iterEnd;)
 	{
-		(*iter).rc.x += fSpeed;
+		(*iter).rc.x += cosf((*iter).fAngle) * fSpeed;
+		(*iter).rc.y += sinf((*iter).fAngle) * fSpeed;
 		(*iter).fDist += fSpeed;
 
 		float fX = (*iter).rc.x - g_tMonster.tSphere.x;
@@ -493,7 +516,7 @@ void Run()
 
 	Ellipse(g_hDC, g_tMonster.tSphere.x-g_tMonster.tSphere.r, g_tMonster.tSphere.y - g_tMonster.tSphere.r, g_tMonster.tSphere.x + g_tMonster.tSphere.r, g_tMonster.tSphere.y + g_tMonster.tSphere.r);
 	Ellipse(g_hDC, g_tPlayerRect.x - g_tPlayerRect.r , g_tPlayerRect.y - g_tPlayerRect.r, g_tPlayerRect.x + g_tPlayerRect.r, g_tPlayerRect.y + g_tPlayerRect.r);
-	MoveToEx(g_hDC, g_tGunPos.x, g_tGunPos.y, NULL);
+	MoveToEx(g_hDC, g_tPlayerRect.x, g_tPlayerRect.y, NULL);
 	LineTo(g_hDC, g_tGunPos.x, g_tGunPos.y);
 
 }
