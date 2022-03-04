@@ -1,0 +1,3 @@
+﻿  Core.cpp
+Core.cpp(98): warning C4838: 'unsigned int'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
+LINK : fatal error LNK1104: '../Bin/FrameWork.exe' 파일을 열 수 없습니다.
