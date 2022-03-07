@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game.h"
+#include "Scene\SceneManager.h"
 
 class CCore
 {
@@ -24,6 +25,9 @@ private:
 public:
 	bool Init(HINSTANCE hInst);
 	int Run();
+
+private:
+	void Logic();
 
 private:
 	ATOM MyRegisterClass();

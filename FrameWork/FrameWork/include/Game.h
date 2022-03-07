@@ -8,6 +8,7 @@
 #include "Macro.h"
 #include "resource.h"
 #include "Types.h"
+#include "Flag.h"
 
 using namespace std;
 
