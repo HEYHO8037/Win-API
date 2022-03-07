@@ -12,3 +12,16 @@
 
 using namespace std;
 
+template <typename T>
+void Safe_Delete_VecList(T& p)
+{
+	T::literator iter;
+	T::literator iterEnd = p.end();
+
+	for (iter = p.begin(); iter != iterEnd, ++iter)
+	{
+		SAFE_DELETE((*iter));
+	}
+
+	p.clear();
+}

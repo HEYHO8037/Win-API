@@ -22,6 +22,9 @@
     <Filter Include="Core\01_Timer">
       <UniqueIdentifier>{765a78c4-e902-4c9e-97d2-0b69d58939f9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02_Scene\01_Layer">
+      <UniqueIdentifier>{15a0acc9-308d-435f-ad69-5dd14b1eff4c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -40,6 +43,9 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Core\Timer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Layer.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -72,6 +78,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Core\Timer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Layer.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

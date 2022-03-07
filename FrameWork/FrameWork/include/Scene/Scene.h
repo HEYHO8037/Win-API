@@ -9,8 +9,12 @@ protected:
 protected:
 	CScene();
 	virtual ~CScene() = 0;
+
+protected:
+	list<class CLayer*> m_LayerList;
 	
 public:
+	class CLayer* CreateLayer();
 	virtual bool Init();
 };
 
