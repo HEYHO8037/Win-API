@@ -1,6 +1,6 @@
 #include "Timer.h"
 
-
+DEFINITION_SINGLE(CTimer)
 
 CTimer::CTimer()
 {

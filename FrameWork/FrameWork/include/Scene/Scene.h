@@ -14,7 +14,10 @@ protected:
 	list<class CLayer*> m_LayerList;
 	
 public:
-	class CLayer* CreateLayer();
+	class CLayer* CreateLayer(const string& strTag, int iZOrder = 0);
 	virtual bool Init();
+
+public:
+	static bool LayerSort(class CLayer* pL1, class CLayer* pL2);
 };
 

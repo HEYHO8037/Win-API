@@ -12,7 +12,7 @@ public:
 
 public:
 	template <typename T>
-	class T* CreateScene(SCENE_CREATE sc);
+	T* CreateScene(SCENE_CREATE sc);
 	DECLARE_SINGLE(CSceneManager)
 };
 
@@ -31,7 +31,7 @@ inline T * CSceneManager::CreateScene(SCENE_CREATE sc)
 	{
 	case SC_CURRENT:
 		SAFE_DELETE(m_pScene);
-		m_pScene = sc;
+		m_pScene = m_pScene;
 		break;
 
 	case SC_NEXT:

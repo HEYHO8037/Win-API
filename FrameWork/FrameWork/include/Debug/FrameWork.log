@@ -1,10 +1,3 @@
-﻿  SceneManager.cpp
-  Core.cpp
-c:\users\haeho\desktop\win api\framework\framework\include\core.cpp(104): warning C4838: 'unsigned int'에서 'LONG'(으)로의 변환에는 축소 변환이 필요합니다.
-  코드를 생성하고 있습니다...
-c:\users\haeho\desktop\win api\framework\framework\include\core.cpp(13): warning C4715: 'CCore::GetInst': 모든 제어 경로에서 값을 반환하지는 않습니다.
-  컴파일하고 있습니다...
-  main.cpp
-  코드를 생성하고 있습니다...
+﻿  Timer.cpp
   FrameWork.vcxproj -> C:\Users\haeho\Desktop\WIN API\FrameWork\FrameWork\include\../Bin/FrameWork_Debug.exe
   FrameWork.vcxproj -> ../Bin/FrameWork_Debug.pdb (Full PDB)
