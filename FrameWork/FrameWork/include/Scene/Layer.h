@@ -16,6 +16,7 @@ private:
 	class CScene* m_pScene;
 	string m_strTag;
 	int m_iZOrder;
+	list<class CObj*> m_ObjList;
 
 public:
 	void SetTag(const string& strTag);

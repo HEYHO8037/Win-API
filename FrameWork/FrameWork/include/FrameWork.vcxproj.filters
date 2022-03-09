@@ -25,6 +25,9 @@
     <Filter Include="02_Scene\01_Layer">
       <UniqueIdentifier>{15a0acc9-308d-435f-ad69-5dd14b1eff4c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02_Scene\03_Object">
+      <UniqueIdentifier>{6b091435-6baf-47d3-8910-4a128a671960}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -46,6 +49,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Scene\Layer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\Obj.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -81,6 +87,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Scene\Layer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Obj.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

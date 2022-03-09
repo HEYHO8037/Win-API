@@ -1,5 +1,5 @@
 #include "Layer.h"
-
+#include "../Object/Obj.h"
 
 
 CLayer::CLayer()
@@ -12,6 +12,7 @@ CLayer::CLayer()
 
 CLayer::~CLayer()
 {
+	Safe_Release_VecList(m_ObjList);
 }
 
 void CLayer::SetTag(const string& strTag)
