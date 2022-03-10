@@ -44,3 +44,26 @@ CScene * CLayer::GetScene() const
 {
 	return m_pScene;
 }
+
+void CLayer::Input(float fDeltaTime)
+{
+
+}
+
+int CLayer::Update(float fDeltaTime)
+{
+	return 0;
+}
+
+int CLayer::LateUpdate(float fDeltaTime)
+{
+	return 0;
+}
+
+void CLayer::Collision(float fDeltaTime)
+{
+}
+
+void CLayer::Render(HDC hDC, float fDeltaTime)
+{
+}

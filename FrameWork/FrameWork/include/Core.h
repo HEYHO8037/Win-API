@@ -19,6 +19,7 @@ private:
 private:
 	HINSTANCE m_hInst;
 	HWND m_hWnd;
+	HDC m_hDC;
 	RESOLUTION m_tRS;
 	static bool m_bLoop;
 	

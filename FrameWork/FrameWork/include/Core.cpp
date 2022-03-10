@@ -40,6 +40,11 @@ bool CCore::Init(HINSTANCE hInst)
 	m_tRS.iH = 720;
 	m_tRS.iW = 1280;
 
+	Create();
+
+	//화면 DC를 만들어준다.
+	m_hDC = GetDC(m_hWnd);
+
 	// 타이머 초기화
 	if (!GET_SINGLE(CTimer)->Init())
 	{
@@ -52,7 +57,7 @@ bool CCore::Init(HINSTANCE hInst)
 		return false;
 	}
 
-	Create();
+
 
 	return true;
 }
@@ -96,27 +101,29 @@ void CCore::Logic()
 
 void CCore::Input(float fDeltaTime)
 {
-
+	GET_SINGLE(CSceneManager)->Input(fDeltaTime);
 }
 
 int CCore::Update(float fDeltaTime)
 {
+	GET_SINGLE(CSceneManager)->Update(fDeltaTime);
 	return 0;
 }
 
 int CCore::LateUpdate(float fDeltaTime)
 {
+	GET_SINGLE(CSceneManager)->LateUpdate(fDeltaTime);
 	return 0;
 }
 
 void CCore::Collision(float fDeltaTime)
 {
-
+	GET_SINGLE(CSceneManager)->Collision(fDeltaTime);
 }
 
 void CCore::Render(float fDeltaTime)
 {
-
+	GET_SINGLE(CSceneManager)->Render(m_hDC, fDeltaTime);
 }
 
 ATOM CCore::MyRegisterClass()
