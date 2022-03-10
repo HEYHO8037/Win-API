@@ -37,6 +37,28 @@ bool CScene::Init()
 	return true;
 }
 
+void CScene::Input(float fDeltaTime)
+{
+}
+
+int CScene::Update(float fDeltaTime)
+{
+	return 0;
+}
+
+int CScene::LateUpdate(float fDeltaTime)
+{
+	return 0;
+}
+
+void CScene::Collision(float fDeltaTime)
+{
+}
+
+void CScene::Render(HDC hDC, float fDeltaTime)
+{
+}
+
 bool CScene::LayerSort(CLayer * pL1, CLayer * pL2)
 {
 	return pL1->GetZOrder() < pL2->GetZOrder();

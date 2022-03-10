@@ -86,6 +86,37 @@ void CCore::Logic()
 	GET_SINGLE(CTimer)->Update();
 
 	float fDeltaTime = GET_SINGLE(CTimer)->GetDeltaTime();
+
+	Input(fDeltaTime);
+	Update(fDeltaTime);
+	LateUpdate(fDeltaTime);
+	Collision(fDeltaTime);
+	Render(fDeltaTime);
+}
+
+void CCore::Input(float fDeltaTime)
+{
+
+}
+
+int CCore::Update(float fDeltaTime)
+{
+	return 0;
+}
+
+int CCore::LateUpdate(float fDeltaTime)
+{
+	return 0;
+}
+
+void CCore::Collision(float fDeltaTime)
+{
+
+}
+
+void CCore::Render(float fDeltaTime)
+{
+
 }
 
 ATOM CCore::MyRegisterClass()

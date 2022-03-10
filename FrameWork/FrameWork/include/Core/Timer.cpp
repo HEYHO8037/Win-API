@@ -3,6 +3,7 @@
 DEFINITION_SINGLE(CTimer)
 
 CTimer::CTimer()
+	: m_fTimeScale(1.f)
 {
 }
 
@@ -13,12 +14,22 @@ CTimer::~CTimer()
 
 float CTimer::GetDeltaTime() const
 {
-	return m_fDeltaTime;
+	return m_fDeltaTime * m_fTimeScale;
 }
 
 float CTimer::GetFPS() const
 {
 	return m_fFPS;
+}
+
+float CTimer::GetTimeScale() const
+{
+	return m_fTimeScale;
+}
+
+void CTimer::SetTimeScale(float fTimeScale)
+{
+	m_fTimeScale = fTimeScale;
 }
 
 bool CTimer::Init()
