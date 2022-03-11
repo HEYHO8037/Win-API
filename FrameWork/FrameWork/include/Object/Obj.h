@@ -1,20 +1,29 @@
 #pragma once
 
-#include "../Game.h"
+#include "../Ref.h"
 
-class CObj
+class CObj : public CRef
 {
 public:
 	CObj();
+	CObj(const CObj& obj);
 	virtual ~CObj();
 
 protected:
-	int m_iRef;
+	string m_strTag;
+	POSITION m_tPos;
+	_SIZE m_tSize;
+	POSITION m_tPivot;
 
 protected:
-	string m_strTag;
-	POSITION m_Pos;
-	_SIZE m_Size;
+	class CScene* m_pScene;
+	class CLayer* m_pLayer;
+
+public:
+	void SetScene(class CScene* pScene);
+	void SetLayer(class CLayer* pLayer);
+	class CScene* GetScene() const;
+	class CLayer* GetLayer() const;
 
 public:
 	void SetTag(const string& strTag);
@@ -29,10 +38,7 @@ public:
 	_SIZE GetSize() const;
 
 public:
-	void AddRef();
-	int Release();
-
-public:
+	virtual bool Init() = 0;
 	virtual void Input(float fDeltaTime);
 	virtual int Update(float fDeltaTime);
 	virtual int LateUpdate(float fDeltaTime);

@@ -3,13 +3,36 @@
 
 
 CObj::CObj()
-	: m_iRef(1)
 {
 }
 
+CObj::CObj(const CObj & obj)
+{
+	*this = obj;
+}
 
 CObj::~CObj()
 {
+}
+
+void CObj::SetScene(CScene* pScene)
+{
+	m_pScene = pScene;
+}
+
+void CObj::SetLayer(CLayer* pLayer)
+{
+	m_pLayer = pLayer;
+}
+
+CScene * CObj::GetScene() const
+{
+	return m_pScene;
+}
+
+CLayer * CObj::GetLayer() const
+{
+	return m_pLayer;
 }
 
 void CObj::SetTag(const string& strTag)
@@ -19,26 +42,26 @@ void CObj::SetTag(const string& strTag)
 
 void CObj::SetPos(const POSITION & tPos)
 {
-	m_Pos.x = tPos.x;
-	m_Pos.y = tPos.y;
+	m_tPos.x = tPos.x;
+	m_tPos.y = tPos.y;
 }
 
 void CObj::SetPos(float x, float y)
 {
-	m_Pos.x = x;
-	m_Pos.y = y;
+	m_tPos.x = x;
+	m_tPos.y = y;
 }
 
 void CObj::SetSize(const _SIZE & tSize)
 {
-	m_Size.x = tSize.x;
-	m_Size.y = tSize.y;
+	m_tSize.x = tSize.x;
+	m_tSize.y = tSize.y;
 }
 
 void CObj::SetSize(float x, float y)
 {
-	m_Size.x = x;
-	m_Size.y = y;
+	m_tSize.x = x;
+	m_tSize.y = y;
 }
 
 string CObj::GetTag() const
@@ -48,30 +71,12 @@ string CObj::GetTag() const
 
 POSITION CObj::GetPosition() const
 {
-	return m_Pos;
+	return m_tPos;
 }
 
 _SIZE CObj::GetSize() const
 {
-	return m_Size;
-}
-
-void CObj::AddRef()
-{
-	m_iRef++;
-}
-
-int CObj::Release()
-{
-	--m_iRef;
-
-	if (0 == m_iRef)
-	{
-		delete this;
-		return 0;
-	}
-
-	return m_iRef;
+	return m_tSize;
 }
 
 void CObj::Input(float fDeltaTime)

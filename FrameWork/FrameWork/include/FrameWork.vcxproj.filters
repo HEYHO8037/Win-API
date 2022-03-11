@@ -28,6 +28,15 @@
     <Filter Include="02_Scene\03_Object">
       <UniqueIdentifier>{6b091435-6baf-47d3-8910-4a128a671960}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02_Scene\03_Object\01_MoveObj">
+      <UniqueIdentifier>{3794f1ec-f127-4b51-aac3-29b38ef1b70e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02_Scene\03_Object\02_StaticObj">
+      <UniqueIdentifier>{75d2c3e9-3c7a-4ae0-94b7-67ecafeb142b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02_Scene\03_Object\03_PlayerObj">
+      <UniqueIdentifier>{cce1c85e-a5dc-4dab-9239-064e47ddd246}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -51,8 +60,20 @@
     <ClCompile Include="Scene\Layer.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Object\Obj.cpp">
+    <ClCompile Include="Ref.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\Obj.cpp">
+      <Filter>02_Scene\03_Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\MoveObj.cpp">
+      <Filter>02_Scene\03_Object\01_MoveObj</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\Player.cpp">
+      <Filter>02_Scene\03_Object\03_PlayerObj</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\StaticObj.cpp">
+      <Filter>02_Scene\03_Object\02_StaticObj</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -89,8 +110,20 @@
     <ClInclude Include="Scene\Layer.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Object\Obj.h">
+    <ClInclude Include="Ref.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Obj.h">
+      <Filter>02_Scene\03_Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\MoveObj.h">
+      <Filter>02_Scene\03_Object\01_MoveObj</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Player.h">
+      <Filter>02_Scene\03_Object\03_PlayerObj</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\StaticObj.h">
+      <Filter>02_Scene\03_Object\02_StaticObj</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

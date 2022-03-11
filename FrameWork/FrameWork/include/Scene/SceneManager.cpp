@@ -1,5 +1,7 @@
 #include "SceneManager.h"
 #include "InGameScene.h"
+#include "../Object/Player.h"
+#include "Layer.h"
 
 DEFINITION_SINGLE(CSceneManager)
 
