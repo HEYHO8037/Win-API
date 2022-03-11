@@ -15,6 +15,7 @@ protected:
 	
 public:
 	class CLayer* CreateLayer(const string& strTag, int iZOrder = 0);
+	class CLayer* FindLayer(const string& strTag);
 	virtual bool Init();
 	virtual void Input(float fDeltaTime);
 	virtual int Update(float fDeltaTime);

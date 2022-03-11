@@ -45,6 +45,15 @@ CScene * CLayer::GetScene() const
 	return m_pScene;
 }
 
+void CLayer::AddObject(CObj * pObj)
+{
+	pObj->SetScene(m_pScene);
+	pObj->SetLayer(this);
+	pObj->AddRef();
+
+	m_ObjList.push_back(pObj);
+}
+
 void CLayer::Input(float fDeltaTime)
 {
 	list<CObj*>::iterator iter;

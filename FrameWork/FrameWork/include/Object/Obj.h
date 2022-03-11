@@ -44,5 +44,27 @@ public:
 	virtual int LateUpdate(float fDeltaTime);
 	virtual void Collision(float fDeltaTime);
 	virtual void Render(HDC hDC, float fDeltaTime);
+
+public:
+	template <typename T>
+	static T* CreateObj(const string& strTag, class CLayer* pLayer = nullptr)
+	{
+		T* pObj = new T;
+
+		if (!pObj->Init())
+		{
+			SAFE_RELEASE(pObj);
+			return nullptr;
+		}
+
+		if (pLayer)
+		{
+			pLayer->AddObject(pObj);
+		}
+
+		pObj->AddRef();
+
+		return pObj;
+	}
 };
 
