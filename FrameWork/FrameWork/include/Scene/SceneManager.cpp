@@ -20,7 +20,6 @@ CSceneManager::~CSceneManager()
 bool CSceneManager::Init()
 {
 	CreateScene<CInGameScene>(SC_CURRENT);
-
 	return true;
 }
 
@@ -50,5 +49,3 @@ void CSceneManager::Render(HDC hDC, float fDeltaTime)
 {
 	m_pScene->Render(hDC, fDeltaTime);
 }
-
-

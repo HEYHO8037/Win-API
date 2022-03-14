@@ -52,6 +52,16 @@ typedef struct _tagPosition
 	}
 
 	// + 
+	_tagPosition operator + (const float x)
+	{
+		_tagPosition tPos;
+		tPos.x += x;
+		tPos.y += y;
+
+		return tPos;
+	}
+
+
 	_tagPosition operator + (const _tagPosition& pos)
 	{
 		_tagPosition tPos;
@@ -79,7 +89,22 @@ typedef struct _tagPosition
 		return tPos;
 	}
 
+	void operator += (const _tagPosition& pos)
+	{
+		x += pos.x;
+		y += pos.y;
+	}
+
 	// -
+
+	_tagPosition operator - (const float x)
+	{
+		_tagPosition tPos;
+		tPos.x -= x;
+		tPos.y -= y;
+
+		return tPos;
+	}
 
 	_tagPosition operator - (const _tagPosition& pos)
 	{
@@ -110,6 +135,15 @@ typedef struct _tagPosition
 
 	// *
 
+	_tagPosition operator * (const float x) const
+	{
+		_tagPosition tPos;
+		tPos.x *= x;
+		tPos.y *= y;
+
+		return tPos;
+	}
+
 	_tagPosition operator * (const _tagPosition& pos)
 	{
 		_tagPosition tPos;
@@ -138,6 +172,15 @@ typedef struct _tagPosition
 	}
 
 	// /
+
+	_tagPosition operator / (const float x)
+	{
+		_tagPosition tPos;
+		tPos.x /= x;
+		tPos.y /= y;
+
+		return tPos;
+	}
 
 	_tagPosition operator / (const _tagPosition& pos)
 	{

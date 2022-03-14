@@ -6,6 +6,9 @@ class CPlayer :
 	public CMoveObj
 {
 private:
+	friend class CObj;
+	
+private:
 	CPlayer();
 	CPlayer(const CPlayer& player);
 	virtual ~CPlayer();

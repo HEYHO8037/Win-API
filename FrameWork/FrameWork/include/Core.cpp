@@ -12,6 +12,8 @@ CCore* CCore::GetInst()
 		m_pInst = new CCore;
 		return m_pInst;
 	}
+
+	return m_pInst;
 }
 
 void CCore::DestroyInst()
@@ -21,7 +23,7 @@ void CCore::DestroyInst()
 
 CCore::CCore()
 {
-
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 }
 
 CCore::~CCore()

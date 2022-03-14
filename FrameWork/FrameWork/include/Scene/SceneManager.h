@@ -36,12 +36,12 @@ inline T * CSceneManager::CreateScene(SCENE_CREATE sc)
 	{
 	case SC_CURRENT:
 		SAFE_DELETE(m_pScene);
-		m_pScene = m_pScene;
+		m_pScene = pScene;
 		break;
 
 	case SC_NEXT:
 		SAFE_DELETE(m_pNextScene);
-		m_pNextScene = m_pScene;
+		m_pNextScene = pScene;
 		break;
 	}
 
