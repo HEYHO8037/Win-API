@@ -136,14 +136,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		else
 		{
 			//여기서 게임 개발
-			static int iCount;
-			++iCount;
-			if (iCount == 10000)
-			{
-				iCount = 0;
-				Run();
-			}
-
+			Run();
 		}
     }
 

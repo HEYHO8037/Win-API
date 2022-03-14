@@ -1,12 +1,12 @@
 ﻿  PeekMessage.cpp
 c:\users\haeho\desktop\win api\peekmessage\peekmessage\peekmessage.cpp(116): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\haeho\desktop\win api\peekmessage\peekmessage\peekmessage.cpp(117): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\peekmessage\peekmessage\peekmessage.cpp(361): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\peekmessage\peekmessage\peekmessage.cpp(362): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\peekmessage\peekmessage\peekmessage.cpp(455): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\peekmessage\peekmessage\peekmessage.cpp(514): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\peekmessage\peekmessage\peekmessage.cpp(517): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\peekmessage\peekmessage\peekmessage.cpp(518): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\peekmessage\peekmessage\peekmessage.cpp(519): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\peekmessage\peekmessage\peekmessage.cpp(354): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\peekmessage\peekmessage\peekmessage.cpp(355): warning C4244: '=': 'float'에서 'LONG'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\peekmessage\peekmessage\peekmessage.cpp(448): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\peekmessage\peekmessage\peekmessage.cpp(507): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\peekmessage\peekmessage\peekmessage.cpp(510): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\peekmessage\peekmessage\peekmessage.cpp(511): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\peekmessage\peekmessage\peekmessage.cpp(512): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   PeekMessage.vcxproj -> C:\Users\haeho\Desktop\WIN API\PeekMessage\Debug\PeekMessage.exe
   PeekMessage.vcxproj -> C:\Users\haeho\Desktop\WIN API\PeekMessage\Debug\PeekMessage.pdb (Full PDB)

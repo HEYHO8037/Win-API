@@ -10,7 +10,6 @@ CCore* CCore::GetInst()
 	if (!m_pInst)
 	{
 		m_pInst = new CCore;
-		return m_pInst;
 	}
 
 	return m_pInst;
@@ -59,8 +58,6 @@ bool CCore::Init(HINSTANCE hInst)
 		return false;
 	}
 
-
-
 	return true;
 }
 
@@ -82,7 +79,6 @@ int CCore::Run()
 			Logic();
 		}
 	}
-
 
 	return (int)msg.wParam;
 }

@@ -5,7 +5,6 @@ CScene::CScene()
 {
 	CLayer* pLayer = CreateLayer("Default");
 	pLayer = CreateLayer("UI", INT_MAX);
-
 }
 
 
