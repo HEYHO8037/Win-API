@@ -37,6 +37,9 @@
     <Filter Include="02_Scene\03_Object\03_PlayerObj">
       <UniqueIdentifier>{cce1c85e-a5dc-4dab-9239-064e47ddd246}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02_Scene\03_Object\04_Monster">
+      <UniqueIdentifier>{3e554b86-1133-411c-b0ce-bae0aeb23675}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -74,6 +77,9 @@
     </ClCompile>
     <ClCompile Include="Object\StaticObj.cpp">
       <Filter>02_Scene\03_Object\02_StaticObj</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\Minion.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -124,6 +130,9 @@
     </ClInclude>
     <ClInclude Include="Object\StaticObj.h">
       <Filter>02_Scene\03_Object\02_StaticObj</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Minion.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

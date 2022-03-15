@@ -22,6 +22,9 @@ private:
 	HDC m_hDC;
 	RESOLUTION m_tRS;
 	static bool m_bLoop;
+
+public:
+	RESOLUTION GetResolution() const;
 	
 public:
 	bool Init(HINSTANCE hInst);

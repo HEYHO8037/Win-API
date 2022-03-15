@@ -9,6 +9,9 @@ public:
 	CObj(const CObj& obj);
 	virtual ~CObj();
 
+private:
+	static list<CObj*> m_ObjectList;
+
 protected:
 	string m_strTag;
 	POSITION m_tPos;

@@ -11,6 +11,9 @@ protected:
 	virtual ~CScene() = 0;
 
 protected:
+
+
+protected:
 	list<class CLayer*> m_LayerList;
 	
 public:

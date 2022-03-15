@@ -31,6 +31,11 @@ CCore::~CCore()
 	DESTROY_SINGLE(CTimer);
 }
 
+RESOLUTION CCore::GetResolution() const
+{
+	return m_tRS;
+}
+
 bool CCore::Init(HINSTANCE hInst)
 {
 	this->m_hInst = hInst;
