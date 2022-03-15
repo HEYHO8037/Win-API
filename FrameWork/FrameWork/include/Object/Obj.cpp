@@ -1,5 +1,7 @@
 #include "Obj.h"
 
+list<CObj*> m_ObjectList;
+
 CObj::CObj()
 {
 }
@@ -11,6 +13,66 @@ CObj::CObj(const CObj & obj)
 
 CObj::~CObj()
 {
+}
+
+void CObj::AddObj(CObj * pObj)
+{
+	pObj->AddRef();
+	m_ObjectList.push_back(pObj);
+}
+
+CObj * CObj::FindObject(const string & strTag)
+{
+	list<CObj*>::iterator iter;
+	list<CObj*>::iterator iterEnd = m_ObjectList.end();
+
+	for (iter = m_ObjectList.begin(); iter != iterEnd; ++iter)
+	{
+		if ((*iter)->GetTag() == strTag)
+		{
+			(*iter)->AddRef();
+			return *iter;
+		}
+	}
+
+	return nullptr;
+}
+
+void CObj::EraseObj(CObj * pObj)
+{
+	list<CObj*>::iterator iter;
+	list<CObj*>::iterator iterEnd = m_ObjectList.end();
+
+	for (iter = m_ObjectList.begin(); iter != iterEnd; ++iter)
+	{
+		if (*iter == pObj)
+		{
+			SAFE_RELEASE((*iter));
+			iter = m_ObjectList.erase(iter);
+			return;
+		}
+	}
+}
+
+void CObj::EraseObj(const string & strTag)
+{
+	list<CObj*>::iterator iter;
+	list<CObj*>::iterator iterEnd = m_ObjectList.end();
+
+	for (iter = m_ObjectList.begin(); iter != iterEnd; ++iter)
+	{
+		if ((*iter)->GetTag() == strTag)
+		{
+			SAFE_RELEASE((*iter));
+			iter = m_ObjectList.erase(iter);
+			return;
+		}
+	}
+}
+
+void CObj::EraseObj()
+{
+	Safe_Delete_VecList(m_ObjectList);
 }
 
 void CObj::SetScene(CScene* pScene)

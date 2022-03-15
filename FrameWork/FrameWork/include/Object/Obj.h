@@ -11,6 +11,14 @@ public:
 
 private:
 	static list<CObj*> m_ObjectList;
+	static unordered_map<string, CObj*> m_mapPrototype;
+
+public:
+	static void AddObj(CObj* pObj);
+	static CObj* FindObject(const string& strTag);
+	static void EraseObj(CObj* pObj);
+	static void EraseObj(const string& strTag);
+	static void EraseObj();
 
 protected:
 	string m_strTag;
@@ -65,6 +73,7 @@ public:
 			pLayer->AddObject(pObj);
 		}
 
+		AddObj(pObj);
 
 		return pObj;
 	}

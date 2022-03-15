@@ -17,6 +17,8 @@ private:
 	string m_strTag;
 	int m_iZOrder;
 	list<class CObj*> m_ObjList;
+	bool m_bEnable;
+	bool m_bLife;
 
 public:
 	void SetTag(const string& strTag);
@@ -28,6 +30,13 @@ public:
 
 public:
 	void AddObject(class CObj* pObj);
+
+public:
+	void SetEnable(bool bEnable);
+	void Die();
+	bool GetEnable() const;
+	bool GetLife() const;
+
 
 public:
 	void Input(float fDeltaTime);

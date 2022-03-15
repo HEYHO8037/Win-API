@@ -5,14 +5,25 @@
 CLayer::CLayer()
 	: m_iZOrder(0),
 	  m_strTag(""),
-	  m_pScene(nullptr)
+	  m_pScene(nullptr),
+	  m_bEnable(true),
+	  m_bLife(true)
 {
 }
 
 
 CLayer::~CLayer()
 {
-	Safe_Release_VecList(m_ObjList);
+	list<CObj*>::iterator iter;
+	list<CObj*>::iterator iterEnd = m_ObjList.end();
+
+	for (iter = m_ObjList.begin(); iter != iterEnd; )
+	{
+		CObj::EraseObj(*iter);
+		SAFE_RELEASE((*iter));
+	}
+
+	m_ObjList.clear();
 }
 
 void CLayer::SetTag(const string& strTag)
@@ -54,14 +65,49 @@ void CLayer::AddObject(CObj * pObj)
 	m_ObjList.push_back(pObj);
 }
 
+void CLayer::SetEnable(bool bEnable)
+{
+	m_bEnable = bEnable;
+}
+
+void CLayer::Die()
+{
+	m_bLife = false;
+}
+
+bool CLayer::GetEnable() const
+{
+	return m_bEnable;
+}
+
+bool CLayer::GetLife() const
+{
+	return m_bLife;
+}
+
+
 void CLayer::Input(float fDeltaTime)
 {
 	list<CObj*>::iterator iter;
 	list<CObj*>::iterator iterEnd = m_ObjList.end();
 
-	for (iter = m_ObjList.begin(); iter != iterEnd; ++iter)
+	for (iter = m_ObjList.begin(); iter != iterEnd; )
 	{
+		if (!(*iter)->GetEnable)
+		{
+			++iter;
+			continue;
+		}
+
 		(*iter)->Input(fDeltaTime);
+
+		if (!(*iter)->GetLife())
+		{
+			CObj::EraseObj(*iter);
+			SAFE_RELEASE((*iter));
+			iter = m_ObjList.erase(iter);
+			iterEnd = m_ObjList.end();
+		}
 	}
 }
 
