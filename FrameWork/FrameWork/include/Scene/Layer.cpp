@@ -110,7 +110,7 @@ void CLayer::Input(float fDeltaTime)
 		}
 		else
 		{
-			iter++;
+			++iter;
 		}
 	}
 }
@@ -139,7 +139,7 @@ int CLayer::Update(float fDeltaTime)
 		}
 		else
 		{
-			iter++;
+			++iter;
 		}
 	}
 	return 0;
@@ -169,7 +169,7 @@ int CLayer::LateUpdate(float fDeltaTime)
 		}
 		else
 		{
-			iter++;
+			++iter;
 		}
 	}
 
@@ -200,7 +200,7 @@ void CLayer::Collision(float fDeltaTime)
 		}
 		else
 		{
-			iter++;
+			++iter;
 		}
 	}
 }
@@ -210,7 +210,7 @@ void CLayer::Render(HDC hDC, float fDeltaTime)
 	list<CObj*>::iterator iter;
 	list<CObj*>::iterator iterEnd = m_ObjList.end();
 
-	for (iter = m_ObjList.begin(); iter != iterEnd; ++iter)
+	for (iter = m_ObjList.begin(); iter != iterEnd; )
 	{
 		if (!(*iter)->GetEnable())
 		{
@@ -229,7 +229,7 @@ void CLayer::Render(HDC hDC, float fDeltaTime)
 		}
 		else
 		{
-			iter++;
+			++iter;
 		}
 	}
 }

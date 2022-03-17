@@ -40,6 +40,9 @@
     <Filter Include="02_Scene\03_Object\04_Monster">
       <UniqueIdentifier>{3e554b86-1133-411c-b0ce-bae0aeb23675}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02_Scene\03_Object\05_Bullet">
+      <UniqueIdentifier>{6a4a2a02-2209-4264-9a3a-9835b1979de3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -60,9 +63,6 @@
     <ClCompile Include="Core\Timer.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\Layer.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Ref.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -80,6 +80,12 @@
     </ClCompile>
     <ClCompile Include="Object\Minion.cpp">
       <Filter>02_Scene\03_Object\04_Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Layer.cpp">
+      <Filter>02_Scene\01_Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\Bullet.cpp">
+      <Filter>02_Scene\03_Object\05_Bullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -113,9 +119,6 @@
     <ClInclude Include="Core\Timer.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\Layer.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Ref.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -133,6 +136,12 @@
     </ClInclude>
     <ClInclude Include="Object\Minion.h">
       <Filter>02_Scene\03_Object\04_Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Layer.h">
+      <Filter>02_Scene\01_Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Bullet.h">
+      <Filter>02_Scene\03_Object\05_Bullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
