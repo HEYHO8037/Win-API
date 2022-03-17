@@ -79,7 +79,7 @@
       <Filter>02_Scene\03_Object\02_StaticObj</Filter>
     </ClCompile>
     <ClCompile Include="Object\Minion.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>02_Scene\03_Object\04_Monster</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -132,7 +132,7 @@
       <Filter>02_Scene\03_Object\02_StaticObj</Filter>
     </ClInclude>
     <ClInclude Include="Object\Minion.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>02_Scene\03_Object\04_Monster</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

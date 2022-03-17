@@ -1,6 +1,8 @@
 #include "Obj.h"
+#include "../Scene/Layer.h"
 
-list<CObj*> m_ObjectList;
+list<CObj*> CObj::m_ObjectList;
+unordered_map<string, CObj*> CObj::m_mapPrototype;
 
 CObj::CObj()
 {
@@ -73,6 +75,24 @@ void CObj::EraseObj(const string & strTag)
 void CObj::EraseObj()
 {
 	Safe_Delete_VecList(m_ObjectList);
+}
+
+void CObj::ErasePrototype()
+{
+	Safe_Release_Map(m_mapPrototype);
+}
+
+void CObj::ErasePrototype(const string & strTag)
+{
+	unordered_map<string, CObj*>::iterator iter = m_mapPrototype.find(strTag);
+
+	if (iter->second)
+	{
+		return;
+	}
+
+	SAFE_RELEASE(iter->second);
+	m_mapPrototype.erase(iter);
 }
 
 void CObj::SetScene(CScene* pScene)
@@ -159,4 +179,38 @@ void CObj::Collision(float fDeltaTime)
 
 void CObj::Render(HDC hDC, float fDeltaTime)
 {
+}
+
+CObj* CObj::CreateCloneObj(const string& strPrototypeKey, const string& strKey, class CLayer* pLayer)
+{
+	CObj* pProto = FindPrototype(strPrototypeKey);
+
+	if (!pProto)
+	{
+		return nullptr;
+	}
+
+	CObj* pObj = pProto->Clone();
+
+	if (pLayer)
+	{
+		pLayer->AddObject(pObj);
+	}
+
+	AddObj(pObj);
+
+	return pObj;
+
+}
+
+CObj* CObj::FindPrototype(const string & strKey)
+{
+	unordered_map<string, CObj*>::iterator iter = m_mapPrototype.find(strKey);
+
+	if (iter == m_mapPrototype.end())
+	{
+		return nullptr;
+	}
+
+	return iter->second;
 }

@@ -19,6 +19,8 @@ public:
 	static void EraseObj(CObj* pObj);
 	static void EraseObj(const string& strTag);
 	static void EraseObj();
+	static void ErasePrototype();
+	static void ErasePrototype(const string& strTag);
 
 protected:
 	string m_strTag;
@@ -55,12 +57,15 @@ public:
 	virtual int LateUpdate(float fDeltaTime);
 	virtual void Collision(float fDeltaTime);
 	virtual void Render(HDC hDC, float fDeltaTime);
+	virtual CObj* Clone() = 0;
 
 public:
 	template <typename T>
 	static T* CreateObj(const string& strTag, class CLayer* pLayer = nullptr)
 	{
 		T* pObj = new T;
+
+		pObj->SetTag(strTag);
 
 		if (!pObj->Init())
 		{
@@ -77,5 +82,29 @@ public:
 
 		return pObj;
 	}
+
+	static CObj* CreateCloneObj(const string& strPrototypeKey, const string& strKey, class CLayer* pLayer = nullptr);
+		
+	template <typename T>
+	static T* CreatePrototype(const string& strTag)
+	{
+		T* pObj = new T;
+
+		pObj->SetTag(strTag);
+
+		if (!pObj->Init())
+		{
+			SAFE_RELEASE(pObj);
+			return nullptr;
+		}
+
+		pObj->AddRef();
+		m_mapPrototype.insert(make_pair(strTag, pObj));
+
+		return pObj;
+	}
+
+private:
+	static CObj* FindPrototype(const string& strKey);
 };
 
