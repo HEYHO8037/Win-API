@@ -14,6 +14,7 @@ public:
 	int LateUpdate(float fDeltaTime);
 	void Collision(float fDeltaTime);
 	void Render(HDC hDC, float fDeltaTime);
+	class CScene* GetScene() const;
 
 public:
 	template <typename T>

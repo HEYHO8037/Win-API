@@ -4,12 +4,16 @@
 
 class CMoveObj : public CObj
 {
+private:
+	friend class CObj;
+	friend class CScene;
+
 protected:
 	CMoveObj();
 	CMoveObj(const CMoveObj& obj);
 	virtual ~CMoveObj();
 	
-private:
+protected:
 	float m_fAngle;
 	float m_fSpeed;
 
@@ -35,8 +39,8 @@ public:
 	void MoveY(float y, float fDeltaTime);
 	void MoveYFromSpeed(float fDeltaTime, MOVE_DIR eDir);
 
-	void MoveAngle(float fSpeed);
-	void MoveAngle(float fSpeed, float fTime);
+	void MoveAngle();
+	void MoveAngle(float fTime);
 
 
 public:

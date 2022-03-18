@@ -49,3 +49,8 @@ void CSceneManager::Render(HDC hDC, float fDeltaTime)
 {
 	m_pScene->Render(hDC, fDeltaTime);
 }
+
+CScene * CSceneManager::GetScene() const
+{
+	return m_pScene;
+}

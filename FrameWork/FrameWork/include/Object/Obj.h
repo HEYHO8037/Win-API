@@ -4,6 +4,8 @@
 
 class CObj : public CRef
 {
+protected:
+	friend class CScene;
 public:
 	CObj();
 	CObj(const CObj& obj);
@@ -11,7 +13,6 @@ public:
 
 private:
 	static list<CObj*> m_ObjectList;
-	static unordered_map<string, CObj*> m_mapPrototype;
 
 public:
 	static void AddObj(CObj* pObj);
@@ -19,8 +20,7 @@ public:
 	static void EraseObj(CObj* pObj);
 	static void EraseObj(const string& strTag);
 	static void EraseObj();
-	static void ErasePrototype();
-	static void ErasePrototype(const string& strTag);
+
 
 protected:
 	string m_strTag;
@@ -83,28 +83,9 @@ public:
 		return pObj;
 	}
 
+public:
 	static CObj* CreateCloneObj(const string& strPrototypeKey, const string& strKey, class CLayer* pLayer = nullptr);
-		
-	template <typename T>
-	static T* CreatePrototype(const string& strTag)
-	{
-		T* pObj = new T;
 
-		pObj->SetTag(strTag);
 
-		if (!pObj->Init())
-		{
-			SAFE_RELEASE(pObj);
-			return nullptr;
-		}
-
-		pObj->AddRef();
-		m_mapPrototype.insert(make_pair(strTag, pObj));
-
-		return pObj;
-	}
-
-private:
-	static CObj* FindPrototype(const string& strKey);
 };
 

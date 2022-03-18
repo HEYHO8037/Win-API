@@ -1,5 +1,8 @@
 #include "Scene.h"
 #include "Layer.h"
+#include "../Object/Obj.h"
+
+unordered_map<string, CObj*> CScene::m_mapPrototype;
 
 CScene::CScene()
 {
@@ -194,6 +197,36 @@ void CScene::Render(HDC hDC, float fDeltaTime)
 			++iter;
 		}
 	}
+}
+
+void CScene::ErasePrototype()
+{
+	Safe_Release_Map(m_mapPrototype);
+}
+
+void CScene::ErasePrototype(const string & strTag)
+{
+	unordered_map<string, CObj*>::iterator iter = m_mapPrototype.find(strTag);
+
+	if (iter->second)
+	{
+		return;
+	}
+
+	SAFE_RELEASE(iter->second);
+	m_mapPrototype.erase(iter);
+}
+
+CObj* CScene::FindPrototype(const string & strKey)
+{
+	unordered_map<string, CObj*>::iterator iter = m_mapPrototype.find(strKey);
+
+	if (iter == m_mapPrototype.end())
+	{
+		return nullptr;
+	}
+
+	return iter->second;
 }
 
 bool CScene::LayerSort(CLayer * pL1, CLayer * pL2)

@@ -48,6 +48,11 @@ void CPlayer::Input(float fDeltaTime)
 	{
 		MoveXFromSpeed(fDeltaTime, MD_FRONT);
 	}
+
+	if (GetAsyncKeyState(VK_SPACE) & 0X8000)
+	{
+		Fire();
+	}
 }
 
 int CPlayer::Update(float fDeltaTime)
@@ -76,4 +81,13 @@ void CPlayer::Render(HDC hDC, float fDeltaTime)
 CPlayer * CPlayer::Clone()
 {
 	return new CPlayer(*this);
+}
+
+void CPlayer::Fire()
+{
+	CObj* pBullet = CObj::CreateCloneObj("Bullet", "PlayerBullet", m_pLayer);
+	pBullet->SetPos(m_tPos.x + m_tSize.x,
+		(m_tPos.y + m_tPos.y + m_tSize.y) / 2.f - pBullet->GetSize().y / 2.f);
+
+	SAFE_RELEASE(pBullet);
 }
