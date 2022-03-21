@@ -5,10 +5,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="헤더 파일">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="리소스 파일">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
@@ -22,26 +18,36 @@
     <Filter Include="Core\01_Timer">
       <UniqueIdentifier>{765a78c4-e902-4c9e-97d2-0b69d58939f9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02_Scene\01_Layer">
+    <Filter Include="Core\02_Path">
+      <UniqueIdentifier>{9537eb3e-bd4b-496d-a3a8-24d69a369086}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="01_Layer">
       <UniqueIdentifier>{15a0acc9-308d-435f-ad69-5dd14b1eff4c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02_Scene\03_Object">
+    <Filter Include="03_Object">
       <UniqueIdentifier>{6b091435-6baf-47d3-8910-4a128a671960}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02_Scene\03_Object\01_MoveObj">
+    <Filter Include="03_Object\01_MoveObj">
       <UniqueIdentifier>{3794f1ec-f127-4b51-aac3-29b38ef1b70e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02_Scene\03_Object\02_StaticObj">
+    <Filter Include="03_Object\02_StaticObj">
       <UniqueIdentifier>{75d2c3e9-3c7a-4ae0-94b7-67ecafeb142b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02_Scene\03_Object\03_PlayerObj">
+    <Filter Include="03_Object\03_PlayerObj">
       <UniqueIdentifier>{cce1c85e-a5dc-4dab-9239-064e47ddd246}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02_Scene\03_Object\04_Monster">
+    <Filter Include="03_Object\04_Monster">
       <UniqueIdentifier>{3e554b86-1133-411c-b0ce-bae0aeb23675}</UniqueIdentifier>
     </Filter>
-    <Filter Include="02_Scene\03_Object\05_Bullet">
+    <Filter Include="03_Object\05_Bullet">
       <UniqueIdentifier>{6a4a2a02-2209-4264-9a3a-9835b1979de3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04_Resource">
+      <UniqueIdentifier>{a4c47e95-5b5a-4361-a996-b8efd7e529ee}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -60,32 +66,41 @@
     <ClCompile Include="Core.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="Core\Timer.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Ref.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Object\Obj.cpp">
-      <Filter>02_Scene\03_Object</Filter>
+      <Filter>03_Object</Filter>
     </ClCompile>
     <ClCompile Include="Object\MoveObj.cpp">
-      <Filter>02_Scene\03_Object\01_MoveObj</Filter>
+      <Filter>03_Object\01_MoveObj</Filter>
     </ClCompile>
     <ClCompile Include="Object\Player.cpp">
-      <Filter>02_Scene\03_Object\03_PlayerObj</Filter>
+      <Filter>03_Object\03_PlayerObj</Filter>
     </ClCompile>
     <ClCompile Include="Object\StaticObj.cpp">
-      <Filter>02_Scene\03_Object\02_StaticObj</Filter>
+      <Filter>03_Object\02_StaticObj</Filter>
     </ClCompile>
     <ClCompile Include="Object\Minion.cpp">
-      <Filter>02_Scene\03_Object\04_Monster</Filter>
+      <Filter>03_Object\04_Monster</Filter>
     </ClCompile>
     <ClCompile Include="Scene\Layer.cpp">
-      <Filter>02_Scene\01_Layer</Filter>
+      <Filter>01_Layer</Filter>
     </ClCompile>
     <ClCompile Include="Object\Bullet.cpp">
-      <Filter>02_Scene\03_Object\05_Bullet</Filter>
+      <Filter>03_Object\05_Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\PathManager.cpp">
+      <Filter>Core\02_Path</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Timer.cpp">
+      <Filter>Core\01_Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="Resources\ResourcesManager.cpp">
+      <Filter>04_Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Resources\Texture.cpp">
+      <Filter>04_Resource</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -116,32 +131,41 @@
     <ClInclude Include="Flag.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Timer.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Ref.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Object\Obj.h">
-      <Filter>02_Scene\03_Object</Filter>
+      <Filter>03_Object</Filter>
     </ClInclude>
     <ClInclude Include="Object\MoveObj.h">
-      <Filter>02_Scene\03_Object\01_MoveObj</Filter>
+      <Filter>03_Object\01_MoveObj</Filter>
     </ClInclude>
     <ClInclude Include="Object\Player.h">
-      <Filter>02_Scene\03_Object\03_PlayerObj</Filter>
+      <Filter>03_Object\03_PlayerObj</Filter>
     </ClInclude>
     <ClInclude Include="Object\StaticObj.h">
-      <Filter>02_Scene\03_Object\02_StaticObj</Filter>
+      <Filter>03_Object\02_StaticObj</Filter>
     </ClInclude>
     <ClInclude Include="Object\Minion.h">
-      <Filter>02_Scene\03_Object\04_Monster</Filter>
+      <Filter>03_Object\04_Monster</Filter>
     </ClInclude>
     <ClInclude Include="Scene\Layer.h">
-      <Filter>02_Scene\01_Layer</Filter>
+      <Filter>01_Layer</Filter>
     </ClInclude>
     <ClInclude Include="Object\Bullet.h">
-      <Filter>02_Scene\03_Object\05_Bullet</Filter>
+      <Filter>03_Object\05_Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\PathManager.h">
+      <Filter>Core\02_Path</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Timer.h">
+      <Filter>Core\01_Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources\ResourcesManager.h">
+      <Filter>04_Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources\Texture.h">
+      <Filter>04_Resource</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

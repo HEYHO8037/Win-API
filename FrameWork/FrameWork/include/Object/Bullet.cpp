@@ -20,6 +20,11 @@ CBullet::~CBullet()
 {
 }
 
+void CBullet::SetBulletDistance(float fDist)
+{
+	m_fLimitDist = fDist;
+}
+
 bool CBullet::Init()
 {
 	SetSpeed(500.f);
@@ -62,7 +67,6 @@ void CBullet::Render(HDC hDC, float fDeltaTime)
 {
 	CMoveObj::Render(hDC, fDeltaTime);
 	Ellipse(hDC, m_tPos.x, m_tPos.y, m_tPos.x + m_tSize.x, m_tPos.y + m_tSize.y);
-
 }
 
 CBullet * CBullet::Clone()

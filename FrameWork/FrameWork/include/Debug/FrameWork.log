@@ -1,20 +1,2 @@
-﻿  Scene.cpp
-c:\users\haeho\desktop\win api\framework\framework\include\types.h(32): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\framework\framework\include\types.h(33): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\framework\framework\include\types.h(44): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\framework\framework\include\types.h(45): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Player.cpp
-c:\users\haeho\desktop\win api\framework\framework\include\types.h(32): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\framework\framework\include\types.h(33): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\framework\framework\include\types.h(44): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\framework\framework\include\types.h(45): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\framework\framework\include\object\player.cpp(78): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  Bullet.cpp
-c:\users\haeho\desktop\win api\framework\framework\include\types.h(32): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\framework\framework\include\types.h(33): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\framework\framework\include\types.h(44): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\framework\framework\include\types.h(45): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\framework\framework\include\object\bullet.cpp(64): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  코드를 생성하고 있습니다...
-  FrameWork.vcxproj -> C:\Users\haeho\Desktop\WIN API\FrameWork\FrameWork\include\../Bin/FrameWork_Debug.exe
+﻿  FrameWork.vcxproj -> C:\Users\haeho\Desktop\WIN API\FrameWork\FrameWork\include\../Bin/FrameWork_Debug.exe
   FrameWork.vcxproj -> ../Bin/FrameWork_Debug.pdb (Full PDB)

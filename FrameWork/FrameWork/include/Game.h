@@ -13,6 +13,12 @@ using namespace std;
 #include "Types.h"
 #include "Flag.h"
 
+#define PI 3.141592f
+
+//Path Key
+#define ROOT_PATH "RootPath"
+#define TEXTURE_PATH "TexturePath"
+
 template <typename T>
 void Safe_Delete_VecList(T& p)
 {
