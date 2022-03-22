@@ -21,7 +21,7 @@ bool CPathManager::Init()
 	{
 		if (strPath[i] == '/' || strPath[i] == '\\')
 		{
-			memset(strPath + (i + 1), 0, sizeof(wchar_t) * MAX_PATH - (i + 1));
+			memset(strPath + (i + 1), 0, sizeof(wchar_t) * (MAX_PATH - (i + 1)));
 			break;
 		}
 	}

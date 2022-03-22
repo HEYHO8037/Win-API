@@ -6,6 +6,7 @@ class CObj : public CRef
 {
 protected:
 	friend class CScene;
+
 public:
 	CObj();
 	CObj(const CObj& obj);
@@ -27,6 +28,7 @@ protected:
 	POSITION m_tPos;
 	_SIZE m_tSize;
 	POSITION m_tPivot;
+	class CTexture* m_pTexture;
 
 protected:
 	class CScene* m_pScene;
@@ -44,6 +46,10 @@ public:
 	void SetPos(float x, float y);
 	void SetSize(const _SIZE& tSize);
 	void SetSize(float x, float y);
+
+public:
+	void SetTexture(class CTexture* pTexture);
+	void SetTexture(const string& strKey, const wchar_t* pFileName = nullptr, const string& strPathKey = TEXTURE_PATH);
 
 public:
 	string GetTag() const;

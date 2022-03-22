@@ -15,6 +15,8 @@ using namespace std;
 
 #define PI 3.141592f
 
+#pragma comment(lib, "msimg32")
+
 //Path Key
 #define ROOT_PATH "RootPath"
 #define TEXTURE_PATH "TexturePath"
