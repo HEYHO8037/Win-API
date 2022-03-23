@@ -2,6 +2,7 @@
 #include "../Object/Player.h"
 #include "../Object/Minion.h"
 #include "../Object/Bullet.h"
+#include "../Object/Stage.h"
 #include "Layer.h"
 
 
@@ -36,6 +37,11 @@ bool CInGameScene::Init()
 	pBullet->SetSize(50.f, 50.f);
 
 	SAFE_RELEASE(pBullet);
+
+	CLayer* pStageLayer = FindLayer("Stage");
+
+	CStage* pStage = CObj::CreateObj<CStage>("Stage", pStageLayer);
+	SAFE_RELEASE(pPlayer);
 
 	return true;
 }

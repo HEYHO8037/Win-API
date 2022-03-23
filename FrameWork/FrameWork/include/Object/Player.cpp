@@ -18,9 +18,10 @@ CPlayer::~CPlayer()
 
 bool CPlayer::Init()
 {
-	SetPos(100.f, 100.f);
+	SetPos(0.f, 0.f);
 	SetSize(225.f, 225.f);
 	SetSpeed(400.f);
+	SetPivot(0.7f, 0.5f);
 	SetTexture("Player", L"HOS.bmp");
 
 	return true;
@@ -86,8 +87,16 @@ CPlayer * CPlayer::Clone()
 void CPlayer::Fire()
 {
 	CObj* pBullet = CObj::CreateCloneObj("Bullet", "PlayerBullet", m_pLayer);
-	pBullet->SetPos(m_tPos.x + m_tSize.x,
-		(m_tPos.y + m_tPos.y + m_tSize.y) / 2.f - pBullet->GetSize().y / 2.f);
+	
+
+	//Pivot를 이용하여 총알 위치 재조정(가운데)
+	POSITION tPos;
+
+	tPos.x = m_tPos.x + (1.f - m_tPivot.x) * m_tSize.x;
+	tPos.y = m_tPos.y + (0.5f - m_tPivot.y) * m_tSize.y;
+
+	
+	pBullet->SetPos(tPos.x, tPos.y - pBullet->GetSize().y / 2.f);
 
 	SAFE_RELEASE(pBullet);
 }

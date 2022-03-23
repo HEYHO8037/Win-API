@@ -46,6 +46,8 @@ public:
 	void SetPos(float x, float y);
 	void SetSize(const _SIZE& tSize);
 	void SetSize(float x, float y);
+	void SetPivot(const _SIZE& tPivot);
+	void SetPivot(float x, float y);
 
 public:
 	void SetTexture(class CTexture* pTexture);
@@ -55,6 +57,7 @@ public:
 	string GetTag() const;
 	POSITION GetPosition() const;
 	_SIZE GetSize() const;
+	POSITION GetPivot() const;
 
 public:
 	virtual bool Init() = 0;

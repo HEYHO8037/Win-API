@@ -49,6 +49,9 @@
     <Filter Include="04_Resource">
       <UniqueIdentifier>{a4c47e95-5b5a-4361-a996-b8efd7e529ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03_Object\02_StaticObj\01_Stage">
+      <UniqueIdentifier>{b16fd639-5c2f-46ba-9414-e2213a3b7688}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -101,6 +104,9 @@
     </ClCompile>
     <ClCompile Include="Resources\Texture.cpp">
       <Filter>04_Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\Stage.cpp">
+      <Filter>03_Object\02_StaticObj\01_Stage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +172,9 @@
     </ClInclude>
     <ClInclude Include="Resources\Texture.h">
       <Filter>04_Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Stage.h">
+      <Filter>03_Object\02_StaticObj\01_Stage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

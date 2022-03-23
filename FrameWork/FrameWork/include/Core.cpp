@@ -3,6 +3,7 @@
 #include "Core\Timer.h"
 #include "Core\PathManager.h"
 #include "Resources\ResourcesManager.h"
+#include "Resources\Texture.h"
 
 CCore* CCore::m_pInst = nullptr;
 bool CCore::m_bLoop = true;
@@ -144,7 +145,15 @@ void CCore::Collision(float fDeltaTime)
 
 void CCore::Render(float fDeltaTime)
 {
-	GET_SINGLE(CSceneManager)->Render(m_hDC, fDeltaTime);
+	//더블 버퍼링
+	CTexture* pBackBuffer = GET_SINGLE(CResourcesManager)->GetBackBuffer();
+
+	Rectangle(pBackBuffer->GetDC(), 0, 0, 1280, 720);
+	GET_SINGLE(CSceneManager)->Render(pBackBuffer->GetDC(), fDeltaTime);
+
+	BitBlt(m_hDC, 0, 0, m_tRS.iW, m_tRS.iH, pBackBuffer->GetDC(), 0, 0, SRCCOPY);
+
+	SAFE_RELEASE(pBackBuffer);
 }
 
 ATOM CCore::MyRegisterClass()

@@ -139,6 +139,17 @@ void CObj::SetSize(float x, float y)
 	m_tSize.y = y;
 }
 
+void CObj::SetPivot(const _SIZE & tPivot)
+{
+	m_tPivot = tPivot;
+}
+
+void CObj::SetPivot(float x, float y)
+{
+	m_tPivot.x = x;
+	m_tPivot.y = y;
+}
+
 void CObj::SetTexture(CTexture * pTexture)
 {
 	SAFE_RELEASE(m_pTexture);
@@ -172,6 +183,11 @@ _SIZE CObj::GetSize() const
 	return m_tSize;
 }
 
+POSITION CObj::GetPivot() const
+{
+	return m_tPivot;
+}
+
 void CObj::Input(float fDeltaTime)
 {
 }
@@ -194,7 +210,10 @@ void CObj::Render(HDC hDC, float fDeltaTime)
 {
 	if (m_pTexture)
 	{
-		BitBlt(hDC, m_tPos.x, m_tPos.y,
+		//Pivot을 통해 이미지 위치 재 조정
+		POSITION tPos = m_tPos - m_tSize * m_tPivot;
+
+		BitBlt(hDC, tPos.x, tPos.y,
 			m_tSize.x, m_tSize.y, m_pTexture->GetDC(),
 			0, 0, SRCCOPY);
 	}
