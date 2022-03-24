@@ -5,6 +5,18 @@ typedef struct _tagResolution
 	unsigned int iW;
 	unsigned int iH;
 
+	_tagResolution() :
+		iW(0),
+		iH(0)
+	{
+	}
+
+	_tagResolution(int x, int y) :
+		iW(x),
+		iH(y)
+	{
+	}
+
 }RESOLUTION, *PRESOLUTION;
 
 typedef struct _tagPosition
@@ -104,6 +116,12 @@ typedef struct _tagPosition
 		tPos.y -= f;
 
 		return tPos;
+	}
+
+	void operator -= (const _tagPosition& pos)
+	{
+		x -= pos.x;
+		y -= pos.y;
 	}
 
 	_tagPosition operator - (const _tagPosition& pos) const

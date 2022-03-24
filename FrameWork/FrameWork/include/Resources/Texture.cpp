@@ -19,6 +19,21 @@ CTexture::~CTexture()
 	DeleteDC(m_hMemDC);
 }
 
+void CTexture::SetColorKey(unsigned char r, unsigned char g, unsigned char b)
+{
+	m_ColorKey = RGB(r, g, b);
+}
+
+void CTexture::SetColorKey(COLORREF colorKey)
+{
+	m_ColorKey = colorKey;
+}
+
+COLORREF CTexture::GetColorKey() const
+{
+	return m_ColorKey;
+}
+
 bool CTexture::LoadTexture(HINSTANCE hInst, HDC hDC,
 	const string & strKey, const wchar_t * pFileName,
 	const string & strPathKey)

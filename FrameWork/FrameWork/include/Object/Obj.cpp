@@ -4,6 +4,7 @@
 #include "../Scene/Scene.h"
 #include "../Resources/ResourcesManager.h"
 #include "../Resources/Texture.h"
+#include "../Core/Camera.h"
 
 
 list<CObj*> CObj::m_ObjectList;
@@ -188,6 +189,31 @@ POSITION CObj::GetPivot() const
 	return m_tPivot;
 }
 
+float CObj::GetLeft() const
+{
+	return m_tPos.x - m_tSize.x * m_tPivot.x;
+}
+
+float CObj::GetRight() const
+{
+	return GetLeft() + m_tSize.x;
+}
+
+float CObj::GetTop() const
+{
+	return m_tPos.y - m_tSize.y * m_tPivot.y;
+}
+
+float CObj::GetBottom() const
+{
+	return GetTop() + m_tSize.y;
+}
+
+POSITION CObj::GetCenter() const
+{
+	return POSITION(GetLeft() + m_tSize.x / 2.f, GetTop() + m_tSize.y / 2.f);
+}
+
 void CObj::Input(float fDeltaTime)
 {
 }
@@ -212,6 +238,7 @@ void CObj::Render(HDC hDC, float fDeltaTime)
 	{
 		//Pivot을 통해 이미지 위치 재 조정
 		POSITION tPos = m_tPos - m_tSize * m_tPivot;
+		tPos -= GET_SINGLE(CCamera)->GetPos();
 
 		BitBlt(hDC, tPos.x, tPos.y,
 			m_tSize.x, m_tSize.y, m_pTexture->GetDC(),

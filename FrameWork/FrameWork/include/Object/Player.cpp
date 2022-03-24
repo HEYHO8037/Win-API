@@ -18,10 +18,10 @@ CPlayer::~CPlayer()
 
 bool CPlayer::Init()
 {
-	SetPos(0.f, 0.f);
-	SetSize(225.f, 225.f);
+	SetPos(50.f, 50.f);
+	SetSize(100.f, 100.f);
 	SetSpeed(400.f);
-	SetPivot(0.7f, 0.5f);
+	SetPivot(0.5f, 0.5f);
 	SetTexture("Player", L"HOS.bmp");
 
 	return true;
@@ -92,11 +92,10 @@ void CPlayer::Fire()
 	//Pivot를 이용하여 총알 위치 재조정(가운데)
 	POSITION tPos;
 
-	tPos.x = m_tPos.x + (1.f - m_tPivot.x) * m_tSize.x;
-	tPos.y = m_tPos.y + (0.5f - m_tPivot.y) * m_tSize.y;
+	tPos.x = GetRight() + pBullet->GetSize().x * pBullet->GetPivot().x;
+	tPos.y = GetCenter().y;
 
-	
-	pBullet->SetPos(tPos.x, tPos.y - pBullet->GetSize().y / 2.f);
+	pBullet->SetPos(tPos);
 
 	SAFE_RELEASE(pBullet);
 }

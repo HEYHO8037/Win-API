@@ -58,6 +58,11 @@ public:
 	POSITION GetPosition() const;
 	_SIZE GetSize() const;
 	POSITION GetPivot() const;
+	float GetLeft() const;
+	float GetRight() const;
+	float GetTop() const;
+	float GetBottom() const;
+	POSITION GetCenter() const;
 
 public:
 	virtual bool Init() = 0;
