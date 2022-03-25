@@ -23,6 +23,7 @@ public:
 	void SetColorKey(unsigned char r, unsigned char g, unsigned char b);
 	void SetColorKey(COLORREF colorKey);
 	COLORREF GetColorKey() const;
+	bool GetColorKeyEnable() const;
 
 public:
 	bool LoadTexture(HINSTANCE hInst, 

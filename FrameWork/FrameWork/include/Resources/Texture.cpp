@@ -2,7 +2,9 @@
 #include "../Core/PathManager.h"
 
 CTexture::CTexture()
-	: m_hMemDC(nullptr)
+	: m_hMemDC(nullptr),
+	  m_bColorKeyEnable(false),
+	  m_ColorKey(RGB(255, 0, 255))
 {
 }
 
@@ -22,16 +24,23 @@ CTexture::~CTexture()
 void CTexture::SetColorKey(unsigned char r, unsigned char g, unsigned char b)
 {
 	m_ColorKey = RGB(r, g, b);
+	m_bColorKeyEnable = true;
 }
 
 void CTexture::SetColorKey(COLORREF colorKey)
 {
 	m_ColorKey = colorKey;
+	m_bColorKeyEnable = true;
 }
 
 COLORREF CTexture::GetColorKey() const
 {
 	return m_ColorKey;
+}
+
+bool CTexture::GetColorKeyEnable() const
+{
+	return m_bColorKeyEnable;
 }
 
 bool CTexture::LoadTexture(HINSTANCE hInst, HDC hDC,

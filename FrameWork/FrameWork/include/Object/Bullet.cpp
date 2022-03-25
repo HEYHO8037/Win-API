@@ -1,4 +1,5 @@
 #include "Bullet.h"
+#include "../Resources/Texture.h"
 
 
 
@@ -29,7 +30,10 @@ bool CBullet::Init()
 {
 	SetSpeed(500.f);
 	SetPivot(0.5f, 0.5f);
+	
 	SetTexture("Bullet", L"HOS.bmp");
+	m_pTexture->SetColorKey(0, 248, 0);
+
 	return true;
 }
 
