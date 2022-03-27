@@ -29,6 +29,9 @@ private:
 public:
 	bool Init(HWND hWnd);
 	void Update(float fDeltaTime);
+	bool KeyDown(const string& strKey) const;
+	bool KeyPress(const string& strKey) const;
+	bool KeyUp(const string& strKey) const;
 
 public:
 	template<typename T>
@@ -37,10 +40,10 @@ public:
 		const char* pTType = typeid(T).name();
 
 		if (strcmp(pTType, "char") == 0 ||
-			strcmp(pTType, "int"))
+			strcmp(pTType, "int") == 0)
 		{
 			m_pCreateKey->vecKey.push_back((DWORD)data);
-		}
+		}	
 		else
 		{
 			m_pCreateKey->strName = data;
@@ -61,7 +64,7 @@ public:
 		const char* pTType = typeid(T).name();
 
 		if(strcmp(pTType, "char") == 0 ||
-			strcmp(pTType, "int"))
+			strcmp(pTType, "int") == 0)
 		{ 
 			m_pCreateKey->vecKey.push_back((DWORD)data);
 		}
@@ -80,6 +83,9 @@ public:
 
 		return true;
 	}
+
+private:
+	PKEYINFO FindKey(const string& strKey) const;
 
 	DECLARE_SINGLE(CInput)
 };

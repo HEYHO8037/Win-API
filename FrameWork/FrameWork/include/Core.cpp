@@ -6,6 +6,7 @@
 #include "Resources\Texture.h"
 #include "Core\Camera.h"
 #include "Core\Input.h"
+#include "Collider\ColliderManager.h"
 
 CCore* CCore::m_pInst = nullptr;
 bool CCore::m_bLoop = true;
@@ -33,6 +34,7 @@ CCore::CCore()
 CCore::~CCore()
 {
 	DESTROY_SINGLE(CSceneManager);
+	DESTROY_SINGLE(CColliderManager);
 	DESTROY_SINGLE(CInput);
 	DESTROY_SINGLE(CCamera);
 	DESTROY_SINGLE(CResourcesManager);
@@ -139,6 +141,8 @@ void CCore::Logic()
 
 void CCore::Input(float fDeltaTime)
 {
+	GET_SINGLE(CInput)->Update(fDeltaTime);
+
 	GET_SINGLE(CSceneManager)->Input(fDeltaTime);
 	GET_SINGLE(CCamera)->Input(fDeltaTime);
 }
