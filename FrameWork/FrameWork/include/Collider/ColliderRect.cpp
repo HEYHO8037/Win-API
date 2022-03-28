@@ -76,9 +76,15 @@ int CColliderRect::LateUpdate(float fDeltaTime)
 	return 0;
 }
 
-void CColliderRect::Collision(float fDeltaTime)
+bool CColliderRect::Collision(CCollider* pDest)
 {
-	CCollider::Collision(fDeltaTime);
+	switch (pDest->GetColliderType())
+	{
+	case CT_RECT:
+		return CollisionRectToRect(m_tInfo, ((CColliderRect*)pDest)->GetWorldInfo());
+	}
+
+	return false;
 }
 
 void CColliderRect::Render(HDC hDC, float fDeltaTime)

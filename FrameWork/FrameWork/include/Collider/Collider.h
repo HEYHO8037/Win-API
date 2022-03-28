@@ -30,8 +30,11 @@ public:
 	virtual void Input(float fDeltaTime);
 	virtual int Update(float fDeltaTime);
 	virtual int LateUpdate(float fDeltaTime);
-	virtual void Collision(float fDeltaTime);
+	virtual bool Collision(CCollider* pDest);
 	virtual void Render(HDC hDC, float fDeltaTime);
 	virtual CCollider* Clone() = 0;
+
+protected:
+	bool CollisionRectToRect(const RECTANGLE& src, const RECTANGLE& dest);
 };
 

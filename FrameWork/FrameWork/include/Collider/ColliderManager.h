@@ -10,6 +10,7 @@ private:
 public:
 	void AddObject(class CObj* pObj);
 	void Collision(float fDeltaTime);
+	bool Collision(class CObj* pSrc, class CObj* pDest, float fDeltaTime);
 
 	DECLARE_SINGLE(CColliderManager)
 };

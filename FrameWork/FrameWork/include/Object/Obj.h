@@ -32,6 +32,9 @@ protected:
 	list<class CCollider*> m_ColliderList;
 
 public:
+	const list<class CCollider*>* GetColliderList() const;
+
+public:
 	 template <typename T>
 	 T* AddCollider(const string& strTag)
 	 {

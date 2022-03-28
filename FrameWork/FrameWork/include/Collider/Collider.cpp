@@ -46,10 +46,16 @@ int CCollider::LateUpdate(float fDeltaTime)
 	return 0;
 }
 
-void CCollider::Collision(float fDeltaTime)
+bool CCollider::Collision(CCollider* pDest)
 {
+	return false;
 }
 
 void CCollider::Render(HDC hDC, float fDeltaTime)
 {
+}
+
+bool CCollider::CollisionRectToRect(const RECTANGLE & src, const RECTANGLE & dest)
+{
+	return false;
 }

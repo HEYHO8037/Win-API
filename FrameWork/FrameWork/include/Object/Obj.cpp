@@ -105,6 +105,11 @@ void CObj::EraseObj()
 	Safe_Delete_VecList(m_ObjectList);
 }
 
+const list<class CCollider*>* CObj::GetColliderList() const
+{
+	return &m_ColliderList;
+}
+
 
 
 bool CObj::CheckCollider()
