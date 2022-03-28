@@ -11,6 +11,15 @@ protected:
 	CColliderRect();
 	CColliderRect(const CColliderRect& coll);
 	virtual ~CColliderRect();
+	
+private:
+	RECTANGLE m_tInfo;
+	RECTANGLE m_tWorldInfo;
+
+public:
+	void SetRect(float l, float t, float r, float b);
+	RECTANGLE GetInfo() const;
+	RECTANGLE GetWorldInfo() const;
 
 protected:
 	COLLIDER_TYPE m_eCollType;

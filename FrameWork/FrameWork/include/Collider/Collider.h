@@ -14,9 +14,16 @@ protected:
 
 protected:
 	COLLIDER_TYPE m_eCollType;
+	class CObj* m_pObj;
+
 
 public:
 	COLLIDER_TYPE GetColliderType() const;
+	class CObj* GetObj() const;
+
+public:
+	void SetObj(class CObj* pObj);
+
 
 public:
 	virtual bool Init() = 0;
