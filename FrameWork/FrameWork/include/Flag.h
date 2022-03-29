@@ -12,7 +12,7 @@ enum MOVE_DIR
 {
 	MD_BACK = -1,
 	MD_NONE,
-	MD_FRONT,
+	MD_FRONT
 };
 
 //Collider Type
@@ -23,6 +23,14 @@ enum COLLIDER_TYPE
 	CT_LINE,
 	CT_POINT,
 	CT_PIXEL,
-	CT_END,
+	CT_END
+};
 
+//Collision State
+enum COLLISION_STATE
+{
+	CS_ENTER,
+	CS_STAY,
+	CS_LEAVE,
+	CS_END
 };

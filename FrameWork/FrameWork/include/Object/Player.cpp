@@ -1,6 +1,6 @@
 #include "Player.h"
 #include "../Core/Input.h"
-
+#include "Bullet.h"
 
 CPlayer::CPlayer()
 {
@@ -93,6 +93,7 @@ void CPlayer::Fire()
 {
 	CObj* pBullet = CObj::CreateCloneObj("Bullet", "PlayerBullet", m_pLayer);
 	
+	pBullet->AddCollisionFunction("BulletBody", CS_ENTER, (CBullet*)pBullet, &CBullet::Hit);
 
 	//Pivot를 이용하여 총알 위치 재조정(가운데)
 	POSITION tPos;

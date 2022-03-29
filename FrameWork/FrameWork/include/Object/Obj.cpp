@@ -32,6 +32,8 @@ CObj::CObj(const CObj & obj)
 	for (iter = obj.m_ColliderList.begin(); iter != iterEnd; ++iter)
 	{
 		CCollider* pColl = (*iter)->Clone();
+		
+		pColl->SetObj(this);
 
 		m_ColliderList.push_back(pColl);
 	}
@@ -109,8 +111,6 @@ const list<class CCollider*>* CObj::GetColliderList() const
 {
 	return &m_ColliderList;
 }
-
-
 
 bool CObj::CheckCollider()
 {

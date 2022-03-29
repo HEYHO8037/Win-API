@@ -27,15 +27,15 @@ bool CMinion::Init()
 	SetSize(100.f, 100.f);
 	SetSpeed(300.f);
 	SetPivot(0.5f, 0.5f);
+	m_eDir = MD_FRONT;
 	SetTexture("Minion", L"HOS.bmp");
 
 	CColliderRect* pRC = AddCollider<CColliderRect>("Minion");
 	
 	pRC->SetRect(-50.f, -50.f, 50.f, 50.f);
+	pRC->AddCollisionFunction(CS_ENTER, this, &CMinion::CollisionBullet);
 
 	SAFE_RELEASE(pRC);
-
-	m_eDir = MD_FRONT;
 
 	return true;
 }
@@ -93,6 +93,11 @@ void CMinion::Render(HDC hDC, float fDeltaTime)
 CMinion * CMinion::Clone()
 {
 	return new CMinion(*this);
+}
+
+void CMinion::CollisionBullet(CCollider * pSrc, CCollider * pDest, float fDeltaTime)
+{
+	//MessageBox(NULL, L"충돌", L"충돌", MB_OK);
 }
 
 void CMinion::Fire()

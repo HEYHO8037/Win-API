@@ -12,6 +12,7 @@ protected:
 	int m_iRef;
 	bool m_bEnable;
 	bool m_bLife;
+	string m_strTag;
 
 public:
 	void AddRef();
@@ -20,5 +21,7 @@ public:
 	void Die();
 	bool GetEnable() const;
 	bool GetLife() const;
+	string GetTag() const;
+	void SetTag(const string& strTag);
 };
 

@@ -15,7 +15,26 @@ protected:
 protected:
 	COLLIDER_TYPE m_eCollType;
 	class CObj* m_pObj;
+	list<CCollider*> m_CollisionList;
+	list<function<void(CCollider*, CCollider*, float)>> m_FuncList[CS_END];
 
+public:
+	template <typename T>
+	void AddCollisionFunction(COLLISION_STATE eState, T* pObj, void(T::*pFunc)(CCollider*, CCollider*, float))
+	{
+		function<void(CCollider*, CCollider*, float)> func;
+
+		func = bind(pFunc, pObj, placeholders::_1, placeholders::_2, placeholders::_3);
+
+		m_FuncList[eState].push_back(func);
+	}
+
+	void CallFunction(COLLISION_STATE eState, CCollider* pDest, float fDeltaTime);
+
+public:
+	void AddCollider(CCollider* pCollider);
+	bool CheckCollisionList(CCollider* pCollider);
+	void EraseCollisionList(CCollider* pCollider);
 
 public:
 	COLLIDER_TYPE GetColliderType() const;

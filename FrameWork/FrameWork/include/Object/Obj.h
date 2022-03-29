@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Ref.h"
+#include "../Collider/Collider.h"
 
 class CObj : public CRef
 {
@@ -34,6 +35,26 @@ protected:
 public:
 	const list<class CCollider*>* GetColliderList() const;
 
+	template <typename T>
+	void AddCollisionFunction(const string& strTag, 
+		COLLISION_STATE eState, T* pObj,
+		void(T::*pFunc)(CCollider*, CCollider*, float))
+	{
+		list<CCollider*>::iterator iter;
+		list<CCollider*>::iterator iterEnd = m_ColliderList.end();
+
+		for (iter = m_ColliderList.begin(); iter != iterEnd; ++iter)
+		{
+			if ((*iter)->GetTag() == strTag)
+			{
+				(*iter)->AddCollisionFunction(eState, pObj, pFunc);
+				break;
+			}
+		}
+	}
+
+
+
 public:
 	 template <typename T>
 	 T* AddCollider(const string& strTag)
@@ -41,6 +62,7 @@ public:
 		 T*  pCollider = new T;
 
 		 pCollider->SetObj(this);
+		 pCollider->SetTag(strTag);
 
 		 if (!pCollider->Init())
 		 {

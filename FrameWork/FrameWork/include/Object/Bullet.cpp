@@ -35,8 +35,7 @@ bool CBullet::Init()
 	SetTexture("Bullet", L"HOS.bmp");
 	m_pTexture->SetColorKey(0, 248, 0);
 
-	CColliderRect* pRC = AddCollider<CColliderRect>("Minion");
-
+	CColliderRect* pRC = AddCollider<CColliderRect>("BulletBody");
 	pRC->SetRect(-25.f, -25.f, 25.f, 25.f);
 
 	SAFE_RELEASE(pRC);
@@ -84,4 +83,9 @@ void CBullet::Render(HDC hDC, float fDeltaTime)
 CBullet * CBullet::Clone()
 {
 	return new CBullet(*this);
+}
+
+void CBullet::Hit(CCollider * pSrc, CCollider * pDest, float fDeltaTime)
+{
+	Die();
 }

@@ -1,8 +1,6 @@
 #include "ColliderRect.h"
 #include "../Object/Obj.h"
 
-
-
 CColliderRect::CColliderRect()
 {
 	m_eCollType = CT_RECT;
@@ -38,14 +36,9 @@ RECTANGLE CColliderRect::GetWorldInfo() const
 	return m_tWorldInfo;
 }
 
-COLLIDER_TYPE CColliderRect::GetColliderType() const
-{
-	return m_eCollType;
-}
-
 bool CColliderRect::Init()
 {
-	return false;
+	return true;
 }
 
 void CColliderRect::Input(float fDeltaTime)
@@ -70,9 +63,6 @@ int CColliderRect::LateUpdate(float fDeltaTime)
 	m_tWorldInfo.r = tPos.x + m_tInfo.r;
 	m_tWorldInfo.b = tPos.y + m_tInfo.b;
 
-
-
-
 	return 0;
 }
 
@@ -81,7 +71,7 @@ bool CColliderRect::Collision(CCollider* pDest)
 	switch (pDest->GetColliderType())
 	{
 	case CT_RECT:
-		return CollisionRectToRect(m_tInfo, ((CColliderRect*)pDest)->GetWorldInfo());
+		return CollisionRectToRect(m_tWorldInfo, ((CColliderRect*)pDest)->GetWorldInfo());
 	}
 
 	return false;

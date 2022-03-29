@@ -21,12 +21,6 @@ public:
 	RECTANGLE GetInfo() const;
 	RECTANGLE GetWorldInfo() const;
 
-protected:
-	COLLIDER_TYPE m_eCollType;
-
-public:
-	COLLIDER_TYPE GetColliderType() const;
-
 public:
 	virtual bool Init();
 	virtual void Input(float fDeltaTime);

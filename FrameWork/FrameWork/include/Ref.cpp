@@ -51,3 +51,13 @@ bool CRef::GetLife() const
 {
 	return m_bLife;
 }
+
+string CRef::GetTag() const
+{
+	return m_strTag;
+}
+
+void CRef::SetTag(const string & strTag)
+{
+	m_strTag = strTag;
+}

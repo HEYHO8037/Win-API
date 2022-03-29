@@ -1,5 +1,6 @@
 #include "ColliderManager.h"
 #include "../Object/Obj.h"
+#include "Collider.h"
 
 DEFINITION_SINGLE(CColliderManager)
 
@@ -33,7 +34,7 @@ void CColliderManager::Collision(float fDeltaTime)
 	}
 
 	//오브젝트간 충돌처리를 한다.
-	list<CObj*>::iterator iter;
+ 	list<CObj*>::iterator iter;
 	list<CObj*>::iterator iterEnd = m_CollisionList.end();
 	--iterEnd;
 
@@ -50,7 +51,6 @@ void CColliderManager::Collision(float fDeltaTime)
 		}
 
 	}
-
 
 	m_CollisionList.clear();
 }
@@ -72,9 +72,46 @@ bool CColliderManager::Collision(CObj * pSrc, CObj * pDest, float fDeltaTime)
 	{
 		for (iterDest = pDestList->begin(); iterDest != iterDestEnd; ++iterDest)
 		{
+  			if ((*iterSrc)->Collision(*iterDest))
+			{
+				bCollision = true;
 
+				//충돌목록에서 이전에 충돌된 적이 없다면
+				//처음 막 충돌했다는 의미이다.
+
+				if (!(*iterSrc)->CheckCollisionList(*iterDest))
+				{
+					//서로 상대방을 충돌목록으로 추가한다.
+					(*iterSrc)->AddCollider(*iterDest);
+					(*iterDest)->AddCollider(*iterSrc);
+
+					(*iterSrc)->CallFunction(CS_ENTER, *iterDest, fDeltaTime);
+					(*iterDest)->CallFunction(CS_ENTER, *iterSrc, fDeltaTime);
+
+				}
+				else
+				{
+					//기존 충돌된적이 있다면 계속 충돌상태인 것이다.
+					(*iterSrc)->CallFunction(CS_STAY, *iterDest, fDeltaTime);
+					(*iterDest)->CallFunction(CS_STAY, *iterSrc, fDeltaTime);
+
+				}
+
+			}
+			else if ((*iterSrc)->CheckCollisionList(*iterDest))
+			{
+				// 현재 충돌이 안된 상태에서 이전에 충돌 되고 있었다면
+				// 이제 막 충돌상태에서 벗어났다는 의미이다.
+				// 서로 충돌이 안되므로 충돌 목록에서 지워준다.
+				(*iterSrc)->EraseCollisionList(*iterDest);
+				(*iterDest)->EraseCollisionList(*iterSrc);
+
+				(*iterSrc)->CallFunction(CS_LEAVE, *iterDest, fDeltaTime);
+				(*iterDest)->CallFunction(CS_LEAVE, *iterSrc, fDeltaTime);
+
+
+			}
 		}
-
 	}
 
 
