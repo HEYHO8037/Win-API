@@ -1,5 +1,6 @@
 #include "Collider.h"
 #include "../Object/Obj.h"
+#include "../Core/Math.h"
 
 
 CCollider::CCollider()
@@ -130,4 +131,22 @@ bool CCollider::CollisionRectToRect(const RECTANGLE & src, const RECTANGLE & des
 	}
 
 	return true;
+}
+
+bool CCollider::CollisionRectToSphere(const RECTANGLE & src, const SPHERE & dest)
+{
+	// 원의 중점 X좌표가 사각형의 가로 영역 안에 있는지,
+	// 원의 중점 Y좌표가 사각형의 세로 영역 안에 있는지 체크한다.
+	// 둘 중 하나라도 맞다면 사각형의 위 아래 좌 우 영역안에 존재한다는 것이다.
+
+	return false;
+}
+
+bool CCollider::CollisionSphereToSphere(const SPHERE & src, const SPHERE & dest)
+{
+	//원 끼리 충돌 시 두 원의 중점의 서로의 길이가 두 원의 반지름을 더한 값보다 작으면 충돌
+
+	float fDist = CMath::Distance(src.tCenter, dest.tCenter);
+
+	return fDist <= src.fRadius + dest.fRadius;
 }
