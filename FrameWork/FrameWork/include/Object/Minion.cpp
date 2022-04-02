@@ -1,6 +1,7 @@
 #include "Minion.h"
 #include "../Core.h"
 #include "../Collider/ColliderRect.h"
+#include "Bullet.h"
 
 CMinion::CMinion() :
 	m_fFireTime(0.f),
@@ -104,6 +105,9 @@ void CMinion::Fire()
 {
 	CObj* pBullet = CObj::CreateCloneObj("Bullet", "MinionBullet", m_pLayer);
 	
+	pBullet->AddCollisionFunction("BulletBody", CS_ENTER, (CBullet*)pBullet, &CBullet::Hit);
+
+	//((CMoveObj*)pBullet)->SetSpeed(100.f);
 	((CMoveObj*)pBullet)->SetAngle(PI);
 
 	float x = GetLeft() - (pBullet->GetSize().x  * (1.f - pBullet->GetPivot().x));

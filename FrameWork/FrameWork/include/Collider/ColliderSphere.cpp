@@ -47,7 +47,6 @@ void CColliderSphere::Input(float fDeltaTime)
 
 int CColliderSphere::Update(float fDeltaTime)
 {
-
 	CCollider::Update(fDeltaTime);
 	return 0;
 }
@@ -56,10 +55,9 @@ int CColliderSphere::LateUpdate(float fDeltaTime)
 {
 	CCollider::LateUpdate(fDeltaTime);
 
-
 	POSITION tPos = m_pObj->GetPosition();
 
-	m_tWorldInfo.tCenter = tPos + m_tInfo.tCenter.x;
+	m_tWorldInfo.tCenter = tPos + m_tInfo.tCenter;
 	m_tWorldInfo.fRadius = m_tInfo.fRadius;
 
 
