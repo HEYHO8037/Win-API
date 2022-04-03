@@ -23,6 +23,12 @@ public:
 	static void EraseObj(const string& strTag);
 	static void EraseObj();
 
+protected:
+	bool m_bIsPhysics;
+
+public:
+	void SetPhysics(bool bPhysics);
+	bool GetPhysics() const;
 
 protected:
 	string m_strTag;

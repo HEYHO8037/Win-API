@@ -29,6 +29,13 @@ void CCore::DestroyInst()
 CCore::CCore()
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
+#ifdef _DEBUG
+	AllocConsole();
+
+#endif // _DEBUG
+
+
 }
 
 CCore::~CCore()
@@ -42,6 +49,12 @@ CCore::~CCore()
 	DESTROY_SINGLE(CTimer);
 
 	ReleaseDC(m_hWnd, m_hDC);
+
+#ifdef _DEBUG
+	FreeConsole();
+
+#endif // _DEBUG
+
 }
 
 RESOLUTION CCore::GetResolution() const
@@ -65,7 +78,7 @@ bool CCore::Init(HINSTANCE hInst)
 	m_hDC = GetDC(m_hWnd);
 
 	// 타이머 초기화
-	if (!GET_SINGLE(CTimer)->Init())
+	if (!GET_SINGLE(CTimer)->Init(m_hWnd))
 	{
 		return false;
 	}

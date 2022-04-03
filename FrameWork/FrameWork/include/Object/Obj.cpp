@@ -11,7 +11,8 @@
 list<CObj*> CObj::m_ObjectList;
 
 CObj::CObj()
-	: m_pTexture(nullptr)
+	: m_pTexture(nullptr),
+	  m_bIsPhysics(false)
 {
 }
 
@@ -105,6 +106,16 @@ void CObj::EraseObj(const string & strTag)
 void CObj::EraseObj()
 {
 	Safe_Delete_VecList(m_ObjectList);
+}
+
+void CObj::SetPhysics(bool bPhysics)
+{
+	m_bIsPhysics = bPhysics;
+}
+
+bool CObj::GetPhysics() const
+{
+	return m_bIsPhysics;
 }
 
 const list<class CCollider*>* CObj::GetColliderList() const
@@ -367,6 +378,7 @@ CObj* CObj::CreateCloneObj(const string& strPrototypeKey, const string& strKey, 
 	}
 
 	CObj* pObj = pProto->Clone();
+	pObj->SetTag(strKey);
 
 	if (pLayer)
 	{

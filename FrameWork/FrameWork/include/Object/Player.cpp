@@ -35,6 +35,9 @@ bool CPlayer::Init()
 
 	m_iHP = 1000;
 
+	//중력을 적용한다.
+	SetPhysics(true);
+
 	return true;
 }
 

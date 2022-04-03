@@ -87,5 +87,15 @@ CBullet * CBullet::Clone()
 
 void CBullet::Hit(CCollider * pSrc, CCollider * pDest, float fDeltaTime)
 {
-	Die();
+	if (GetTag() == "PlayerBullet" && pDest->GetTag() == "MinionBody")
+	{
+		Die();
+	}
+	else if (GetTag() == "MinionBullet" && pDest->GetTag() == "PlayerBody")
+	{
+		Die();
+	}
+
+	//Die();
+
 }

@@ -31,7 +31,7 @@ bool CMinion::Init()
 	m_eDir = MD_FRONT;
 	SetTexture("Minion", L"HOS.bmp");
 
-	CColliderRect* pRC = AddCollider<CColliderRect>("Minion");
+	CColliderRect* pRC = AddCollider<CColliderRect>("MinionBody");
 	
 	pRC->SetRect(-50.f, -50.f, 50.f, 50.f);
 	pRC->AddCollisionFunction(CS_ENTER, this, &CMinion::CollisionBullet);

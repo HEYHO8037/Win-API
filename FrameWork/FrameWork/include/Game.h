@@ -8,6 +8,7 @@
 #include <typeinfo>
 #include <string>
 #include <functional>
+#include <conio.h>
 
 using namespace std;
 
@@ -17,6 +18,7 @@ using namespace std;
 #include "Flag.h"
 
 #define PI 3.141592f
+#define GRAVITY 9.8f
 
 #pragma comment(lib, "msimg32")
 
