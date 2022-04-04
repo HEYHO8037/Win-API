@@ -25,8 +25,10 @@ public:
 
 protected:
 	bool m_bIsPhysics;
+	float m_fGravityTime;
 
 public:
+	void ClearGravity();
 	void SetPhysics(bool bPhysics);
 	bool GetPhysics() const;
 

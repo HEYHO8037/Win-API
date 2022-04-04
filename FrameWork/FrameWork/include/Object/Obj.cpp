@@ -12,13 +12,16 @@ list<CObj*> CObj::m_ObjectList;
 
 CObj::CObj()
 	: m_pTexture(nullptr),
-	  m_bIsPhysics(false)
+	  m_bIsPhysics(false),
+	  m_fGravityTime(0.f)
 {
 }
 
 CObj::CObj(const CObj & obj)
 {
 	*this = obj;
+
+	m_fGravityTime = 0.f;
 
 	if (m_pTexture)
 	{
@@ -106,6 +109,11 @@ void CObj::EraseObj(const string & strTag)
 void CObj::EraseObj()
 {
 	Safe_Delete_VecList(m_ObjectList);
+}
+
+void CObj::ClearGravity()
+{
+	m_fGravityTime = 0.f;
 }
 
 void CObj::SetPhysics(bool bPhysics)
@@ -256,7 +264,7 @@ void CObj::Input(float fDeltaTime)
 }
 
 int CObj::Update(float fDeltaTime)
-{
+{	
 	list<CCollider*>::iterator iter;
 	list<CCollider*>::iterator iterEnd = m_ColliderList.end();
 

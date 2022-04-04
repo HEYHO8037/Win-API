@@ -16,9 +16,13 @@ protected:
 protected:
 	float m_fAngle;
 	float m_fSpeed;
-
+	bool m_bMove;
+	bool m_bFalling;
+	float m_fForce;
+	float m_fForceOrigin;
 
 public:
+	void SetForce(float fForce);
 	void SetAngle(float fAngle);
 	void SetSpeed(float fSpeed);
 	float GetAngle() const;
@@ -41,6 +45,8 @@ public:
 
 	void MoveAngle();
 	void MoveAngle(float fTime);
+
+	void Jump();
 
 
 public:
