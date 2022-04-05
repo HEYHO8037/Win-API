@@ -1,16 +1,10 @@
-﻿cl : 명령줄 warning D9028: 최소 다시 빌드에 실패했습니다. 정상 빌드로 되돌립니다.
-  Player.cpp
+﻿  Player.cpp
 c:\users\haeho\desktop\win api\framework\framework\include\types.h(44): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\haeho\desktop\win api\framework\framework\include\types.h(45): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\haeho\desktop\win api\framework\framework\include\types.h(56): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\haeho\desktop\win api\framework\framework\include\types.h(57): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\framework\framework\include\object\player.cpp(107): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  InGameScene.cpp
-c:\users\haeho\desktop\win api\framework\framework\include\types.h(44): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\framework\framework\include\types.h(45): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\framework\framework\include\types.h(56): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\framework\framework\include\types.h(57): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  SceneManager.cpp
+c:\users\haeho\desktop\win api\framework\framework\include\object\player.cpp(111): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  MoveObj.cpp
 c:\users\haeho\desktop\win api\framework\framework\include\types.h(44): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\haeho\desktop\win api\framework\framework\include\types.h(45): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\haeho\desktop\win api\framework\framework\include\types.h(56): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.

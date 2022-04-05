@@ -64,6 +64,9 @@
     <Filter Include="Core\05_Math">
       <UniqueIdentifier>{7cb9a2e7-432b-4094-b062-976dd81a8ee7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="06_Animation">
+      <UniqueIdentifier>{9adbf85f-1271-42c0-bb6b-db57326707c9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -142,7 +145,10 @@
       <Filter>Core\05_Math</Filter>
     </ClCompile>
     <ClCompile Include="Collider\ColliderPixel.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>05_Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation\Animation.cpp">
+      <Filter>06_Animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -234,7 +240,10 @@
       <Filter>Core\05_Math</Filter>
     </ClInclude>
     <ClInclude Include="Collider\ColliderPixel.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>05_Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation\Animation.h">
+      <Filter>06_Animation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

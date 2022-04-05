@@ -6,7 +6,7 @@ CMoveObj::CMoveObj()
 	: m_fAngle(0.f),
 	m_fSpeed(100.f),
 	m_bMove(false),
-	m_bFalling(false),
+	m_bFalling(true),
 	m_fForceOrigin(0.f),
 	m_fForce(0.f)
 {
@@ -143,6 +143,12 @@ void CMoveObj::Jump()
 	}
 }
 
+void CMoveObj::JumpEnd()
+{
+	m_bFalling = false;
+	m_fForce = 0.f;
+}
+
 
 void CMoveObj::Input(float fDeltaTime)
 {
@@ -155,7 +161,9 @@ int CMoveObj::Update(float fDeltaTime)
 	{
 		m_fGravityTime += fDeltaTime;
 
-		m_tPos.y += (GRAVITY * m_fGravityTime * m_fGravityTime);
+		// 점프 상태일 경우 힘을 감소 시킨다.
+		m_fForce -= (GRAVITY * m_fGravityTime * m_fGravityTime);
+		m_tPos.y -= m_fForce * fDeltaTime;
 	}
 
 	CObj::Update(fDeltaTime);

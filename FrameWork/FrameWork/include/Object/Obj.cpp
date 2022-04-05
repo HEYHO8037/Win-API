@@ -6,12 +6,14 @@
 #include "../Resources/Texture.h"
 #include "../Core/Camera.h"
 #include "../Collider/Collider.h"
+#include "../Animation/Animation.h"
 
 
 list<CObj*> CObj::m_ObjectList;
 
 CObj::CObj()
 	: m_pTexture(nullptr),
+	  m_pAnimation(nullptr),
 	  m_bIsPhysics(false),
 	  m_fGravityTime(0.f)
 {
@@ -124,6 +126,11 @@ void CObj::SetPhysics(bool bPhysics)
 bool CObj::GetPhysics() const
 {
 	return m_bIsPhysics;
+}
+
+CAnimation * CObj::CreateAnimation(const string & strTag)
+{
+	return nullptr;
 }
 
 const list<class CCollider*>* CObj::GetColliderList() const

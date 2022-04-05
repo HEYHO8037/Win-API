@@ -47,7 +47,7 @@ public:
 	void MoveAngle(float fTime);
 
 	void Jump();
-
+	void JumpEnd();
 
 public:
 	virtual bool Init() = 0;
