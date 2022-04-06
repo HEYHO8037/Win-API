@@ -1,4 +1,5 @@
 #pragma once
+#include "Flag.h"
 
 typedef struct _tagResolution
 {

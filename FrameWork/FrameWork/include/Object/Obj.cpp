@@ -23,6 +23,11 @@ CObj::CObj(const CObj & obj)
 {
 	*this = obj;
 
+	if (obj.m_pAnimation)
+	{
+		m_pAnimation = obj.m_pAnimation->Clone();
+	}
+
 	m_fGravityTime = 0.f;
 
 	if (m_pTexture)
@@ -49,6 +54,7 @@ CObj::CObj(const CObj & obj)
 
 CObj::~CObj()
 {
+	SAFE_RELEASE(m_pAnimation);
 	Safe_Release_VecList(m_ColliderList);
 	SAFE_RELEASE(m_pTexture);
 }
@@ -130,7 +136,18 @@ bool CObj::GetPhysics() const
 
 CAnimation * CObj::CreateAnimation(const string & strTag)
 {
-	return nullptr;
+	SAFE_RELEASE(m_pAnimation);
+
+	m_pAnimation = new CAnimation();
+
+	m_pAnimation->SetTag(strTag);
+	if (!m_pAnimation->Init())
+	{
+		SAFE_RELEASE(m_pAnimation);
+		return nullptr;
+	}
+
+	return m_pAnimation;
 }
 
 const list<class CCollider*>* CObj::GetColliderList() const

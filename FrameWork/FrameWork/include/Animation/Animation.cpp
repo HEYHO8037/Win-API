@@ -49,6 +49,39 @@ CAnimation::~CAnimation()
 	m_mapClip.clear();
 }
 
+bool CAnimation::AddClip(const string & strName, ANIMATION_TYPE eType, ANIMATION_OPTION eOption, 
+	float fAnimationTime, int iFrameMaxX, int iFrameMaxY, 
+	int iStartX, int iStartY, int iLengthX, int iLengthY, 
+	float fOptionLimitTime, const string & strTexKey, 
+	const wchar_t * pFileName, const string & strPathKey)
+{
+	PANIMATIONCLIP pClip = new ANIMATIONCLIP;
+
+	pClip->eType = eType;
+	pClip->eOption = eOption;
+	pClip->fAnimationTime = fAnimationTime;
+	pClip->iFrameMaxX = iFrameMaxX;
+	pClip->iFrameMaxY = iFrameMaxY;
+	pClip->iStartX = iStartX;
+	pClip->iStartY = iStartY;
+	pClip->iLengthX = iLengthX;
+	pClip->iLengthY = iLengthY;
+	pClip->fOptionLimitTime = fOptionLimitTime;
+
+	CTexture* pTex = GET_SINGLE(CResourcesManager)->LoadTexture(strTexKey, pFileName, strPathKey);
+	pClip->vecTexture.push_back(pTex);
+
+	pClip->fAnimationTime = 0.f;
+	pClip->iFrameX = 0.f;
+	pClip->iFrameY = 0.f;
+	pClip->fOptionTime = 0.f;
+
+	m_mapClip.insert(make_pair(strName, pClip));
+
+	return true;
+
+}
+
 bool CAnimation::Init()
 {
 	return true;
