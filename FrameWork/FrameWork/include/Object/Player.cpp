@@ -3,6 +3,7 @@
 #include "Bullet.h"
 #include "../Collider/ColliderRect.h"
 #include "../Core/Camera.h"
+#include "../Animation/Animation.h"
 
 CPlayer::CPlayer()
 {
@@ -41,6 +42,12 @@ bool CPlayer::Init()
 
 	//점프할 힘을 설정한다.
 	SetForce(250.f);
+
+	CAnimation* pAni = CreateAnimation("PlayerAnimation");
+
+	AddAnimationClip("IdleRight", AT_ATLAS, AO_LOOP, 1.f, 6, 1, 0, 0, 6, 1, 0.f, "PlayerIdleRight", L"Player/Idle/Right/Player_Stand_Right.bmp");
+
+	SAFE_RELEASE(pAni);
 
 	return true;
 }
@@ -126,6 +133,7 @@ void CPlayer::Hit(CCollider * pSrc, CCollider * pDest, float fDeltaTime)
 	{
 		ClearGravity();
 		JumpEnd();
+		m_tPos.y = pSrc->GetHitPoint().y - m_tPivot.y * m_tSize.y;
 	}
 }
 
@@ -135,6 +143,7 @@ void CPlayer::HitStay(CCollider * pSrc, CCollider * pDest, float fDeltaTime)
 	{
 		ClearGravity();
 		JumpEnd();
+		m_tPos.y = pSrc->GetHitPoint().y - m_tPivot.y * m_tSize.y;
 	}
 }
 

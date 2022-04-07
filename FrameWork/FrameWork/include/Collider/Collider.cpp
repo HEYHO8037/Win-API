@@ -24,6 +24,16 @@ CCollider::~CCollider()
 	}
 }
 
+POSITION CCollider::GetHitPoint() const
+{
+	return m_HitPoint;
+}
+
+void CCollider::SetHitPoint(const POSITION & tPos)
+{
+	m_HitPoint = tPos;
+}
+
 
 void CCollider::CallFunction(COLLISION_STATE eState, CCollider* pDest, float fDeltaTime)
 {
@@ -198,6 +208,9 @@ bool CCollider::CollisionSphereToSphere(const SPHERE & src, const SPHERE & dest)
 
 bool CCollider::CollisionRectToPixel(const RECTANGLE & src, const vector<PIXEL>& vecPixel, int iWidth, int iHeight)
 {
+	m_HitPoint.x = -1;
+	m_HitPoint.y = -1;
+
 	int iStartX, iEndX;
 	int iStartY, iEndY;
 
@@ -216,6 +229,9 @@ bool CCollider::CollisionRectToPixel(const RECTANGLE & src, const vector<PIXEL>&
 			
 			if (pixel.r == 255 && pixel.g == 0 && pixel.b == 255)
 			{
+				m_HitPoint.x = j;
+				m_HitPoint.y = i;
+
 				return true;
 			}
 		}

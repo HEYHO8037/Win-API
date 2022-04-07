@@ -17,6 +17,11 @@ protected:
 	class CObj* m_pObj;
 	list<CCollider*> m_CollisionList;
 	list<function<void(CCollider*, CCollider*, float)>> m_FuncList[CS_END];
+	POSITION m_HitPoint;
+
+public:
+	POSITION GetHitPoint() const;
+	void SetHitPoint(const POSITION& tPos);
 
 public:
 	template <typename T>

@@ -1,37 +1,104 @@
-﻿  Animation.cpp
+﻿  Player.cpp
 c:\users\haeho\desktop\win api\framework\framework\include\types.h(45): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\haeho\desktop\win api\framework\framework\include\types.h(46): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\haeho\desktop\win api\framework\framework\include\types.h(57): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
 c:\users\haeho\desktop\win api\framework\framework\include\types.h(58): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\framework\framework\include\animation\animation.cpp(75): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\framework\framework\include\animation\animation.cpp(76): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  코드를 생성하고 있습니다...
-  건너뛰고 있습니다... (관련된 변경 내용 없음)
-  main.cpp
-  SceneManager.cpp
-  Scene.cpp
-  Layer.cpp
-  InGameScene.cpp
-  Texture.cpp
-  ResourcesManager.cpp
-  Ref.cpp
-  StaticObj.cpp
-  Stage.cpp
-  Player.cpp
+c:\users\haeho\desktop\win api\framework\framework\include\object\player.cpp(118): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   Obj.cpp
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(45): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(46): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(57): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(58): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\object\obj.cpp(388): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\object\obj.cpp(394): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  SceneManager.cpp
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(45): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(46): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(57): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(58): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Scene.cpp
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(45): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(46): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(57): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(58): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Layer.cpp
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(45): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(46): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(57): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(58): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  InGameScene.cpp
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(45): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(46): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(57): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(58): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  StaticObj.cpp
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(45): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(46): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(57): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(58): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Stage.cpp
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(45): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(46): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(57): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(58): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\object\stage.cpp(63): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   MoveObj.cpp
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(45): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(46): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(57): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(58): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   Minion.cpp
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(45): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(46): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(57): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(58): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   Bullet.cpp
-  Timer.cpp
-  PathManager.cpp
-  Math.cpp
-  Input.cpp
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(45): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(46): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(57): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(58): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   Camera.cpp
-  Core.cpp
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(45): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(46): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(57): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(58): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\core\camera.cpp(56): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\core\camera.cpp(66): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\core\camera.cpp(116): warning C4244: '=': 'unsigned int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\core\camera.cpp(129): warning C4244: '=': 'unsigned int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   ColliderSphere.cpp
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(45): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(46): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(57): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(58): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   ColliderRect.cpp
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(45): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(46): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(57): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(58): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   ColliderPixel.cpp
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(45): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(46): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(57): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(58): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   ColliderManager.cpp
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(45): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(46): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(57): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(58): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   Collider.cpp
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(45): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(46): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(57): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\types.h(58): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\collider\collider.cpp(217): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\collider\collider.cpp(218): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\collider\collider.cpp(220): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\collider\collider.cpp(221): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\collider\collider.cpp(232): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\framework\framework\include\collider\collider.cpp(233): warning C4244: '=': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
   FrameWork.vcxproj -> C:\Users\haeho\Desktop\WIN API\FrameWork\FrameWork\include\../Bin/FrameWork_Debug.exe
   FrameWork.vcxproj -> ../Bin/FrameWork_Debug.pdb (Full PDB)

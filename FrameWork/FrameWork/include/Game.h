@@ -18,7 +18,7 @@ using namespace std;
 #include "Flag.h"
 
 #define PI 3.141592f
-#define GRAVITY 0.98f
+#define GRAVITY 9.8f
 
 #pragma comment(lib, "msimg32")
 

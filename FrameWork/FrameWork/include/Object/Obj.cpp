@@ -141,13 +141,37 @@ CAnimation * CObj::CreateAnimation(const string & strTag)
 	m_pAnimation = new CAnimation();
 
 	m_pAnimation->SetTag(strTag);
+	m_pAnimation->SetObj(this);
+
 	if (!m_pAnimation->Init())
 	{
 		SAFE_RELEASE(m_pAnimation);
 		return nullptr;
 	}
 
+	m_pAnimation->AddRef();
+
 	return m_pAnimation;
+}
+
+bool CObj::AddAnimationClip(const string & strName, 
+	ANIMATION_TYPE eType, ANIMATION_OPTION eOption, 
+	float fAnimationTime, int iFrameMaxX, int iFrameMaxY, 
+	int iStartX, int iStartY, int iLengthX, int iLengthY, 
+	float fOptionLimitTime, const string & strTexKey, 
+	const wchar_t * pFileName, const string & strPathKey)
+{
+	if (!m_pAnimation)
+	{
+		return false;
+	}
+
+	m_pAnimation->AddClip(strName, eType, eOption,
+		fAnimationTime, iFrameMaxX, iFrameMaxY, iStartX,
+		iStartY, iLengthX, iLengthY, fOptionLimitTime,
+		strTexKey, pFileName, strPathKey);
+
+	return true;
 }
 
 const list<class CCollider*>* CObj::GetColliderList() const

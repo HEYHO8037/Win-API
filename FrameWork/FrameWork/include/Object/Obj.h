@@ -43,6 +43,13 @@ protected:
 
 public:
 	class CAnimation* CreateAnimation(const string& strTag);
+	bool AddAnimationClip(const string& strName, ANIMATION_TYPE eType,
+		ANIMATION_OPTION eOption, float fAnimationTime, int iFrameMaxX,
+		int iFrameMaxY, int iStartX, int iStartY, int iLengthX, int iLengthY, float fOptionLimitTime,
+		const string& strTexKey, const wchar_t* pFileName, const string& strPathKey = TEXTURE_PATH);
+
+
+
 
 public:
 	const list<class CCollider*>* GetColliderList() const;
