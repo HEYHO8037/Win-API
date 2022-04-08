@@ -22,14 +22,16 @@ CPlayer::~CPlayer()
 bool CPlayer::Init()
 {
 	SetPos(50.f, 50.f);
-	SetSize(100.f, 100.f);
+	SetSize(76.f, 76.f);
 	SetSpeed(400.f);
 	SetPivot(0.5f, 0.5f);
 	SetTexture("Player", L"HOS.bmp");
 
+	SetColorKey(248, 0, 248);
+
 	CColliderRect* pRC = AddCollider<CColliderRect>("PlayerBody");
 
-	pRC->SetRect(-50.f, -50.f, 50.f, 50.f);
+	pRC->SetRect(-38.f, -38.f, 38.f, 38.f);
 	pRC->AddCollisionFunction(CS_ENTER, this, &CPlayer::Hit);
 	pRC->AddCollisionFunction(CS_STAY, this, &CPlayer::HitStay);
 
@@ -46,6 +48,8 @@ bool CPlayer::Init()
 	CAnimation* pAni = CreateAnimation("PlayerAnimation");
 
 	AddAnimationClip("IdleRight", AT_ATLAS, AO_LOOP, 1.f, 6, 1, 0, 0, 6, 1, 0.f, "PlayerIdleRight", L"Player/Idle/Right/Player_Stand_Right.bmp");
+	SetAnimationClipColorKey("IdleRight", 248, 0, 248);
+
 
 	SAFE_RELEASE(pAni);
 

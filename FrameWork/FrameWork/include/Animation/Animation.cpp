@@ -1,9 +1,11 @@
 #include "Animation.h"
 #include "../Resources/Texture.h"
 #include "../Resources/ResourcesManager.h"
+#include "../Object/Obj.h"
 
 
-CAnimation::CAnimation()
+CAnimation::CAnimation() :
+	m_pCurClip(nullptr)
 {
 }
 
@@ -28,6 +30,10 @@ CAnimation::CAnimation(const CAnimation & anim)
 		}
 	}
 
+	m_pCurClip = nullptr;
+	m_strCurClip = "";
+	SetCurrentClip(anim.m_strCurClip);
+
 }
 
 
@@ -47,6 +53,11 @@ CAnimation::~CAnimation()
 	}
 
 	m_mapClip.clear();
+}
+
+PANIMATIONCLIP CAnimation::GetCurrentClip() const
+{
+	return m_pCurClip;
 }
 
 void CAnimation::SetObj(CObj * pObj)
@@ -72,6 +83,7 @@ bool CAnimation::AddClip(const string & strName, ANIMATION_TYPE eType, ANIMATION
 	pClip->iLengthX = iLengthX;
 	pClip->iLengthY = iLengthY;
 	pClip->fOptionLimitTime = fOptionLimitTime;
+	pClip->fAnimationFrameTime = fAnimationTime / (iLengthX * iLengthY);
 
 	CTexture* pTex = GET_SINGLE(CResourcesManager)->LoadTexture(strTexKey, pFileName, strPathKey);
 	pClip->vecTexture.push_back(pTex);
@@ -81,16 +93,36 @@ bool CAnimation::AddClip(const string & strName, ANIMATION_TYPE eType, ANIMATION
 	pClip->iFrameY = iStartY;
 	pClip->fOptionTime = 0.f;
 
-	if (m_mapClip.empty())
+	m_mapClip.insert(make_pair(strName, pClip));
+
+
+	if (m_strDefaultClip.empty())
 	{
 		SetDefaultClip(strName);
+	}
+
+	if (m_strCurClip.empty())
+	{
 		SetCurrentClip(strName);
 	}
 
-	m_mapClip.insert(make_pair(strName, pClip));
-
 	return true;
 
+}
+
+void CAnimation::SetClipColorKey(const string& strClip, unsigned int r, unsigned int g, unsigned int b)
+{
+	PANIMATIONCLIP pClip = FindClip(strClip);
+
+	if (!pClip)
+	{
+		return;
+	}
+
+	for (size_t i = 0; i < pClip->vecTexture.size(); ++i)
+	{
+		pClip->vecTexture[i]->SetColorKey(r, g, b);
+	}
 }
 
 void CAnimation::SetCurrentClip(const string & strCurClip)
@@ -110,11 +142,39 @@ void CAnimation::ChangeClip(const string & strClip)
 	{
 		return;
 	}
+
+	m_strCurClip = strClip;
+	
+	if (m_pCurClip)
+	{
+		m_pCurClip->iFrameX = m_pCurClip->iStartX;
+		m_pCurClip->iFrameY = m_pCurClip->iStartY;
+		m_pCurClip->fAnimationTime = 0.f;
+		m_pCurClip->fOptionTime = 0.f;
+	}
+
+	m_pCurClip = FindClip(strClip);
+	
+	if (m_pCurClip->eType == AT_ATLAS)
+	{
+		m_pObj->SetTexture(m_pCurClip->vecTexture[0]);
+	}
+	else if (m_pCurClip->eType == AT_FRAME)
+	{
+		m_pObj->SetTexture(m_pCurClip->vecTexture[m_pCurClip->iFrameX]);
+	}
 }
 
 PANIMATIONCLIP CAnimation::FindClip(const string & strName)
 {
-	return PANIMATIONCLIP();
+	unordered_map<string, PANIMATIONCLIP>::iterator iter = m_mapClip.find(strName);
+
+	if (iter == m_mapClip.end())
+	{
+		return nullptr;
+	}
+
+	return iter->second;
 }
 
 bool CAnimation::Init()
@@ -124,6 +184,40 @@ bool CAnimation::Init()
 
 void CAnimation::Update(float fTime)
 {
+	m_pCurClip->fAnimationTime += fTime;
+
+	while (m_pCurClip->fAnimationTime >= m_pCurClip->fAnimationFrameTime)
+	{
+		m_pCurClip->fAnimationTime -= m_pCurClip->fAnimationFrameTime;
+
+		++m_pCurClip->iFrameX;
+
+		if (m_pCurClip->iFrameX - m_pCurClip->iStartX == m_pCurClip->iLengthX)
+		{
+			m_pCurClip->iFrameX = m_pCurClip->iStartX;
+			++m_pCurClip->iFrameY;
+
+			if (m_pCurClip->iFrameY - m_pCurClip->iStartY == m_pCurClip->iLengthY)
+			{
+				m_pCurClip->iFrameY = m_pCurClip->iStartY;
+
+				switch (m_pCurClip->eOption)
+				{
+				case AO_ONCE_RETURN:
+					ChangeClip(m_strDefaultClip);
+					break;
+				case AO_ONCE_DESTROY:
+					m_pObj->Die();
+					break;
+				case AO_TIME_RETURN:
+					break;
+				case AO_TIME_DESTROY:
+					break;
+
+				}
+			}
+		}
+	}
 }
 
 CAnimation * CAnimation::Clone()

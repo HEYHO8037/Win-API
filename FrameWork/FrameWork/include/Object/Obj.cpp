@@ -174,6 +174,14 @@ bool CObj::AddAnimationClip(const string & strName,
 	return true;
 }
 
+void CObj::SetAnimationClipColorKey(const string & strClip, unsigned int r, unsigned int g, unsigned int b)
+{
+	if (m_pAnimation)
+	{
+		m_pAnimation->SetClipColorKey(strClip, r, g, b);
+	}
+}
+
 const list<class CCollider*>* CObj::GetColliderList() const
 {
 	return &m_ColliderList;
@@ -262,6 +270,11 @@ void CObj::SetTexture(const string & strKey, const wchar_t * pFileName, const st
 
 }
 
+void CObj::SetColorKey(unsigned char r, unsigned char g, unsigned char b)
+{
+	m_pTexture->SetColorKey(r, g, b);
+}
+
 string CObj::GetTag() const
 {
 	return m_strTag;
@@ -336,6 +349,11 @@ int CObj::Update(float fDeltaTime)
 		{
 			++iter;
 		}
+
+		if (m_pAnimation)
+		{
+			m_pAnimation->Update(fDeltaTime);
+		}
 	}
 
 	return 0;
@@ -383,17 +401,27 @@ void CObj::Render(HDC hDC, float fDeltaTime)
 		POSITION tPos = m_tPos - m_tSize * m_tPivot;
 		tPos -= GET_SINGLE(CCamera)->GetPos();
 
+		POSITION tImagePos;
+
+		if (m_pAnimation)
+		{
+			PANIMATIONCLIP pClip = m_pAnimation->GetCurrentClip();
+		
+			tImagePos.x = pClip->iFrameX * m_tSize.x;
+			tImagePos.y = pClip->iFrameY * m_tSize.y;
+		}
+
 		if (m_pTexture->GetColorKeyEnable())
 		{
 			TransparentBlt(hDC, tPos.x, tPos.y, m_tSize.x, m_tSize.y,
-				m_pTexture->GetDC(), 0, 0, m_tSize.x, m_tSize.y,
+				m_pTexture->GetDC(), tImagePos.x, tImagePos.y, m_tSize.x, m_tSize.y,
 				m_pTexture->GetColorKey());
 		}
 		else
 		{
 			BitBlt(hDC, tPos.x, tPos.y,
 				m_tSize.x, m_tSize.y, m_pTexture->GetDC(),
-				0, 0, SRCCOPY);
+				tImagePos.x, tImagePos.y, SRCCOPY);
 		}
 	}
 

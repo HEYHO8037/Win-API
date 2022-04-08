@@ -275,6 +275,7 @@ typedef struct _tagAnimationClip
 	vector<class CTexture*> vecTexture;
 	float fAnimationTime;
 	float fAnimationLimitTime;
+	float fAnimationFrameTime;
 	int iFrameX;
 	int iFrameY;
 	int iFrameMaxX;

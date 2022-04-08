@@ -47,7 +47,7 @@ public:
 		ANIMATION_OPTION eOption, float fAnimationTime, int iFrameMaxX,
 		int iFrameMaxY, int iStartX, int iStartY, int iLengthX, int iLengthY, float fOptionLimitTime,
 		const string& strTexKey, const wchar_t* pFileName, const string& strPathKey = TEXTURE_PATH);
-
+	void SetAnimationClipColorKey(const string& strClip, unsigned int r, unsigned int g, unsigned int b);
 
 
 
@@ -119,6 +119,7 @@ public:
 public:
 	void SetTexture(class CTexture* pTexture);
 	void SetTexture(const string& strKey, const wchar_t* pFileName = nullptr, const string& strPathKey = TEXTURE_PATH);
+	void SetColorKey(unsigned char r, unsigned char g, unsigned char b);
 
 public:
 	string GetTag() const;
