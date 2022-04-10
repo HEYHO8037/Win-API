@@ -43,6 +43,16 @@ bool CTexture::GetColorKeyEnable() const
 	return m_bColorKeyEnable;
 }
 
+long CTexture::GetWidth() const
+{
+	return m_tInfo.bmWidth;
+}
+
+long CTexture::GetHeight() const
+{
+	return m_tInfo.bmHeight;
+}
+
 bool CTexture::LoadTexture(HINSTANCE hInst, HDC hDC,
 	const string & strKey, const wchar_t * pFileName,
 	const string & strPathKey)

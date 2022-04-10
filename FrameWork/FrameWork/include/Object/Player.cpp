@@ -22,16 +22,17 @@ CPlayer::~CPlayer()
 bool CPlayer::Init()
 {
 	SetPos(50.f, 50.f);
-	SetSize(76.f, 76.f);
+	SetSize(73.f, 76.f);
+	SetImageOffset(6.f, 0.f);
 	SetSpeed(400.f);
 	SetPivot(0.5f, 0.5f);
 	SetTexture("Player", L"HOS.bmp");
 
-	SetColorKey(248, 0, 248);
+	SetColorKey(249, 0, 249);
 
 	CColliderRect* pRC = AddCollider<CColliderRect>("PlayerBody");
 
-	pRC->SetRect(-38.f, -38.f, 38.f, 38.f);
+	pRC->SetRect(-30.5f, -38.f, 30.5f, 38.f);
 	pRC->AddCollisionFunction(CS_ENTER, this, &CPlayer::Hit);
 	pRC->AddCollisionFunction(CS_STAY, this, &CPlayer::HitStay);
 
@@ -48,7 +49,13 @@ bool CPlayer::Init()
 	CAnimation* pAni = CreateAnimation("PlayerAnimation");
 
 	AddAnimationClip("IdleRight", AT_ATLAS, AO_LOOP, 1.f, 6, 1, 0, 0, 6, 1, 0.f, "PlayerIdleRight", L"Player/Idle/Right/Player_Stand_Right.bmp");
-	SetAnimationClipColorKey("IdleRight", 248, 0, 248);
+	SetAnimationClipColorKey("IdleRight", 249, 0, 249);
+
+	AddAnimationClip("RunRight", AT_ATLAS, AO_ONCE_RETURN, 1.f, 6, 1, 0, 0, 6, 1, 0.f, "PlayerRunRight", L"Player/Run/Right/Player_Run_Right.bmp");
+	SetAnimationClipColorKey("RunRight", 249, 0, 249);
+
+	AddAnimationClip("RunLeft", AT_ATLAS, AO_ONCE_RETURN, 1.f, 6, 1, 0, 0, 6, 1, 0.f, "PlayerRunLeft", L"Player/Run/Left/Player_Run_Left.bmp");
+	SetAnimationClipColorKey("RunLeft", 249, 0, 249);
 
 
 	SAFE_RELEASE(pAni);
@@ -74,11 +81,13 @@ void CPlayer::Input(float fDeltaTime)
 	if (KEYPRESS("MoveLeft"))
 	{
 		MoveXFromSpeed(fDeltaTime, MD_BACK);
+		m_pAnimation->ChangeClip("RunLeft");
 	}
 
 	if (KEYPRESS("MoveRight"))
 	{
 		MoveXFromSpeed(fDeltaTime, MD_FRONT);
+		m_pAnimation->ChangeClip("RunRight");
 	}
 
 	if (KEYDOWN("Fire"))
@@ -113,13 +122,13 @@ void CPlayer::Render(HDC hDC, float fDeltaTime)
 {
 	CMoveObj::Render(hDC, fDeltaTime);
 	
-	wchar_t strHP[32] = {};
-	wsprintf(strHP, L"HP : %d", m_iHP);
-	
-	POSITION tPos = m_tPos - m_tSize * m_tPivot;
-	
-	tPos -= GET_SINGLE(CCamera)->GetPos();
-	TextOut(hDC, tPos.x, tPos.y, strHP, lstrlen(strHP)); 
+	//wchar_t strHP[32] = {};
+	//wsprintf(strHP, L"HP : %d", m_iHP);
+	//
+	//POSITION tPos = m_tPos - m_tSize * m_tPivot;
+	//
+	//tPos -= GET_SINGLE(CCamera)->GetPos();
+	//TextOut(hDC, tPos.x, tPos.y, strHP, lstrlen(strHP)); 
 }
 
 CPlayer * CPlayer::Clone()

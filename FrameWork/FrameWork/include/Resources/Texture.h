@@ -24,6 +24,8 @@ public:
 	void SetColorKey(COLORREF colorKey);
 	COLORREF GetColorKey() const;
 	bool GetColorKeyEnable() const;
+	long GetWidth() const;
+	long GetHeight() const;
 
 public:
 	bool LoadTexture(HINSTANCE hInst, 

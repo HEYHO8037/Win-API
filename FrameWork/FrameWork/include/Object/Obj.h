@@ -36,6 +36,7 @@ protected:
 	string m_strTag;
 	POSITION m_tPos;
 	_SIZE m_tSize;
+	_SIZE m_tImageOffset;
 	POSITION m_tPivot;
 	class CTexture* m_pTexture;
 	list<class CCollider*> m_ColliderList;
@@ -115,6 +116,8 @@ public:
 	void SetSize(float x, float y);
 	void SetPivot(const _SIZE& tPivot);
 	void SetPivot(float x, float y);
+	void SetImageOffset(const _SIZE& tOffset);
+	void SetImageOffset(float x, float y);
 
 public:
 	void SetTexture(class CTexture* pTexture);

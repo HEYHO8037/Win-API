@@ -286,5 +286,6 @@ typedef struct _tagAnimationClip
 	int iLengthY;
 	float fOptionTime;
 	float fOptionLimitTime;
+	_SIZE tFrameSize;
 
 }ANIMATIONCLIP, *PANIMATIONCLIP;

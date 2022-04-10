@@ -252,6 +252,17 @@ void CObj::SetPivot(float x, float y)
 	m_tPivot.y = y;
 }
 
+void CObj::SetImageOffset(const _SIZE & tOffset)
+{
+	m_tImageOffset = tOffset;
+}
+
+void CObj::SetImageOffset(float x, float y)
+{
+	m_tImageOffset.x = x;
+	m_tImageOffset.y = y;
+}
+
 void CObj::SetTexture(CTexture * pTexture)
 {
 	SAFE_RELEASE(m_pTexture);
@@ -406,10 +417,14 @@ void CObj::Render(HDC hDC, float fDeltaTime)
 		if (m_pAnimation)
 		{
 			PANIMATIONCLIP pClip = m_pAnimation->GetCurrentClip();
-		
-			tImagePos.x = pClip->iFrameX * m_tSize.x;
-			tImagePos.y = pClip->iFrameY * m_tSize.y;
+
+			//tImagePos.x = pClip->iFrameX * m_tSize.x;
+			//tImagePos.y = pClip->iFrameY * m_tSize.y;
+			tImagePos.x = pClip->iFrameX * pClip->tFrameSize.x;
+			tImagePos.y = pClip->iFrameY * pClip->tFrameSize.y;
 		}
+
+		tImagePos += m_tImageOffset;
 
 		if (m_pTexture->GetColorKeyEnable())
 		{

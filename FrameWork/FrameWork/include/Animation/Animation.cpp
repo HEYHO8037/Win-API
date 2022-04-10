@@ -86,6 +86,10 @@ bool CAnimation::AddClip(const string & strName, ANIMATION_TYPE eType, ANIMATION
 	pClip->fAnimationFrameTime = fAnimationTime / (iLengthX * iLengthY);
 
 	CTexture* pTex = GET_SINGLE(CResourcesManager)->LoadTexture(strTexKey, pFileName, strPathKey);
+	
+	pClip->tFrameSize.x = pTex->GetWidth() / iFrameMaxX;
+	pClip->tFrameSize.y = pTex->GetHeight() / iFrameMaxY;
+
 	pClip->vecTexture.push_back(pTex);
 
 	pClip->fAnimationTime = 0.f;
