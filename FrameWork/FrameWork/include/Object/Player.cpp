@@ -22,13 +22,13 @@ CPlayer::~CPlayer()
 bool CPlayer::Init()
 {
 	SetPos(50.f, 50.f);
-	SetSize(73.f, 76.f);
-	SetImageOffset(6.f, 0.f);
-	SetSpeed(400.f);
+	SetSize(73.f, 80.f);
+	SetImageOffset(5.5f, 0.f);
+	SetSpeed(50.f);
 	SetPivot(0.5f, 0.5f);
-	SetTexture("Player", L"HOS.bmp");
 
-	SetColorKey(249, 0, 249);
+	//SetTexture("Player", L"HOS.bmp");
+	//SetColorKey(249, 0, 249);
 
 	CColliderRect* pRC = AddCollider<CColliderRect>("PlayerBody");
 
@@ -51,12 +51,34 @@ bool CPlayer::Init()
 	AddAnimationClip("IdleRight", AT_ATLAS, AO_LOOP, 1.f, 6, 1, 0, 0, 6, 1, 0.f, "PlayerIdleRight", L"Player/Idle/Right/Player_Stand_Right.bmp");
 	SetAnimationClipColorKey("IdleRight", 249, 0, 249);
 
+	AddAnimationClip("IdleLeft", AT_ATLAS, AO_LOOP, 1.f, 6, 1, 0, 0, 6, 1, 0.f, "PlayerIdleLeft", L"Player/Idle/Left/Player_Stand_Left.bmp");
+	SetAnimationClipColorKey("IdleLeft", 249, 0, 249);
+
 	AddAnimationClip("RunRight", AT_ATLAS, AO_ONCE_RETURN, 1.f, 6, 1, 0, 0, 6, 1, 0.f, "PlayerRunRight", L"Player/Run/Right/Player_Run_Right.bmp");
 	SetAnimationClipColorKey("RunRight", 249, 0, 249);
 
 	AddAnimationClip("RunLeft", AT_ATLAS, AO_ONCE_RETURN, 1.f, 6, 1, 0, 0, 6, 1, 0.f, "PlayerRunLeft", L"Player/Run/Left/Player_Run_Left.bmp");
 	SetAnimationClipColorKey("RunLeft", 249, 0, 249);
 
+	AddAnimationClip("NormalAttackRight", AT_ATLAS, AO_ONCE_RETURN, 1.f, 11, 1, 0, 0, 11, 1, 0.f, "PlayerAttackRight", L"Player/NormalAttack/Right/Player_Attack_Right.bmp");
+	SetAnimationClipColorKey("NormalAttackRight", 249, 0, 249);
+
+	//AddAnimationClip("NormalAttackLeft", AT_ATLAS, AO_ONCE_RETURN, 1.f, 11, 1, 0, 0, 11, 1, 0.f, "PlayerAttackLeft", L"Player/NormalAttack/Left/Player_Attack_Left.bmp");
+	//SetAnimationClipColorKey("NormalAttackLeft", 249, 0, 249);
+
+	vector<wstring> vecFileName;
+
+	for (int i = 8; i <= 18; ++i)
+	{
+		wchar_t strFileName[MAX_PATH] = {};
+		wsprintf(strFileName, L"Player/NormalAttack/Left/%d.bmp", i);
+		vecFileName.push_back(strFileName);
+	}
+
+	AddAnimationClip("NormalAttackLeft", AT_FRAME, AO_ONCE_RETURN, 1.f, 11, 1, 0, 0, 11, 1, 0.f, "PlayerAttackLeft", vecFileName);
+	SetAnimationClipColorKey("NormalAttackLeft", 249, 0, 249);
+
+	m_iDir = 1;
 
 	SAFE_RELEASE(pAni);
 
@@ -82,17 +104,30 @@ void CPlayer::Input(float fDeltaTime)
 	{
 		MoveXFromSpeed(fDeltaTime, MD_BACK);
 		m_pAnimation->ChangeClip("RunLeft");
+		m_iDir = -1;
+		m_pAnimation->SetDefaultClip("IdleLeft");
 	}
 
 	if (KEYPRESS("MoveRight"))
 	{
 		MoveXFromSpeed(fDeltaTime, MD_FRONT);
 		m_pAnimation->ChangeClip("RunRight");
+		m_iDir = 1;
+		m_pAnimation->SetDefaultClip("IdleRight");
 	}
 
 	if (KEYDOWN("Fire"))
 	{
 		Fire();
+
+		if (m_iDir == -1)
+		{
+			m_pAnimation->ChangeClip("NormalAttackLeft");
+		}
+		else
+		{
+			m_pAnimation->ChangeClip("NormalAttackRight");
+		}
 	}
 
 	if (KEYDOWN("Skill1"))
@@ -104,6 +139,17 @@ void CPlayer::Input(float fDeltaTime)
 int CPlayer::Update(float fDeltaTime)
 {
 	CMoveObj::Update(fDeltaTime);
+	
+	if (m_bAttack && m_pAnimation->GetMotionEnd())
+	{
+		m_bAttack = false;
+	}
+
+	if(!m_bMove && !m_bAttack)
+	{
+		m_pAnimation->ReturnClip();
+	}
+	
 	return 0;
 }
 
@@ -162,6 +208,8 @@ void CPlayer::HitStay(CCollider * pSrc, CCollider * pDest, float fDeltaTime)
 
 void CPlayer::Fire()
 {
+	m_bAttack = true;
+
 	CObj* pBullet = CObj::CreateCloneObj("Bullet", "PlayerBullet", m_pLayer);
 	
 	pBullet->AddCollisionFunction("BulletBody", CS_ENTER, (CBullet*)pBullet, &CBullet::Hit);
@@ -169,10 +217,23 @@ void CPlayer::Fire()
 	//Pivot를 이용하여 총알 위치 재조정(가운데)
 	POSITION tPos;
 
-	tPos.x = GetRight() + pBullet->GetSize().x * pBullet->GetPivot().x;
+	if (m_iDir == -1)
+	{
+		tPos.x = GetLeft() + pBullet->GetSize().x * pBullet->GetPivot().x;
+	}
+	else
+	{
+		tPos.x = GetRight() + pBullet->GetSize().x * pBullet->GetPivot().x;
+	}
+
 	tPos.y = GetCenter().y;
 
 	pBullet->SetPos(tPos);
+
+	if (m_iDir == -1)
+	{
+		((CMoveObj*)pBullet)->SetAngle(PI);
+	}
 
 	SAFE_RELEASE(pBullet);
 }

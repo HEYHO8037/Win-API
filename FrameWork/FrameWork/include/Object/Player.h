@@ -15,6 +15,8 @@ private:
 
 private:
 	int m_iHP;
+	bool m_bAttack;
+	int m_iDir;
 
 public:
 	virtual bool Init();

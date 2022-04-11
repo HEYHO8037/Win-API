@@ -47,10 +47,12 @@ bool CInGameScene::Init()
 	CLayer* pStageLayer = FindLayer("Stage");
 
 	CStage* pStage = CObj::CreateObj<CStage>("Stage", pStageLayer);
-	SAFE_RELEASE(pPlayer);
 
 	CColliderPixel* pPixel = pStage->AddCollider<CColliderPixel>("StageColl");
 	pPixel->SetPixelInfo("Stage.bmp");
+
+	SAFE_RELEASE(pPixel);
+	SAFE_RELEASE(pStage);
 
 	return true;
 }

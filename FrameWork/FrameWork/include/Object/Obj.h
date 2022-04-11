@@ -44,10 +44,19 @@ protected:
 
 public:
 	class CAnimation* CreateAnimation(const string& strTag);
+	
 	bool AddAnimationClip(const string& strName, ANIMATION_TYPE eType,
 		ANIMATION_OPTION eOption, float fAnimationTime, int iFrameMaxX,
 		int iFrameMaxY, int iStartX, int iStartY, int iLengthX, int iLengthY, float fOptionLimitTime,
 		const string& strTexKey, const wchar_t* pFileName, const string& strPathKey = TEXTURE_PATH);
+	
+	bool AddAnimationClip(const string& strName, ANIMATION_TYPE eType,
+		ANIMATION_OPTION eOption, float fAnimationTime, int iFrameMaxX,
+		int iFrameMaxY, int iStartX, int iStartY, int iLengthX, int iLengthY, float fOptionLimitTime,
+		const string& strTexKey, const vector<wstring>& vecFileName, const string& strPathKey = TEXTURE_PATH);
+
+
+	
 	void SetAnimationClipColorKey(const string& strClip, unsigned int r, unsigned int g, unsigned int b);
 
 

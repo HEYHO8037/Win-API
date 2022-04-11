@@ -174,6 +174,28 @@ bool CObj::AddAnimationClip(const string & strName,
 	return true;
 }
 
+bool CObj::AddAnimationClip(const string & strName, 
+	ANIMATION_TYPE eType, ANIMATION_OPTION eOption, 
+	float fAnimationTime, int iFrameMaxX, int iFrameMaxY, 
+	int iStartX, int iStartY, int iLengthX, int iLengthY, 
+	float fOptionLimitTime, const string & strTexKey, 
+	const vector<wstring>& vecFileName, 
+	const string & strPathKey)
+{
+	if (!m_pAnimation)
+	{
+		return false;
+	}
+
+	m_pAnimation->AddClip(strName, eType, eOption,
+		fAnimationTime, iFrameMaxX, iFrameMaxY, iStartX,
+		iStartY, iLengthX, iLengthY, fOptionLimitTime,
+		strTexKey, vecFileName, strPathKey);
+
+	return true;
+
+}
+
 void CObj::SetAnimationClipColorKey(const string & strClip, unsigned int r, unsigned int g, unsigned int b)
 {
 	if (m_pAnimation)
@@ -418,13 +440,22 @@ void CObj::Render(HDC hDC, float fDeltaTime)
 		{
 			PANIMATIONCLIP pClip = m_pAnimation->GetCurrentClip();
 
-			//tImagePos.x = pClip->iFrameX * m_tSize.x;
-			//tImagePos.y = pClip->iFrameY * m_tSize.y;
-			tImagePos.x = pClip->iFrameX * pClip->tFrameSize.x;
-			tImagePos.y = pClip->iFrameY * pClip->tFrameSize.y;
+			if (pClip->eType == AT_ATLAS)
+			{
+				//tImagePos.x = pClip->iFrameX * m_tSize.x;
+				//tImagePos.y = pClip->iFrameY * m_tSize.y;
+				tImagePos.x = pClip->iFrameX * pClip->tFrameSize.x;
+				tImagePos.y = pClip->iFrameY * pClip->tFrameSize.y;
+			}
 		}
-
-		tImagePos += m_tImageOffset;
+		if (m_pAnimation)
+		{
+			PANIMATIONCLIP pClip = m_pAnimation->GetCurrentClip();
+			if (pClip->eType == AT_ATLAS)
+			{
+				tImagePos += m_tImageOffset;
+			}
+		}
 
 		if (m_pTexture->GetColorKeyEnable())
 		{

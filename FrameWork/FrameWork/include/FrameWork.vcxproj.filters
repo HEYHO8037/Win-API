@@ -25,9 +25,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="01_Layer">
-      <UniqueIdentifier>{15a0acc9-308d-435f-ad69-5dd14b1eff4c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03_Object">
       <UniqueIdentifier>{6b091435-6baf-47d3-8910-4a128a671960}</UniqueIdentifier>
     </Filter>
@@ -36,15 +33,6 @@
     </Filter>
     <Filter Include="03_Object\02_StaticObj">
       <UniqueIdentifier>{75d2c3e9-3c7a-4ae0-94b7-67ecafeb142b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03_Object\03_PlayerObj">
-      <UniqueIdentifier>{cce1c85e-a5dc-4dab-9239-064e47ddd246}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03_Object\04_Monster">
-      <UniqueIdentifier>{3e554b86-1133-411c-b0ce-bae0aeb23675}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="03_Object\05_Bullet">
-      <UniqueIdentifier>{6a4a2a02-2209-4264-9a3a-9835b1979de3}</UniqueIdentifier>
     </Filter>
     <Filter Include="04_Resource">
       <UniqueIdentifier>{a4c47e95-5b5a-4361-a996-b8efd7e529ee}</UniqueIdentifier>
@@ -66,6 +54,21 @@
     </Filter>
     <Filter Include="06_Animation">
       <UniqueIdentifier>{9adbf85f-1271-42c0-bb6b-db57326707c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03_Object\01_MoveObj\00_PlayerObj">
+      <UniqueIdentifier>{cce1c85e-a5dc-4dab-9239-064e47ddd246}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03_Object\01_MoveObj\01_Monster">
+      <UniqueIdentifier>{3e554b86-1133-411c-b0ce-bae0aeb23675}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03_Object\01_MoveObj\02_Bullet">
+      <UniqueIdentifier>{6a4a2a02-2209-4264-9a3a-9835b1979de3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03_Object\01_MoveObj\03_UI">
+      <UniqueIdentifier>{b3406a4b-07d2-4bee-b334-f2a62150cfd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02_Scene\01_Layer">
+      <UniqueIdentifier>{15a0acc9-308d-435f-ad69-5dd14b1eff4c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -94,19 +97,19 @@
       <Filter>03_Object\01_MoveObj</Filter>
     </ClCompile>
     <ClCompile Include="Object\Player.cpp">
-      <Filter>03_Object\03_PlayerObj</Filter>
+      <Filter>03_Object\01_MoveObj\00_PlayerObj</Filter>
     </ClCompile>
     <ClCompile Include="Object\StaticObj.cpp">
       <Filter>03_Object\02_StaticObj</Filter>
     </ClCompile>
     <ClCompile Include="Object\Minion.cpp">
-      <Filter>03_Object\04_Monster</Filter>
+      <Filter>03_Object\01_MoveObj\01_Monster</Filter>
     </ClCompile>
     <ClCompile Include="Scene\Layer.cpp">
-      <Filter>01_Layer</Filter>
+      <Filter>02_Scene\01_Layer</Filter>
     </ClCompile>
     <ClCompile Include="Object\Bullet.cpp">
-      <Filter>03_Object\05_Bullet</Filter>
+      <Filter>03_Object\01_MoveObj\02_Bullet</Filter>
     </ClCompile>
     <ClCompile Include="Core\PathManager.cpp">
       <Filter>Core\02_Path</Filter>
@@ -150,6 +153,15 @@
     <ClCompile Include="Animation\Animation.cpp">
       <Filter>06_Animation</Filter>
     </ClCompile>
+    <ClCompile Include="Object\UI.cpp">
+      <Filter>03_Object\01_MoveObj\03_UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\UIPanel.cpp">
+      <Filter>03_Object\01_MoveObj\03_UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\StartScene.cpp">
+      <Filter>02_Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -189,19 +201,19 @@
       <Filter>03_Object\01_MoveObj</Filter>
     </ClInclude>
     <ClInclude Include="Object\Player.h">
-      <Filter>03_Object\03_PlayerObj</Filter>
+      <Filter>03_Object\01_MoveObj\00_PlayerObj</Filter>
     </ClInclude>
     <ClInclude Include="Object\StaticObj.h">
       <Filter>03_Object\02_StaticObj</Filter>
     </ClInclude>
     <ClInclude Include="Object\Minion.h">
-      <Filter>03_Object\04_Monster</Filter>
+      <Filter>03_Object\01_MoveObj\01_Monster</Filter>
     </ClInclude>
     <ClInclude Include="Scene\Layer.h">
-      <Filter>01_Layer</Filter>
+      <Filter>02_Scene\01_Layer</Filter>
     </ClInclude>
     <ClInclude Include="Object\Bullet.h">
-      <Filter>03_Object\05_Bullet</Filter>
+      <Filter>03_Object\01_MoveObj\02_Bullet</Filter>
     </ClInclude>
     <ClInclude Include="Core\PathManager.h">
       <Filter>Core\02_Path</Filter>
@@ -244,6 +256,15 @@
     </ClInclude>
     <ClInclude Include="Animation\Animation.h">
       <Filter>06_Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\UI.h">
+      <Filter>03_Object\01_MoveObj\03_UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\UIPanel.h">
+      <Filter>03_Object\01_MoveObj\03_UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\StartScene.h">
+      <Filter>02_Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
