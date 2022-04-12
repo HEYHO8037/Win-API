@@ -25,6 +25,7 @@ private:
 
 public:
 	RESOLUTION GetResolution() const;
+	HWND GetWindowHandle() const;
 	
 public:
 	bool Init(HINSTANCE hInst);

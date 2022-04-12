@@ -63,6 +63,8 @@ public:
 
 public:
 	const list<class CCollider*>* GetColliderList() const;
+	CCollider* GetCollider(const string& strTag);
+
 
 	template <typename T>
 	void AddCollisionFunction(const string& strTag, 

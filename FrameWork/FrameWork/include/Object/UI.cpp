@@ -18,20 +18,24 @@ CUI::~CUI()
 
 void CUI::Input(float fDeltaTime)
 {
+	CObj::Input(fDeltaTime);
 }
 
 int CUI::Update(float fDeltaTime)
 {
+	CObj::Update(fDeltaTime);
 	return 0;
 }
 
 int CUI::LateUpdate(float fDeltaTime)
 {
+	CObj::LateUpdate(fDeltaTime);
 	return 0;
 }
 
 void CUI::Collision(float fDeltaTime)
 {
+	CObj::Collision(fDeltaTime);
 }
 
 void CUI::Render(HDC hDC, float fDeltaTime)
@@ -52,6 +56,7 @@ void CUI::Render(HDC hDC, float fDeltaTime)
 				tImagePos.y = pClip->iFrameY * pClip->tFrameSize.y;
 			}
 		}
+
 		if (m_pAnimation)
 		{
 			PANIMATIONCLIP pClip = m_pAnimation->GetCurrentClip();
@@ -99,5 +104,6 @@ void CUI::Render(HDC hDC, float fDeltaTime)
 			++iter;
 		}
 	}
+
 }
 

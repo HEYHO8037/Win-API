@@ -7,6 +7,7 @@
 #include "Core\Camera.h"
 #include "Core\Input.h"
 #include "Collider\ColliderManager.h"
+#include "Object\Mouse.h"
 
 CCore* CCore::m_pInst = nullptr;
 bool CCore::m_bLoop = true;
@@ -62,6 +63,11 @@ RESOLUTION CCore::GetResolution() const
 	return m_tRS;
 }
 
+HWND CCore::GetWindowHandle() const
+{
+	return m_hWnd;
+}
+
 bool CCore::Init(HINSTANCE hInst)
 {
 	this->m_hInst = hInst;
@@ -89,12 +95,6 @@ bool CCore::Init(HINSTANCE hInst)
 		return false;
 	}
 
-	//입력 관리자 초기화
-	if (!GET_SINGLE(CInput)->Init(m_hWnd))
-	{
-		return false;
-	}
-
 	//리소스 관리자 초기화
 	if (!GET_SINGLE(CResourcesManager)->Init(hInst, m_hDC))
 	{
@@ -109,6 +109,12 @@ bool CCore::Init(HINSTANCE hInst)
 
 	// 장면관리자 초기화
 	if (!GET_SINGLE(CSceneManager)->Init())
+	{
+		return false;
+	}
+
+	//입력 관리자 초기화
+	if (!GET_SINGLE(CInput)->Init(m_hWnd))
 	{
 		return false;
 	}
@@ -155,7 +161,6 @@ void CCore::Logic()
 void CCore::Input(float fDeltaTime)
 {
 	GET_SINGLE(CInput)->Update(fDeltaTime);
-
 	GET_SINGLE(CSceneManager)->Input(fDeltaTime);
 	GET_SINGLE(CCamera)->Input(fDeltaTime);
 }
@@ -185,8 +190,11 @@ void CCore::Render(float fDeltaTime)
 	//더블 버퍼링
 	CTexture* pBackBuffer = GET_SINGLE(CResourcesManager)->GetBackBuffer();
 
-	Rectangle(pBackBuffer->GetDC(), 0, 0, 1280, 720);
 	GET_SINGLE(CSceneManager)->Render(pBackBuffer->GetDC(), fDeltaTime);
+
+	// 마지막에 마우스를 그린다.
+	CMouse* pMouse = GET_SINGLE(CInput)->GetMouse();
+	pMouse->Render(pBackBuffer->GetDC(), fDeltaTime);
 
 	BitBlt(m_hDC, 0, 0, m_tRS.iW, m_tRS.iH, pBackBuffer->GetDC(), 0, 0, SRCCOPY);
 

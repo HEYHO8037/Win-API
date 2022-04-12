@@ -209,6 +209,23 @@ const list<class CCollider*>* CObj::GetColliderList() const
 	return &m_ColliderList;
 }
 
+CCollider * CObj::GetCollider(const string & strTag)
+{
+	list<CCollider*>::iterator iter;
+	list<CCollider*>::iterator iterEnd = m_ColliderList.end();
+
+	for (iter = m_ColliderList.begin(); iter != iterEnd; ++iter)
+	{
+		if ((*iter)->GetTag() == strTag)
+		{
+			(*iter)->AddRef();
+			return *iter;
+		}
+	}
+
+	return nullptr;
+}
+
 bool CObj::CheckCollider()
 {
 	return !m_ColliderList.empty();

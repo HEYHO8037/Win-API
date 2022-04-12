@@ -25,6 +25,12 @@ private:
 	HWND m_hWnd;
 	unordered_map<string, PKEYINFO> m_mapKey;
 	PKEYINFO m_pCreateKey;
+	POINT m_tMousePos;
+	POINT m_tMouseMove;
+	class CMouse* m_pMouse;
+
+public:
+	class CMouse* GetMouse() const;
 
 public:
 	bool Init(HWND hWnd);
