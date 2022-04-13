@@ -514,10 +514,9 @@ void CObj::Render(HDC hDC, float fDeltaTime)
 	}
 }
 
-CObj* CObj::CreateCloneObj(const string& strPrototypeKey, const string& strKey, class CLayer* pLayer)
+CObj* CObj::CreateCloneObj(const string& strPrototypeKey, const string& strKey, SCENE_CREATE sc, class CLayer* pLayer)
 {
-	CScene* pScene = GET_SINGLE(CSceneManager)->GetScene();
-	CObj* pProto = pScene->FindPrototype(strPrototypeKey);
+	CObj* pProto = CScene::FindPrototype(strPrototypeKey, sc);
 
 	if (!pProto)
 	{

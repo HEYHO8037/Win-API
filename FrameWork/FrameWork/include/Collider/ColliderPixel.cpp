@@ -2,6 +2,7 @@
 #include "../Object/Obj.h"
 #include "ColliderRect.h"
 #include "ColliderSphere.h"
+#include "ColliderPoint.h"
 #include "../Core/PathManager.h"
 
 
@@ -119,6 +120,8 @@ bool CColliderPixel::Collision(CCollider * pDest)
 	{
 	case CT_RECT:
 		return CollisionRectToPixel(((CColliderRect*)pDest)->GetWorldInfo(), m_vecPixel, m_iWidth, m_iHeight);
+	case CT_POINT:
+		return CollisionPixelToPoint(m_vecPixel, m_iWidth, m_iHeight, ((CColliderPoint*)pDest)->GetPoint());
 	}
 
 	return false;

@@ -4,7 +4,8 @@
 enum SCENE_CREATE
 {
 	SC_CURRENT,
-	SC_NEXT
+	SC_NEXT,
+	SC_END
 };
 
 //Direction
@@ -51,4 +52,11 @@ enum ANIMATION_OPTION
 	AO_ONCE_DESTROY,
 	AO_TIME_RETURN,
 	AO_TIME_DESTROY
+};
+
+//Scene Change
+enum SCENE_CHANGE
+{
+	SC_NONE,
+	SC_CHANGE
 };

@@ -5,6 +5,8 @@
 #include "../Core/Camera.h"
 #include "../Collider/ColliderRect.h"
 #include "../Core.h"
+#include "SceneManager.h"
+#include "InGameScene.h"
 
 CStartScene::CStartScene()
 {
@@ -41,9 +43,14 @@ bool CStartScene::Init()
 	CColliderRect* pRC = (CColliderRect*)pStartBtn->GetCollider("ButtonBody");
 
 	POSITION tPos = pStartBtn->GetPosition();
-	pRC->SetRect(tPos.x, tPos.y, tPos.x + pStartBtn->GetSize().x, tPos.y + pStartBtn->GetSize().y);
-	
+	pRC->SetRect(0.f, 0.f, pStartBtn->GetSize().x, pStartBtn->GetSize().y);
+	pRC->AddCollisionFunction(CS_ENTER, pStartBtn, &CUIButton::MouseOn);
+	pRC->AddCollisionFunction(CS_LEAVE, pStartBtn, &CUIButton::MouseOut);
+
 	SAFE_RELEASE(pRC);
+
+	pStartBtn->SetCallBack(this, &CStartScene::StartButtonCallBack);
+	
 	SAFE_RELEASE(pStartBtn);
 
 	CUIButton* pEndBtn = CObj::CreateObj<CUIButton>("EndButton", pLayer);
@@ -55,12 +62,27 @@ bool CStartScene::Init()
 	pRC = (CColliderRect*)pEndBtn->GetCollider("ButtonBody");
 
 	tPos = pEndBtn->GetPosition();
-	pRC->SetRect(tPos.x, tPos.y, tPos.x + pEndBtn->GetSize().x, tPos.y + pEndBtn->GetSize().y);
+	pRC->SetRect(0.f, 0.f, pEndBtn->GetSize().x, pEndBtn->GetSize().y);
+	pRC->AddCollisionFunction(CS_ENTER, pEndBtn, &CUIButton::MouseOn);
+	pRC->AddCollisionFunction(CS_LEAVE, pEndBtn, &CUIButton::MouseOut);
 
 	SAFE_RELEASE(pRC);
+
+	pEndBtn->SetCallBack(this, &CStartScene::EndButtonCallBack);
+
 	SAFE_RELEASE(pEndBtn);
 	
 
 
 	return true;
+}
+
+void CStartScene::StartButtonCallBack(float fTime)
+{
+	GET_SINGLE(CSceneManager)->CreateScene<CInGameScene>(SC_NEXT);
+}
+
+void CStartScene::EndButtonCallBack(float fTime)
+{
+	GET_SINGLE(CCore)->DestroyGame();
 }

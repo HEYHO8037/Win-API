@@ -26,6 +26,7 @@ private:
 public:
 	RESOLUTION GetResolution() const;
 	HWND GetWindowHandle() const;
+	void DestroyGame();
 	
 public:
 	bool Init(HINSTANCE hInst);

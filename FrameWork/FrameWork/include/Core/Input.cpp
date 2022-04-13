@@ -2,6 +2,7 @@
 #include "../Object/Mouse.h"
 #include "../Animation/Animation.h"
 #include "../Scene/Layer.h"
+#include "../Collider/ColliderManager.h"
 
 DEFINITION_SINGLE(CInput)
 
@@ -13,6 +14,7 @@ CInput::CInput() :
 
 CInput::~CInput()
 {
+	CObj::EraseObj(m_pMouse);
 	SAFE_RELEASE(m_pMouse);
 	Safe_Delete_Map(m_mapKey);
 }
@@ -51,7 +53,7 @@ bool CInput::Init(HWND hWnd)
 		vecFileName.push_back(strFileName);
 	}
 
-	m_pMouse->AddAnimationClip("MouseNormal", AT_FRAME, AO_LOOP, 1.f, 5, 1, 0, 0, 5, 1, 0.f, "MouseNormal", vecFileName);
+	m_pMouse->AddAnimationClip("MouseNormal", AT_FRAME, AO_LOOP, 1.f, 3, 1, 0, 0, 3, 1, 0.f, "MouseNormal", vecFileName);
 	m_pMouse->SetAnimationClipColorKey("MouseNormal", 249, 0, 249);
 
 	SAFE_RELEASE(pAni);
@@ -104,6 +106,8 @@ void CInput::Update(float fDeltaTime)
 
 	m_pMouse->Update(fDeltaTime);
 	m_pMouse->LateUpdate(fDeltaTime);
+
+	GET_SINGLE(CColliderManager)->AddObject(m_pMouse);
 }
 
 bool CInput::KeyDown(const string & strKey) const

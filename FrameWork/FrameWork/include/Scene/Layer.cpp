@@ -18,7 +18,7 @@ CLayer::~CLayer()
 	list<CObj*>::iterator iter;
 	list<CObj*>::iterator iterEnd = m_ObjList.end();
 
-	for (iter = m_ObjList.begin(); iter != iterEnd; )
+	for (iter = m_ObjList.begin(); iter != iterEnd; ++iter)
 	{
 		CObj::EraseObj(*iter);
 		SAFE_RELEASE((*iter));

@@ -168,6 +168,9 @@
     <ClCompile Include="Object\Mouse.cpp">
       <Filter>03_Object\01_MoveObj\03_UI</Filter>
     </ClCompile>
+    <ClCompile Include="Collider\ColliderPoint.cpp">
+      <Filter>05_Collider</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -277,6 +280,9 @@
     </ClInclude>
     <ClInclude Include="Object\Mouse.h">
       <Filter>03_Object\01_MoveObj\03_UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider\ColliderPoint.h">
+      <Filter>05_Collider</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -180,7 +180,7 @@ public:
 	}
 
 public:
-	static CObj* CreateCloneObj(const string& strPrototypeKey, const string& strKey, class CLayer* pLayer = nullptr);
+	static CObj* CreateCloneObj(const string& strPrototypeKey, const string& strKey, SCENE_CREATE sc, class CLayer* pLayer = nullptr);
 
 
 };

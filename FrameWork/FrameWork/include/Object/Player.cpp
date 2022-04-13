@@ -4,6 +4,7 @@
 #include "../Collider/ColliderRect.h"
 #include "../Core/Camera.h"
 #include "../Animation/Animation.h"
+#include "../Scene/Scene.h"
 
 CPlayer::CPlayer()
 {
@@ -210,7 +211,7 @@ void CPlayer::Fire()
 {
 	m_bAttack = true;
 
-	CObj* pBullet = CObj::CreateCloneObj("Bullet", "PlayerBullet", m_pLayer);
+	CObj* pBullet = CObj::CreateCloneObj("Bullet", "PlayerBullet", m_pScene->GetSceneType(), m_pLayer);
 	
 	pBullet->AddCollisionFunction("BulletBody", CS_ENTER, (CBullet*)pBullet, &CBullet::Hit);
 

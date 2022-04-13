@@ -13,5 +13,10 @@ private:
 public:
 	virtual bool Init();
 
+public:
+	void StartButtonCallBack(float fTime);
+	void EndButtonCallBack(float fTime);
+
+
 };
 

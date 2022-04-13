@@ -1,5 +1,6 @@
 #include "Mouse.h"
 #include "../Core.h"
+#include "../Collider/ColliderPoint.h"
 
 
 CMouse::CMouse()
@@ -27,6 +28,10 @@ bool CMouse::Init()
 	ShowCursor(FALSE);
 
 	m_tPos = pt;
+
+	CColliderPoint* pColl = AddCollider<CColliderPoint>("Mouse");
+
+	SAFE_RELEASE(pColl);
 
 	return true;
 }
@@ -72,4 +77,9 @@ void CMouse::Render(HDC hDC, float fDeltaTime)
 CMouse * CMouse::Clone()
 {
 	return new CMouse(*this);
+}
+
+void CMouse::Hit(CCollider * pSrc, CCollider * pDest, float fDeltaTime)
+{
+
 }

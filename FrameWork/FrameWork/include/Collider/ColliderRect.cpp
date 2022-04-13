@@ -2,6 +2,7 @@
 #include "../Object/Obj.h"
 #include "ColliderSphere.h"
 #include "ColliderPixel.h"
+#include "ColliderPoint.h"
 
 CColliderRect::CColliderRect()
 {
@@ -79,6 +80,8 @@ bool CColliderRect::Collision(CCollider* pDest)
 	case CT_PIXEL:
 		return CollisionRectToPixel(m_tWorldInfo, ((CColliderPixel*)pDest)->GetPixel(),
 			((CColliderPixel*)pDest)->GetWidth(), ((CColliderPixel*)pDest)->GetHeight());
+	case CT_POINT:
+		return CollisionRectToPoint(m_tWorldInfo, ((CColliderPoint*)pDest)->GetPoint());
 	}
 
 	return false;
@@ -88,11 +91,11 @@ void CColliderRect::Render(HDC hDC, float fDeltaTime)
 {
 	CCollider::Render(hDC, fDeltaTime);
 
-	MoveToEx(hDC, m_tInfo.l, m_tInfo.t, NULL);
-	LineTo(hDC, m_tInfo.r, m_tInfo.t);
-	LineTo(hDC, m_tInfo.r, m_tInfo.b);
-	LineTo(hDC, m_tInfo.l, m_tInfo.b);
-	LineTo(hDC, m_tInfo.l, m_tInfo.t);
+	//MoveToEx(hDC, m_tInfo.l, m_tInfo.t, NULL);
+	//LineTo(hDC, m_tInfo.r, m_tInfo.t);
+	//LineTo(hDC, m_tInfo.r, m_tInfo.b);
+	//LineTo(hDC, m_tInfo.l, m_tInfo.b);
+	//LineTo(hDC, m_tInfo.l, m_tInfo.t);
 }
 
 CColliderRect * CColliderRect::Clone()

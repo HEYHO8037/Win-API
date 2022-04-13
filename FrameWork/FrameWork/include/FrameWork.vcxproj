@@ -153,6 +153,7 @@
     <ClCompile Include="Collider\Collider.cpp" />
     <ClCompile Include="Collider\ColliderManager.cpp" />
     <ClCompile Include="Collider\ColliderPixel.cpp" />
+    <ClCompile Include="Collider\ColliderPoint.cpp" />
     <ClCompile Include="Collider\ColliderRect.cpp" />
     <ClCompile Include="Collider\ColliderSphere.cpp" />
     <ClCompile Include="Core.cpp" />
@@ -187,6 +188,7 @@
     <ClInclude Include="Collider\Collider.h" />
     <ClInclude Include="Collider\ColliderManager.h" />
     <ClInclude Include="Collider\ColliderPixel.h" />
+    <ClInclude Include="Collider\ColliderPoint.h" />
     <ClInclude Include="Collider\ColliderRect.h" />
     <ClInclude Include="Collider\ColliderSphere.h" />
     <ClInclude Include="Core.h" />

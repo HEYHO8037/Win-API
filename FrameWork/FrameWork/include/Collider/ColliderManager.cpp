@@ -119,3 +119,8 @@ bool CColliderManager::Collision(CObj * pSrc, CObj * pDest, float fDeltaTime)
 
 	return bCollision;
 }
+
+void CColliderManager::Clear()
+{
+	m_CollisionList.clear();
+}

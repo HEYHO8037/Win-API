@@ -11,10 +11,15 @@ protected:
 	virtual ~CScene() = 0;
 
 private:
-	static unordered_map<string, class CObj*> m_mapPrototype;
+	static unordered_map<string, class CObj*> m_mapPrototype[SC_END];
 
 protected:
 	list<class CLayer*> m_LayerList;
+	SCENE_CREATE m_eSceneCreate;
+
+public:
+	void SetSceneType(SCENE_CREATE eType);
+	SCENE_CREATE GetSceneType();
 	
 public:
 	class CLayer* CreateLayer(const string& strTag, int iZOrder = 0);
@@ -27,11 +32,11 @@ public:
 	virtual void Render(HDC hDC, float fDeltaTime);
 
 public:
-	static void ErasePrototype();
-	static void ErasePrototype(const string& strTag);
+	static void ErasePrototype(SCENE_CREATE sc);
+	static void ErasePrototype(const string& strTag, SCENE_CREATE sc);
 
 	template <typename T>
-	static T* CreatePrototype(const string& strTag)
+	static T* CreatePrototype(const string& strTag, SCENE_CREATE sc)
 	{
 		T* pObj = new T;
 
@@ -44,14 +49,16 @@ public:
 		}
 
 		pObj->AddRef();
-		m_mapPrototype.insert(make_pair(strTag, pObj));
+		m_mapPrototype[sc].insert(make_pair(strTag, pObj));
 
 		return pObj;
 	}
 
-	static CObj* FindPrototype(const string& strKey);
+	static CObj* FindPrototype(const string& strKey, SCENE_CREATE sc);
+	static void ChangePrototype();
 
 public:
 	static bool LayerSort(class CLayer* pL1, class CLayer* pL2);
+	
 };
 
