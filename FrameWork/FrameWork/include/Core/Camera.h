@@ -23,6 +23,7 @@ public:
 
 public:
 	POSITION GetPos() const;
+	RESOLUTION GetClientRS() const;
 
 public:
 	bool Init(const POSITION& tPos, const RESOLUTION& tClientRS, const RESOLUTION& tWorldRS);

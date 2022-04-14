@@ -71,6 +71,11 @@ POSITION CCamera::GetPos() const
 	return m_tPos;
 }
 
+RESOLUTION CCamera::GetClientRS() const
+{
+	return m_tClientRS;
+}
+
 bool CCamera::Init(const POSITION& tPos, const RESOLUTION& tClientRS, const RESOLUTION& tWorldRS)
 {
 	m_tPos = tPos;

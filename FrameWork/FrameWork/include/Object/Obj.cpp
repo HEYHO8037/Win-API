@@ -445,12 +445,16 @@ void CObj::Collision(float fDeltaTime)
 
 void CObj::Render(HDC hDC, float fDeltaTime)
 {
+	//Pivot을 통해 이미지 위치 재 조정
+	POSITION tPos = m_tPos - m_tSize * m_tPivot;
+	tPos -= GET_SINGLE(CCamera)->GetPos();
+
+	RESOLUTION tClientRS = GET_SINGLE(CCamera)->GetClientRS();
+
+	bool bInClient = true;
+
 	if (m_pTexture)
 	{
-		//Pivot을 통해 이미지 위치 재 조정
-		POSITION tPos = m_tPos - m_tSize * m_tPivot;
-		tPos -= GET_SINGLE(CCamera)->GetPos();
-
 		POSITION tImagePos;
 
 		if (m_pAnimation)

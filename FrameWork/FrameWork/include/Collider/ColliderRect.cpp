@@ -3,6 +3,7 @@
 #include "ColliderSphere.h"
 #include "ColliderPixel.h"
 #include "ColliderPoint.h"
+#include "../Core/Camera.h"
 
 CColliderRect::CColliderRect()
 {
@@ -91,11 +92,19 @@ void CColliderRect::Render(HDC hDC, float fDeltaTime)
 {
 	CCollider::Render(hDC, fDeltaTime);
 
-	//MoveToEx(hDC, m_tInfo.l, m_tInfo.t, NULL);
-	//LineTo(hDC, m_tInfo.r, m_tInfo.t);
-	//LineTo(hDC, m_tInfo.r, m_tInfo.b);
-	//LineTo(hDC, m_tInfo.l, m_tInfo.b);
-	//LineTo(hDC, m_tInfo.l, m_tInfo.t);
+	POSITION tCamPos = GET_SINGLE(CCamera)->GetPos();
+	RECTANGLE tRC = m_tWorldInfo;
+
+	tRC.l -= tCamPos.x;
+	tRC.r -= tCamPos.x;
+	tRC.t -= tCamPos.y;
+	tRC.b -= tCamPos.y;
+
+	MoveToEx(hDC, tRC.l, tRC.t, NULL);
+	LineTo(hDC, tRC.r, tRC.t);
+	LineTo(hDC, tRC.r, tRC.b);
+	LineTo(hDC, tRC.l, tRC.b);
+	LineTo(hDC, tRC.l, tRC.t);
 }
 
 CColliderRect * CColliderRect::Clone()
