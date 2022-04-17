@@ -453,7 +453,24 @@ void CObj::Render(HDC hDC, float fDeltaTime)
 
 	bool bInClient = true;
 
-	if (m_pTexture)
+	if (tPos.x + m_tSize.x < 0)
+	{
+		bInClient = false;
+	}
+	else if (tPos.x > tClientRS.iW)
+	{
+		bInClient = false;
+	}
+	else if (tPos.y + m_tSize.y < 0)
+	{
+		bInClient = false;
+	}
+	else if (tPos.y > tClientRS.iH)
+	{
+		bInClient = false;
+	}
+
+	if (m_pTexture && bInClient)
 	{
 		POSITION tImagePos;
 
@@ -492,28 +509,32 @@ void CObj::Render(HDC hDC, float fDeltaTime)
 		}
 	}
 
-	list<CCollider*>::iterator iter;
-	list<CCollider*>::iterator iterEnd = m_ColliderList.end();
 
-	for (iter = m_ColliderList.begin(); iter != iterEnd;)
+	if (bInClient)
 	{
-		if (!(*iter)->GetEnable())
-		{
-			++iter;
-			continue;
-		}
+		list<CCollider*>::iterator iter;
+		list<CCollider*>::iterator iterEnd = m_ColliderList.end();
 
-		(*iter)->Render(hDC, fDeltaTime);
+		for (iter = m_ColliderList.begin(); iter != iterEnd;)
+		{
+			if (!(*iter)->GetEnable())
+			{
+				++iter;
+				continue;
+			}
 
-		if (!(*iter)->GetLife())
-		{
-			SAFE_RELEASE((*iter));
-			iter = m_ColliderList.erase(iter);
-			iterEnd = m_ColliderList.end();
-		}
-		else
-		{
-			++iter;
+			(*iter)->Render(hDC, fDeltaTime);
+
+			if (!(*iter)->GetLife())
+			{
+				SAFE_RELEASE((*iter));
+				iter = m_ColliderList.erase(iter);
+				iterEnd = m_ColliderList.end();
+			}
+			else
+			{
+				++iter;
+			}
 		}
 	}
 }

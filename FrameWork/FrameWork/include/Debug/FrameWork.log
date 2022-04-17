@@ -1,20 +1,2 @@
-﻿  Obj.cpp
-c:\users\haeho\desktop\win api\framework\framework\include\types.h(45): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\framework\framework\include\types.h(46): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\framework\framework\include\types.h(57): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\framework\framework\include\types.h(58): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\framework\framework\include\object\obj.cpp(481): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\framework\framework\include\object\obj.cpp(487): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  ColliderRect.cpp
-c:\users\haeho\desktop\win api\framework\framework\include\types.h(45): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\framework\framework\include\types.h(46): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\framework\framework\include\types.h(57): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\framework\framework\include\types.h(58): warning C4244: '=': 'const LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\framework\framework\include\collider\colliderrect.cpp(103): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\framework\framework\include\collider\colliderrect.cpp(104): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\framework\framework\include\collider\colliderrect.cpp(105): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\framework\framework\include\collider\colliderrect.cpp(106): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-c:\users\haeho\desktop\win api\framework\framework\include\collider\colliderrect.cpp(107): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  코드를 생성하고 있습니다...
-  FrameWork.vcxproj -> C:\Users\haeho\Desktop\WIN API\FrameWork\FrameWork\include\../Bin/FrameWork_Debug.exe
+﻿  FrameWork.vcxproj -> C:\Users\haeho\Desktop\WIN API\FrameWork\FrameWork\include\../Bin/FrameWork_Debug.exe
   FrameWork.vcxproj -> ../Bin/FrameWork_Debug.pdb (Full PDB)

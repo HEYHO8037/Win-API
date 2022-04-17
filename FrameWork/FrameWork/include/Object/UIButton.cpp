@@ -24,7 +24,10 @@ CUIButton::~CUIButton()
 bool CUIButton::Init()
 {
 	CColliderRect* pColl = AddCollider<CColliderRect>("ButtonBody");
-	
+
+	pColl->AddCollisionFunction(CS_ENTER, this, &CUIButton::MouseOn);
+	pColl->AddCollisionFunction(CS_LEAVE, this, &CUIButton::MouseOut);
+
 	SAFE_RELEASE(pColl);
 
 	return true;

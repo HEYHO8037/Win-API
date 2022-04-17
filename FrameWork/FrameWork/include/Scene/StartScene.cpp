@@ -36,7 +36,7 @@ bool CStartScene::Init()
 
 	CUIButton* pStartBtn = CObj::CreateObj<CUIButton>("StartButton", pLayer);
 
-	pStartBtn->SetPos(GETRESOLUTION.iW / 2 - 100, GETRESOLUTION.iH / 2 - 150);
+	pStartBtn->SetPos(GETRESOLUTION.iW / 2 - 100, GETRESOLUTION.iH / 2 - 170);
 	pStartBtn->SetSize(200, 100);
 	pStartBtn->SetTexture("StartButton", L"StartButton.bmp");
 
@@ -44,8 +44,6 @@ bool CStartScene::Init()
 
 	POSITION tPos = pStartBtn->GetPosition();
 	pRC->SetRect(0.f, 0.f, pStartBtn->GetSize().x, pStartBtn->GetSize().y);
-	pRC->AddCollisionFunction(CS_ENTER, pStartBtn, &CUIButton::MouseOn);
-	pRC->AddCollisionFunction(CS_LEAVE, pStartBtn, &CUIButton::MouseOut);
 
 	SAFE_RELEASE(pRC);
 
@@ -53,9 +51,27 @@ bool CStartScene::Init()
 	
 	SAFE_RELEASE(pStartBtn);
 
+	CUIButton* pEditButton = CObj::CreateObj<CUIButton>("EditButton", pLayer);
+
+	pEditButton->SetPos(GETRESOLUTION.iW / 2 - 100, GETRESOLUTION.iH / 2 - 50);
+	pEditButton->SetSize(200, 100);
+	pEditButton->SetTexture("EditButton", L"StartButton.bmp");
+
+	pRC = (CColliderRect*)pEditButton->GetCollider("ButtonBody");
+
+	tPos = pEditButton->GetPosition();
+	pRC->SetRect(0.f, 0.f, pEditButton->GetSize().x, pEditButton->GetSize().y);
+
+	SAFE_RELEASE(pRC);
+
+	pEditButton->SetCallBack(this, &CStartScene::StartButtonCallBack);
+
+	SAFE_RELEASE(pEditButton);
+
+
 	CUIButton* pEndBtn = CObj::CreateObj<CUIButton>("EndButton", pLayer);
 
-	pEndBtn->SetPos(GETRESOLUTION.iW / 2 - 100, GETRESOLUTION.iH / 2 + 50);
+	pEndBtn->SetPos(GETRESOLUTION.iW / 2 - 100, GETRESOLUTION.iH / 2 + 70);
 	pEndBtn->SetSize(200, 100);
 	pEndBtn->SetTexture("EndButton", L"EndButton.bmp");
 
@@ -63,8 +79,6 @@ bool CStartScene::Init()
 
 	tPos = pEndBtn->GetPosition();
 	pRC->SetRect(0.f, 0.f, pEndBtn->GetSize().x, pEndBtn->GetSize().y);
-	pRC->AddCollisionFunction(CS_ENTER, pEndBtn, &CUIButton::MouseOn);
-	pRC->AddCollisionFunction(CS_LEAVE, pEndBtn, &CUIButton::MouseOut);
 
 	SAFE_RELEASE(pRC);
 
@@ -72,8 +86,6 @@ bool CStartScene::Init()
 
 	SAFE_RELEASE(pEndBtn);
 	
-
-
 	return true;
 }
 
