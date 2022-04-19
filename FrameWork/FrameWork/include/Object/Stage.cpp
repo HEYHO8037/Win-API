@@ -17,6 +17,12 @@ CStage::~CStage()
 {
 }
 
+
+void CStage::CreateTile(int iNumX, int iNumY, int iSizeX, int iSizeY, const string & strKey, const wchar_t * pFileName, const string & strPathKey)
+{
+
+}
+
 bool CStage::Init()
 {
 	SetPos(0.f, 0.f);

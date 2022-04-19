@@ -16,7 +16,7 @@ public:
 public:
 	void StartButtonCallBack(float fTime);
 	void EndButtonCallBack(float fTime);
-
+	void EditButtonCallBack(float fTime);
 
 };
 

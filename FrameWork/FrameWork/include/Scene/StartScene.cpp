@@ -7,6 +7,7 @@
 #include "../Core.h"
 #include "SceneManager.h"
 #include "InGameScene.h"
+#include "MapEditScene.h"
 
 CStartScene::CStartScene()
 {
@@ -64,7 +65,7 @@ bool CStartScene::Init()
 
 	SAFE_RELEASE(pRC);
 
-	pEditButton->SetCallBack(this, &CStartScene::StartButtonCallBack);
+	pEditButton->SetCallBack(this, &CStartScene::EditButtonCallBack);
 
 	SAFE_RELEASE(pEditButton);
 
@@ -97,4 +98,9 @@ void CStartScene::StartButtonCallBack(float fTime)
 void CStartScene::EndButtonCallBack(float fTime)
 {
 	GET_SINGLE(CCore)->DestroyGame();
+}
+
+void CStartScene::EditButtonCallBack(float fTime)
+{
+	GET_SINGLE(CSceneManager)->CreateScene<CMapEditScene>(SC_NEXT);
 }

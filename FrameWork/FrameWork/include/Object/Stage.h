@@ -12,6 +12,14 @@ private:
 	CStage(const CStage& stage);
 	~CStage();
 
+private:
+	vector<class CTile*> m_vecTile;
+
+public:
+	void CreateTile(int iNumX, int iNumY, int iSizeX, int iSizeY,
+		const string& strKey = "", const wchar_t* pFileName = NULL, 
+		const string& strPathKey = TEXTURE_PATH);
+
 public:
 	virtual bool Init();
 	virtual void Input(float fDeltaTime);
