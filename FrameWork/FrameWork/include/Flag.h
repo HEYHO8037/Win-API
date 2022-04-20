@@ -60,3 +60,10 @@ enum SCENE_CHANGE
 	SC_NONE,
 	SC_CHANGE
 };
+
+//TileOption
+enum TILE_OPTION
+{
+	TO_NONE,
+	TO_NOMOVE
+};

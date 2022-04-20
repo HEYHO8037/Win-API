@@ -31,3 +31,28 @@ bool CMapEditScene::Init()
 
 	return true;
 }
+
+void CMapEditScene::Input(float fDeltaTime)
+{
+	CScene::Input(fDeltaTime);
+
+	if (GetAsyncKeyState('W') & 0x8000)
+	{
+		GET_SINGLE(CCamera)->Scroll(0.f, -300.f * fDeltaTime);
+	}
+
+	if (GetAsyncKeyState('A') & 0x8000)
+	{
+		GET_SINGLE(CCamera)->Scroll(-300.f * fDeltaTime, 0.f);
+	}
+
+	if (GetAsyncKeyState('S') & 0x8000)
+	{
+		GET_SINGLE(CCamera)->Scroll(0.f, 300.f * fDeltaTime);
+	}
+
+	if (GetAsyncKeyState('D') & 0x8000)
+	{
+		GET_SINGLE(CCamera)->Scroll(300.f * fDeltaTime, 0.f);
+	}
+}

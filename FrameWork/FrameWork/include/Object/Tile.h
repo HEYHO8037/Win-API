@@ -9,8 +9,15 @@ private:
 
 private:
 	CTile();
-	CTile(const CTile& stage);
+	CTile(const CTile& tile);
 	~CTile();
+
+private:
+	TILE_OPTION m_eOption;
+
+public:
+	void SetTileOption(TILE_OPTION eOption);
+	TILE_OPTION GetTileOption() const;
 
 public:
 	virtual bool Init();

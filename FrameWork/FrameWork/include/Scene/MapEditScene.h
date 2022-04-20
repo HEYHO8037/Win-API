@@ -12,5 +12,6 @@ private:
 
 public:
 	virtual bool Init();
+	virtual void Input(float fDeltaTime);
 };
 

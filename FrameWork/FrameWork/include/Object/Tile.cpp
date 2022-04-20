@@ -3,17 +3,29 @@
 
 
 CTile::CTile()
+	: m_eOption(TO_NONE)
 {
 }
 
-CTile::CTile(const CTile & stage)
-	: CStaticObj(stage)
+CTile::CTile(const CTile & tile)
+	: CStaticObj(tile)
 {
+	m_eOption = tile.m_eOption;
 }
 
 
 CTile::~CTile()
 {
+}
+
+void CTile::SetTileOption(TILE_OPTION eOption)
+{
+	m_eOption = eOption;
+}
+
+TILE_OPTION CTile::GetTileOption() const
+{
+	return m_eOption;
 }
 
 bool CTile::Init()
@@ -23,24 +35,29 @@ bool CTile::Init()
 
 void CTile::Input(float fDeltaTime)
 {
+	CStaticObj::Input(fDeltaTime);
 }
 
 int CTile::Update(float fDeltaTime)
 {
+	CStaticObj::Update(fDeltaTime);
 	return 0;
 }
 
 int CTile::LateUpdate(float fDeltaTime)
 {
+	CStaticObj::LateUpdate(fDeltaTime);
 	return 0;
 }
 
 void CTile::Collision(float fDeltaTime)
 {
+	CStaticObj::Collision(fDeltaTime);
 }
 
 void CTile::Render(HDC hDC, float fDeltaTime)
 {
+	CStaticObj::Render(hDC, fDeltaTime);
 }
 
 CTile * CTile::Clone()

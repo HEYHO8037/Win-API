@@ -172,10 +172,10 @@
       <Filter>05_Collider</Filter>
     </ClCompile>
     <ClCompile Include="Scene\MapEditScene.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>02_Scene</Filter>
     </ClCompile>
     <ClCompile Include="Object\Tile.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>03_Object\02_StaticObj</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -291,10 +291,10 @@
       <Filter>05_Collider</Filter>
     </ClInclude>
     <ClInclude Include="Scene\MapEditScene.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>02_Scene</Filter>
     </ClInclude>
     <ClInclude Include="Object\Tile.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>03_Object\02_StaticObj</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

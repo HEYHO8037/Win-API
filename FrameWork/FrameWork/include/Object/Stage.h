@@ -14,6 +14,10 @@ private:
 
 private:
 	vector<class CTile*> m_vecTile;
+	int m_iTileNumX;
+	int m_iTileNumY;
+	int m_iTileSizeX;
+	int m_iTileSizeY;
 
 public:
 	void CreateTile(int iNumX, int iNumY, int iSizeX, int iSizeY,
