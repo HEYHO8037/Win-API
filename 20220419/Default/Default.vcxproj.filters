@@ -28,6 +28,9 @@
     <Filter Include="01. Obj\01. Bullet">
       <UniqueIdentifier>{c74ec3a3-edbe-48ed-97c3-c0e21c9225ea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Obj\02_Monster">
+      <UniqueIdentifier>{6287fd9e-9b83-4b9b-89cb-3735acfa29c6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -72,6 +75,9 @@
     <ClInclude Include="Bullet.h">
       <Filter>01. Obj\01. Bullet</Filter>
     </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -91,6 +97,9 @@
     </ClCompile>
     <ClCompile Include="Bullet.cpp">
       <Filter>01. Obj\01. Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

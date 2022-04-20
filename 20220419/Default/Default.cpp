@@ -66,8 +66,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	// 1 / 1000초의 DWORD 정수값으로 반환(밀리 세컨드 단위)
 	DWORD		dwOldTime = GetTickCount();
 
-
-
 	while (true)
 	{
 		// PM_REMOVE   : 메시지를 읽어옴과 동시에 메시지 큐에서 제거
@@ -90,6 +88,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 			if (dwOldTime + 10 < GetTickCount())
 			{
 				pMainGame->Update();
+				pMainGame->Late_Update();
 				pMainGame->Render();
 
 				dwOldTime = GetTickCount();

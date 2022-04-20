@@ -48,6 +48,11 @@ void CBullet::Update(void)
 	Update_Rect();
 }
 
+void CBullet::Late_Update(void)
+{
+
+}
+
 void CBullet::Render(HDC hDC)
 {
 	Ellipse(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);

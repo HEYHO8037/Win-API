@@ -10,11 +10,12 @@ public:
 public:
 	virtual void Initialize(void) override;
 	virtual void Update(void) override;
+	virtual	void Late_Update(void) override;
 	virtual void Render(HDC hDC) override;
 	virtual void Release(void) override;
 
 public:
-	void GetBulletList(list<class CBullet*>* list);
+	void SetBulletList(list<class CBullet*>* list);
 
 private:
 	void		Key_Input(void);

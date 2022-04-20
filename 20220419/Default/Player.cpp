@@ -14,10 +14,10 @@ CPlayer::~CPlayer()
 void CPlayer::Initialize(void)
 {
 	m_tInfo.fX = 400.f;
-	m_tInfo.fY = 300.f;
+	m_tInfo.fY = 450.f;
 
-	m_tInfo.fCX = 100.f;
-	m_tInfo.fCY = 100.f;
+	m_tInfo.fCX = 50.f;
+	m_tInfo.fCY = 50.f;
 
 	m_fSpeed = 10.f;
 }
@@ -33,6 +33,11 @@ void CPlayer::Update(void)
 	Update_Rect();
 }
 
+void CPlayer::Late_Update(void)
+{
+
+}
+
 void CPlayer::Render(HDC hDC)
 {
 	Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
@@ -43,7 +48,7 @@ void CPlayer::Release(void)
 	m_pBulletList = nullptr;
 }
 
-void CPlayer::GetBulletList(list<CBullet*>* list)
+void CPlayer::SetBulletList(list<CBullet*>* list)
 {
 	m_pBulletList = list;
 }
@@ -53,25 +58,21 @@ void CPlayer::Key_Input(void)
 	// GetKeyState
 	if (GetAsyncKeyState(VK_LEFT) & 0x8000)
 	{
-		CBullet* pBullet = new CBullet(m_tInfo, LEFT);
-		m_pBulletList->push_back(pBullet);
+		m_pBulletList->push_back(new CBullet(m_tInfo, LEFT));
 	}
 
 	if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
 	{
-		CBullet* pBullet = new CBullet(m_tInfo, RIGHT);
-		m_pBulletList->push_back(pBullet);
+		m_pBulletList->push_back(new CBullet(m_tInfo, RIGHT));
 	}
 
 	if (GetAsyncKeyState(VK_UP) & 0x8000)
 	{
-		CBullet* pBullet = new CBullet(m_tInfo, UP);
-		m_pBulletList->push_back(pBullet);
+		m_pBulletList->push_back(new CBullet(m_tInfo, UP));
 	}
 
 	if (GetAsyncKeyState(VK_DOWN) & 0x8000)
 	{
-		CBullet* pBullet = new CBullet(m_tInfo, DOWN);
-		m_pBulletList->push_back(pBullet);
+		m_pBulletList->push_back(new CBullet(m_tInfo, DOWN));
 	}
 }
