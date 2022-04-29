@@ -1,0 +1,5 @@
+﻿  Player.cpp
+c:\users\haeho\desktop\win api\20220428\default\player.cpp(262): warning C4244: '-=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+c:\users\haeho\desktop\win api\20220428\default\player.cpp(279): warning C4244: '-=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Default.vcxproj -> C:\Users\haeho\Desktop\WIN API\20220428\Debug\Default.exe
+  Default.vcxproj -> C:\Users\haeho\Desktop\WIN API\20220428\Debug\Default.pdb (Full PDB)

@@ -105,6 +105,21 @@ void CStage::Render(HDC hDC, float fDeltaTime)
 	{
 		m_vecTile[i]->Render(hDC, fDeltaTime);
 	}
+
+	// Grid를 그린다.
+	for (int i = 0; i < m_iTileNumY; ++i)
+	{
+		//가로줄을 그린다.
+		MoveToEx(hDC, 0, i * m_iTileSizeY, NULL);
+		LineTo(hDC, m_iTileNumX * m_iTileSizeX, i * m_iTileSizeY);
+	}
+
+	//세로줄을 그린다.
+	for (int j = 0; j < m_iTileNumX; ++j)
+	{
+		MoveToEx(hDC, j * m_iTileSizeX, 0, NULL);
+		LineTo(hDC, j * m_iTileSizeX, m_iTileNumY * m_iTileSizeY);
+	}
 }
 
 CStaticObj * CStage::Clone()

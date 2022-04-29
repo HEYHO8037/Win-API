@@ -1,0 +1,21 @@
+﻿  stdafx.cpp
+  Shield.cpp
+  ScrollMgr.cpp
+  ScrewBullet.cpp
+  Player.cpp
+  ObjMgr.cpp
+  Obj.cpp
+  Mouse.cpp
+  Monster.cpp
+  MainGame.cpp
+  LineMgr.cpp
+  Line.cpp
+  KeyMgr.cpp
+  GuideBullet.cpp
+  Default.cpp
+  CollisionMgr.cpp
+  Bullet.cpp
+  코드를 생성하고 있습니다...
+  LINK : C:\Users\haeho\Desktop\WIN API\20220429\Debug\Default.exe을(를) 찾을 수 없거나 마지막 증분 링크에 의해 빌드되지 않았습니다. 전체 링크를 수행하고 있습니다.
+  Default.vcxproj -> C:\Users\haeho\Desktop\WIN API\20220429\Debug\Default.exe
+  Default.vcxproj -> C:\Users\haeho\Desktop\WIN API\20220429\Debug\Default.pdb (Full PDB)
