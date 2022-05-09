@@ -172,8 +172,8 @@ bool CAnimation::AddClip(const string & strName,
 		SetCurrentClip(strName);
 	}
 
-	return true;
 
+	return true;
 }
 
 void CAnimation::SetClipColorKey(const string& strClip, unsigned int r, unsigned int g, unsigned int b)

@@ -1,0 +1,22 @@
+#pragma once
+
+#include "Include.h"
+
+class CLine
+{
+public:
+	CLine();
+	CLine(LINEPOINT& tLeft, LINEPOINT& tRight);
+	CLine(LINE tLine);
+	~CLine();
+
+public:
+	const LINE& Get_Info(void) const { return m_tInfo; }
+
+public:
+	void	Render(HDC hDC);
+
+private:
+	LINE		m_tInfo;
+};
+

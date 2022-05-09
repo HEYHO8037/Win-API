@@ -82,7 +82,7 @@ void CLineMgr::Load_Line()
 		return;
 	}
 
-	// 2. 파일 쓰기
+	// 2. 파일 읽기
 
 	DWORD		dwByte = 0;
 	LINE		tInfo{};
